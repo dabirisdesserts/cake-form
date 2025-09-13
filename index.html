@@ -25,11 +25,11 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 90%;
             margin: 0 auto;
             background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-radius: 2%;
+            box-shadow: 0 2% 4% rgba(0,0,0,0.1);
             min-height: auto;
             height: auto;
             max-height: none;
@@ -39,9 +39,9 @@
         }
 
         .header {
-            background: linear-gradient(135deg, #A0739C 0%, #7D5577 100%);
+            background: url('logo_background.png') center/cover;
             color: white;
-            padding: 40px;
+            padding: 4%;
             text-align: center;
             position: relative;
         }
@@ -58,17 +58,17 @@
         }
 
         .logo {
-            max-width: 400px;
-            margin: 0 auto 20px;
+            max-width: 40%;
+            margin: 0 auto 2%;
             background: white;
-            border-radius: 15px;
-            padding: 20px;
+            border-radius: 2%;
+            padding: 2%;
             position: relative;
             z-index: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 0.5% 1.5% rgba(0,0,0,0.1);
         }
 
         .logo-svg {
@@ -94,14 +94,14 @@
         }
 
         .form-container {
-            padding: 40px;
+            padding: 4%;
         }
 
         .form-section {
-            margin-bottom: 40px;
+            margin-bottom: 4%;
             background: #f8f9fa;
-            border-radius: 15px;
-            padding: 30px;
+            border-radius: 2%;
+            padding: 3%;
             border: 2px solid #E8C7FF;
             position: relative;
         }
@@ -126,18 +126,18 @@
 
         .form-row {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(25%, 1fr));
+            gap: 2%;
+            margin-bottom: 2%;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 2%;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 1%;
             font-weight: 600;
             color: #2c3e50;
         }
@@ -146,9 +146,9 @@
         .form-group select,
         .form-group textarea {
             width: 100%;
-            padding: 12px 15px;
+            padding: 1.5% 2%;
             border: 2px solid #e1e5e9;
-            border-radius: 8px;
+            border-radius: 1%;
             font-size: 16px;
             transition: border-color 0.3s ease;
             background: white;
@@ -165,9 +165,9 @@
         .product-card {
             background: white;
             border: 2px solid #e1e5e9;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 30px;
+            border-radius: 1.5%;
+            padding: 2%;
+            margin-bottom: 3%;
             transition: all 0.3s ease;
             position: relative;
             min-height: auto;
@@ -436,18 +436,18 @@
         }
 
         .total-section {
-            background: linear-gradient(135deg, #A0739C 0%, #7D5577 100%);
+            background: url('logo_background.png') center/cover;
             color: white;
-            padding: 30px;
-            border-radius: 15px;
+            padding: 3%;
+            border-radius: 2%;
             text-align: center;
-            margin: 30px 0;
-            box-shadow: 0 10px 25px rgba(155, 89, 182, 0.3);
+            margin: 3% 0;
+            box-shadow: 0 1% 2.5% rgba(155, 89, 182, 0.3);
         }
 
         .total-title {
             font-size: 1.5em;
-            margin-bottom: 15px;
+            margin-bottom: 1.5%;
         }
 
         .total-amount {
@@ -458,23 +458,23 @@
 
         .submit-btn {
             width: 100%;
-            padding: 20px;
+            padding: 2%;
             background: linear-gradient(135deg, #A0739C 0%, #7D5577 100%);
             color: white;
             border: none;
-            border-radius: 12px;
+            border-radius: 1.5%;
             font-size: 1.3em;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
-            box-shadow: 0 5px 15px rgba(155, 89, 182, 0.3);
+            box-shadow: 0 0.5% 1.5% rgba(155, 89, 182, 0.3);
         }
 
         .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(155, 89, 182, 0.4);
+            transform: translateY(-0.2%);
+            box-shadow: 0 1% 2.5% rgba(155, 89, 182, 0.4);
         }
 
         .submit-btn:active {
@@ -523,11 +523,13 @@
 
         @media (max-width: 768px) {
             .form-container {
-                padding: 20px;
+                padding: 2%;
+                margin: 1%;
             }
 
             .form-row {
                 grid-template-columns: 1fr;
+                gap: 2%;
             }
 
             .product-details {
@@ -544,6 +546,104 @@
 
             .total-amount {
                 font-size: 2.5em;
+            }
+
+            /* Mobile-specific improvements */
+            .form-section {
+                margin: 2% 0;
+                padding: 2%;
+            }
+
+            .form-section h2 {
+                font-size: 1.3em;
+                margin-bottom: 2%;
+            }
+
+            .form-group {
+                margin-bottom: 2%;
+            }
+
+            .form-group input,
+            .form-group textarea,
+            .form-group select {
+                padding: 1.5%;
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+
+            .product-card {
+                margin: 1.5% 0;
+                padding: 2%;
+            }
+
+            .product-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1.5%;
+            }
+
+            .product-title {
+                font-size: 1.1em;
+            }
+
+            .product-price {
+                font-size: 1.2em;
+            }
+
+            /* Stack form inputs vertically on mobile */
+            .form-row .form-group {
+                width: 100%;
+            }
+
+            /* Make tables horizontally scrollable on mobile */
+            .product-options {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                position: relative;
+            }
+
+
+            .vintage-cake-header,
+            .flavor-row {
+                min-width: 90vw; /* Use viewport width for better responsiveness */
+                display: grid !important;
+                grid-template-columns: 12% 8% 18% 18% 22% !important;
+                gap: 1% !important;
+            }
+
+            .vintage-cake-header > div,
+            .flavor-row > div {
+                display: block;
+                width: auto;
+                margin-bottom: 0;
+            }
+
+            /* Make selects and inputs full width on mobile */
+            .product-select,
+            .quantity-input {
+                width: 100% !important;
+                margin: 0.5% 0 !important;
+            }
+
+            /* Improve spacing for mobile */
+            .item-subtotal {
+                margin-top: 2% !important;
+                text-align: center !important;
+            }
+
+            /* Better mobile typography */
+            .policy-text {
+                font-size: 0.9em;
+                line-height: 1.5;
+            }
+
+            .total-section {
+                padding: 3% 2%;
+                margin: 3% 0;
+            }
+
+            .submit-btn {
+                padding: 2%;
+                font-size: 1.1em;
             }
         }
 
@@ -645,7 +745,9 @@
             background: white;
             border-radius: 8px;
             border: 2px solid #e1e5e9;
-            overflow: hidden;
+            overflow-x: auto;
+            overflow-y: visible;
+            -webkit-overflow-scrolling: touch;
         }
 
         .table-header {
@@ -655,6 +757,7 @@
             border-bottom: 2px solid #e1e5e9;
             font-weight: bold;
             color: #2c3e50;
+            min-width: 840px;
         }
 
         .table-row {
@@ -662,6 +765,7 @@
             grid-template-columns: 80px 60px 120px 140px 140px 180px 140px 80px;
             align-items: center;
             min-height: 50px;
+            min-width: 840px;
         }
 
         .table-header > div,
@@ -702,11 +806,12 @@
             color: #A0739C;
         }
 
-        @media (max-width: 1024px) {
+        @media (max-width: 1024px) and (min-width: 769px) {
             .table-header,
             .table-row {
                 grid-template-columns: 60px 50px 100px 120px 120px 140px 120px 70px;
                 font-size: 12px;
+                min-width: 780px;
             }
 
             .table-header > div,
@@ -828,10 +933,38 @@
         /* Special handling for expanded product options */
         .product-card.selected {
             margin-bottom: 40px;
+            position: relative;
+            z-index: 10;
         }
 
         .product-card.selected .product-options {
             margin-bottom: 30px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Prevent overlap on mobile */
+        @media (max-width: 768px) {
+            .product-card {
+                margin-bottom: 20px;
+                position: relative;
+                z-index: 1;
+            }
+
+            .product-card.selected {
+                margin-bottom: 60px;
+                z-index: 20;
+            }
+
+            .product-card.selected .product-options {
+                margin-bottom: 40px;
+                z-index: 20;
+            }
+
+            /* Ensure proper spacing between cards */
+            .product-card + .product-card {
+                margin-top: 20px;
+            }
         }
 
         /* Force scroll behavior for long content */
@@ -872,21 +1005,406 @@
             border-radius: 0 0 8px 8px;
         }
 
-        /* Responsive adjustments for vintage cake layout */
+        /* Additional mobile adjustments for specific elements */
         @media (max-width: 768px) {
-            .flavor-options .flavor-row,
+            /* Make vintage cake options vertical like regular cakes */
+            .vintage-flavor-options {
+                margin: 0;
+                border-radius: 8px;
+                border: 1px solid #e1e5e9;
+                width: 100%;
+                background: white;
+                overflow: visible;
+            }
+
+            /* Hide the vintage cake header on mobile */
             .vintage-cake-header {
-                grid-template-columns: 80px 50px 100px 100px 120px !important;
-                gap: 5px !important;
+                display: none !important;
+            }
+
+            .vintage-flavor-options .flavor-row {
+                display: block !important;
+                padding: 20px !important;
+                background: white !important;
+                margin-bottom: 15px !important;
+                border-radius: 10px !important;
+                border: 2px solid #e1e5e9 !important;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
+                min-height: auto !important;
+                min-width: auto !important;
+                grid-template-columns: none !important;
+                gap: 0 !important;
+            }
+
+            .vintage-flavor-options .flavor-row:last-child {
+                margin-bottom: 0 !important;
+            }
+
+            .vintage-flavor-options .flavor-row > * {
+                width: 100% !important;
+                padding: 0 !important;
+                border-right: none !important;
+                display: block !important;
+                margin: 10px 0 !important;
+            }
+
+            /* Style existing labels and form elements properly */
+            .vintage-flavor-options .flavor-label {
+                font-weight: bold !important;
+                color: #A0739C !important;
+                font-size: 18px !important;
+                margin-bottom: 15px !important;
+                display: block !important;
+                padding: 10px 0 !important;
+                border-bottom: 2px solid #e1e5e9 !important;
+                text-align: center !important;
+            }
+
+            .vintage-flavor-options .quantity-input {
+                width: 100% !important;
+                padding: 12px !important;
+                font-size: 16px !important;
+                border: 2px solid #e1e5e9 !important;
+                border-radius: 8px !important;
+                box-sizing: border-box !important;
+                margin: 10px 0 !important;
+                background: white !important;
+                display: block !important;
+            }
+
+            .vintage-flavor-options .product-select {
+                width: 100% !important;
+                padding: 12px !important;
+                font-size: 16px !important;
+                border: 2px solid #e1e5e9 !important;
+                border-radius: 8px !important;
+                box-sizing: border-box !important;
+                margin: 10px 0 !important;
+                background: white !important;
+                display: block !important;
+                color: #333 !important;
+            }
+
+            /* Add visible labels before form elements */
+            .vintage-flavor-options .quantity-input::before {
+                content: "Quantity:";
+                font-weight: bold;
+                color: #A0739C;
+                font-size: 14px;
+                display: block;
+                margin-bottom: 8px;
+            }
+
+            .vintage-flavor-options .product-select[data-addon-type="filling"]::before {
+                content: "Filling:";
+                font-weight: bold;
+                color: #A0739C;
+                font-size: 14px;
+                display: block;
+                margin-bottom: 8px;
+            }
+
+            .vintage-flavor-options .product-select[data-addon-type="border"]::before {
+                content: "Border:";
+                font-weight: bold;
+                color: #A0739C;
+                font-size: 14px;
+                display: block;
+                margin-bottom: 8px;
+            }
+
+            .vintage-flavor-options .product-select[data-addon-type="addons"]::before {
+                content: "Add-Ons:";
+                font-weight: bold;
+                color: #A0739C;
+                font-size: 14px;
+                display: block;
+                margin-bottom: 8px;
+            }
+
+            /* Better mobile layout for regular flavor options */
+            .flavor-options {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                position: relative;
+            }
+
+
+            .flavor-options .flavor-row {
+                display: grid !important;
+                grid-template-columns: 1fr 80px !important;
+                gap: 10px !important;
+                margin-bottom: 10px;
+                padding: 8px;
+                border: 1px solid #e1e5e9;
+                border-radius: 8px;
+                min-width: 200px;
+            }
+
+            .flavor-options .flavor-row > div {
+                display: flex;
+                align-items: center;
+                width: auto;
+            }
+
+            .flavor-options .flavor-label {
+                flex: 1;
+                margin-right: 10px;
                 font-size: 0.9em;
             }
 
-            .product-select {
-                font-size: 0.8em !important;
+            .flavor-options .quantity-input {
+                width: 60px !important;
+                margin: 0 !important;
+                font-size: 0.9em;
             }
 
-            .quantity-input {
-                font-size: 0.8em !important;
+            /* Improve contrast for size values and subtotals */
+            .col-size,
+            .size-label,
+            .item-subtotal,
+            .subtotal-text {
+                color: #333 !important;
+                font-weight: 500 !important;
+            }
+
+            /* Ensure table headers are visible */
+            .table-header > div,
+            .vintage-cake-header > div {
+                color: #A0739C !important;
+                font-weight: bold !important;
+            }
+
+            /* Improve contrast for form labels */
+            .form-group label,
+            .flavor-label {
+                color: #333 !important;
+                font-weight: 500 !important;
+            }
+
+            /* Vertical mobile layout for cake options */
+            .cake-options-table {
+                margin: 0;
+                border-radius: 8px;
+                border: 1px solid #e1e5e9;
+                width: 100%;
+                background: white;
+                overflow: visible;
+            }
+
+            /* Hide the horizontal table headers on mobile */
+            .cake-options-table .table-header {
+                display: none;
+            }
+
+            /* Stack table rows vertically - use CSS Grid for better control */
+            .cake-options-table .table-row {
+                display: grid !important;
+                grid-template-columns: 1fr !important;
+                grid-template-rows: repeat(8, auto) !important;
+                gap: 15px !important;
+                padding: 20px !important;
+                background: white !important;
+                margin-bottom: 15px !important;
+                border-radius: 10px !important;
+                border: 2px solid #e1e5e9 !important;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
+                align-items: stretch !important;
+                min-height: auto !important;
+                min-width: auto !important;
+            }
+
+            .cake-options-table .table-row:last-child {
+                border-bottom: none !important;
+                margin-bottom: 0 !important;
+            }
+
+            /* Ensure each column takes full width and stacks vertically */
+            .cake-options-table .table-row > div {
+                width: 100% !important;
+                padding: 0 !important;
+                border-right: none !important;
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 8px !important;
+            }
+
+            /* Create labels using CSS content */
+            .cake-options-table .col-size::before {
+                content: "Size";
+                font-weight: bold;
+                color: #A0739C;
+                font-size: 14px;
+                order: -1;
+            }
+
+            .cake-options-table .col-qty::before {
+                content: "Quantity";
+                font-weight: bold;
+                color: #A0739C;
+                font-size: 14px;
+                order: -1;
+            }
+
+            .cake-options-table .col-flavor::before {
+                content: "Flavor";
+                font-weight: bold;
+                color: #A0739C;
+                font-size: 14px;
+                order: -1;
+            }
+
+            .cake-options-table .col-filling::before {
+                content: "Filling";
+                font-weight: bold;
+                color: #A0739C;
+                font-size: 14px;
+                order: -1;
+            }
+
+            .cake-options-table .col-border::before {
+                content: "Border";
+                font-weight: bold;
+                color: #A0739C;
+                font-size: 14px;
+                order: -1;
+            }
+
+            .cake-options-table .col-addons::before {
+                content: "Add-Ons";
+                font-weight: bold;
+                color: #A0739C;
+                font-size: 14px;
+                order: -1;
+            }
+
+            .cake-options-table .col-text::before {
+                content: "Text";
+                font-weight: bold;
+                color: #A0739C;
+                font-size: 14px;
+                order: -1;
+            }
+
+            /* Style form controls */
+            .cake-options-table .table-row select,
+            .cake-options-table .table-row input[type="number"],
+            .cake-options-table .table-row input[type="text"] {
+                width: 100% !important;
+                padding: 12px !important;
+                font-size: 16px !important;
+                border: 2px solid #e1e5e9 !important;
+                border-radius: 8px !important;
+                box-sizing: border-box !important;
+                margin: 0 !important;
+                background: white !important;
+                display: block !important;
+                max-width: none !important;
+                min-width: auto !important;
+            }
+
+            .cake-options-table .table-row select:focus,
+            .cake-options-table .table-row input:focus {
+                border-color: #A0739C;
+                outline: none;
+                box-shadow: 0 0 0 3px rgba(160, 115, 156, 0.1);
+            }
+
+            /* Price display styling */
+            .cake-options-table .col-price {
+                font-weight: bold !important;
+                color: #A0739C !important;
+                font-size: 18px !important;
+                text-align: center !important;
+                padding: 12px !important;
+                background: #f8f3ff !important;
+                border-radius: 8px !important;
+                border: 2px solid #e8d5f7 !important;
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 8px !important;
+                width: 100% !important;
+                box-sizing: border-box !important;
+            }
+
+            .cake-options-table .col-price::before {
+                content: "Subtotal";
+                font-weight: bold;
+                color: #A0739C;
+                font-size: 14px;
+                order: -1;
+            }
+
+            .product-options {
+                position: relative;
+                margin-bottom: 20px;
+                width: 100%;
+                padding: 15px;
+                background: #f8f9fa;
+                border-radius: 8px;
+                box-sizing: border-box;
+            }
+
+            /* Additional mobile layout optimizations */
+            .form-container {
+                padding: 15px;
+                margin: 10px;
+                max-width: calc(100vw - 20px);
+            }
+
+            .product-card {
+                margin: 15px 0;
+                padding: 15px;
+                border-radius: 12px;
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
+                position: relative;
+            }
+
+            .product-header {
+                margin-bottom: 15px;
+            }
+
+            .product-title {
+                font-size: 1.2em;
+                margin-bottom: 5px;
+            }
+
+            .product-price {
+                font-size: 1.3em;
+                font-weight: bold;
+            }
+
+            /* Ensure proper spacing for expanded options */
+            .product-options {
+                margin-top: 15px;
+                padding: 15px;
+                background: #f8f9fa;
+                border-radius: 8px;
+            }
+
+            /* Better mobile form spacing */
+            .form-section {
+                margin: 20px 0;
+                padding: 15px;
+            }
+
+            .form-section h2 {
+                margin-bottom: 15px;
+                font-size: 1.4em;
+            }
+
+            .form-group {
+                margin-bottom: 15px;
+            }
+
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                padding: 12px;
+                font-size: 16px;
+                border-radius: 8px;
             }
         }
 
@@ -906,6 +1424,350 @@
             margin: 0 !important;
             font-size: 12px;
             padding: 6px;
+        }
+
+        /* Floating Action Buttons */
+        .floating-buttons {
+            position: fixed;
+            bottom: 30px;
+            left: 0;
+            right: 0;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .floating-btn {
+            position: fixed;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 4px solid white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5), 0 0 0 2px rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+            pointer-events: auto;
+            z-index: 1001;
+        }
+
+        .floating-btn:hover {
+            transform: translateY(-4px) scale(1.1);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), 0 0 0 3px rgba(255, 255, 255, 1);
+        }
+
+        .theme-toggle-btn {
+            left: 30px;
+            bottom: 30px;
+            background: linear-gradient(135deg, #A0739C 0%, #7D5577 100%);
+            color: white;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top-btn {
+            right: 30px;
+            bottom: 30px;
+            background: linear-gradient(135deg, #A0739C 0%, #7D5577 100%);
+            color: white;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .scroll-top-btn.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Dark Mode Styles */
+        [data-theme="dark"] {
+            --bg-primary: #2a1f2a;
+            --bg-secondary: #3d2f3d;
+            --bg-tertiary: #4a3a4a;
+            --text-primary: #FCFCEC;
+            --text-secondary: #FDF2D6;
+            --text-muted: #835E84;
+            --border-color: #6a5a6a;
+            --border-strong: #7a6a7a;
+            --shadow-color: rgba(131, 94, 132, 0.3);
+            --accent-purple: #835E84;
+            --accent-yellow: #FCFCEC;
+            --accent-yellow-dark: #FDF2D6;
+        }
+
+        [data-theme="dark"] body {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        [data-theme="dark"] .container {
+            background: var(--bg-primary);
+        }
+
+        [data-theme="dark"] .form-container {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+        }
+
+        [data-theme="dark"] .form-section {
+            background: var(--bg-tertiary);
+            border: 2px solid var(--border-strong);
+            box-shadow: 0 4px 12px rgba(131, 94, 132, 0.2);
+        }
+
+        [data-theme="dark"] .form-section h2 {
+            color: var(--accent-yellow);
+        }
+
+        [data-theme="dark"] .form-section h3 {
+            color: var(--text-secondary);
+        }
+
+        [data-theme="dark"] .form-group input,
+        [data-theme="dark"] .form-group textarea,
+        [data-theme="dark"] .form-group select {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+        }
+
+        [data-theme="dark"] .form-group input:focus,
+        [data-theme="dark"] .form-group textarea:focus,
+        [data-theme="dark"] .form-group select:focus {
+            border-color: var(--accent-purple);
+            box-shadow: 0 0 0 2px rgba(131, 94, 132, 0.3);
+        }
+
+        [data-theme="dark"] .product-card {
+            background: var(--bg-tertiary);
+            border: 2px solid var(--border-strong);
+            box-shadow: 0 2px 8px rgba(131, 94, 132, 0.15);
+        }
+
+        [data-theme="dark"] .product-title {
+            color: var(--accent-yellow);
+        }
+
+        [data-theme="dark"] .product-price {
+            color: var(--accent-purple);
+        }
+
+        [data-theme="dark"] .flavor-label {
+            color: var(--text-secondary);
+        }
+
+        [data-theme="dark"] .quantity-input {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+        }
+
+        [data-theme="dark"] .product-select {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+        }
+
+        [data-theme="dark"] .policy-section {
+            background: var(--bg-tertiary);
+            border: 2px solid var(--border-strong);
+            box-shadow: 0 2px 8px rgba(131, 94, 132, 0.15);
+        }
+
+        [data-theme="dark"] .policy-text {
+            color: var(--text-secondary);
+        }
+
+        [data-theme="dark"] .total-section {
+            background: url('logo_background.png') center/cover;
+            color: white;
+        }
+
+        [data-theme="dark"] .submit-btn {
+            background: linear-gradient(135deg, var(--accent-purple) 0%, #6a4a6a 100%);
+            color: var(--accent-yellow);
+        }
+
+        [data-theme="dark"] .submit-btn:hover {
+            background: linear-gradient(135deg, #9a6e9a 0%, #7a5a7a 100%);
+            color: var(--accent-yellow);
+        }
+
+        [data-theme="dark"] .file-upload-area {
+            background: var(--bg-secondary);
+            border: 2px dashed var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        [data-theme="dark"] .file-upload-area:hover {
+            border-color: var(--accent-purple);
+            background: var(--bg-tertiary);
+        }
+
+        [data-theme="dark"] .uploaded-file {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+        }
+
+        [data-theme="dark"] .category-select {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        [data-theme="dark"] .logo {
+            background: white;
+        }
+
+        /* Additional Dark Mode Enhancements */
+        [data-theme="dark"] .category-filter h4 {
+            color: var(--accent-yellow);
+        }
+
+        [data-theme="dark"] .subtotal-amount {
+            color: var(--accent-purple);
+        }
+
+        [data-theme="dark"] .item-subtotal {
+            color: var(--text-secondary);
+        }
+
+        [data-theme="dark"] .item-subtotal .subtotal-amount {
+            color: var(--accent-purple);
+        }
+
+        [data-theme="dark"] .vintage-cake-header {
+            color: var(--accent-yellow);
+            border-bottom-color: var(--border-color);
+        }
+
+        [data-theme="dark"] .required {
+            color: var(--accent-purple);
+        }
+
+        [data-theme="dark"] .policy-text a {
+            color: var(--accent-yellow);
+        }
+
+        [data-theme="dark"] .policy-text a:hover {
+            color: var(--accent-purple);
+        }
+
+        /* Dark mode overrides for inline styles */
+        [data-theme="dark"] h3[style*="color: #7D5577"] {
+            color: var(--accent-yellow) !important;
+        }
+
+        [data-theme="dark"] h4[style*="color: #7D5577"] {
+            color: var(--accent-yellow) !important;
+        }
+
+        [data-theme="dark"] h4[style*="color: #A0739C"] {
+            color: var(--accent-purple) !important;
+        }
+
+        [data-theme="dark"] div[style*="color: #666"] {
+            color: var(--text-secondary) !important;
+        }
+
+        [data-theme="dark"] p[style*="color: #666"] {
+            color: var(--text-secondary) !important;
+        }
+
+        [data-theme="dark"] .vintage-cake-header[style*="color: #A0739C"] {
+            color: var(--accent-yellow) !important;
+            border-bottom-color: var(--border-color) !important;
+        }
+
+        [data-theme="dark"] .error-message {
+            color: #ff6b6b !important;
+        }
+
+        [data-theme="dark"] .success-message {
+            background: rgba(131, 94, 132, 0.2) !important;
+            color: var(--accent-yellow) !important;
+            border: 1px solid var(--accent-purple) !important;
+        }
+
+        [data-theme="dark"] .form-group label {
+            color: var(--accent-yellow) !important;
+        }
+
+        /* Responsive adjustments for floating buttons */
+        @media (max-width: 768px) {
+            .floating-btn {
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+                border: 3px solid white;
+            }
+
+            .theme-toggle-btn {
+                left: 20px;
+                bottom: 20px;
+            }
+
+            .scroll-top-btn {
+                right: 20px;
+                bottom: 20px;
+            }
+        }
+
+        /* Extra small mobile devices */
+        @media (max-width: 480px) {
+            .form-container {
+                padding: 10px;
+                margin: 5px;
+            }
+
+            .header {
+                padding: 20px 15px;
+            }
+
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .form-section {
+                padding: 10px;
+                margin: 10px 0;
+            }
+
+            .form-section h2 {
+                font-size: 1.2em;
+            }
+
+            .product-card {
+                padding: 10px;
+            }
+
+            .total-section {
+                padding: 15px 10px;
+            }
+
+            .total-amount {
+                font-size: 2em;
+            }
+
+            .floating-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 18px;
+            }
+
+            .theme-toggle-btn {
+                left: 15px;
+                bottom: 15px;
+            }
+
+            .scroll-top-btn {
+                right: 15px;
+                bottom: 15px;
+            }
         }
     </style>
 </head>
@@ -2039,19 +2901,6 @@
                     </div>
                 </div>
 
-                <!-- Agreement -->
-                <div class="form-section">
-                    <h2>Agreement <span class="required">*</span></h2>
-                    <div class="section-content">
-                        <div class="form-group">
-                            <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
-                                <input type="radio" id="agreement" name="agreement" value="agree" required style="margin-top: 5px;">
-                                <span>By checking this box, I agree to Dabiri's Dessert's brand policies and acknowledge that full cake payment is due within 72 hours of receiving my invoice.</span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Policies Section -->
                 <div class="policy-section">
                     <div class="policy-text">
@@ -2064,6 +2913,19 @@
                         • Please note that I am not responsible or liable for what happens to the dessert after it has been handed off to you.<br><br>
                         • Payment details and final confirmation process will be provided in the follow-up email.<br><br>
                         For any questions or special requests, please contact me at <a href="mailto:dabirisdesserts@gmail.com">dabirisdesserts@gmail.com</a>
+                    </div>
+                </div>
+
+                <!-- Agreement -->
+                <div class="form-section">
+                    <h2>Agreement <span class="required">*</span></h2>
+                    <div class="section-content">
+                        <div class="form-group">
+                            <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
+                                <input type="radio" id="agreement" name="agreement" value="agree" required style="margin-top: 5px;">
+                                <span>By checking this box, I agree to Dabiri's Dessert's brand policies and acknowledge that full cake payment is due within 72 hours of receiving my invoice.</span>
+                            </label>
+                        </div>
                     </div>
                 </div>
 
@@ -2426,7 +3288,75 @@
             document.querySelectorAll('.product-card').forEach(card => {
                 calculateItemSubtotal(card);
             });
+
+            // Initialize theme and floating buttons
+            initializeTheme();
+            initializeFloatingButtons();
         });
+
+        // Theme Management
+        function initializeTheme() {
+            const themeToggle = document.getElementById('themeToggle');
+            const currentTheme = localStorage.getItem('theme') || 'light';
+
+            // Set initial theme
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            updateThemeIcon(currentTheme);
+
+            // Theme toggle event listener
+            themeToggle.addEventListener('click', toggleTheme);
+        }
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        }
+
+        function updateThemeIcon(theme) {
+            const themeToggle = document.getElementById('themeToggle');
+            themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+        }
+
+        // Floating Buttons Management
+        function initializeFloatingButtons() {
+            const scrollTopBtn = document.getElementById('scrollTop');
+
+            // Scroll to top functionality
+            scrollTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Show/hide scroll to top button based on scroll position
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 100) {
+                    scrollTopBtn.classList.add('visible');
+                } else {
+                    scrollTopBtn.classList.remove('visible');
+                }
+            });
+
+            // Initial check for scroll position
+            if (window.pageYOffset > 100) {
+                scrollTopBtn.classList.add('visible');
+            }
+        }
     </script>
+
+    <!-- Floating Action Buttons -->
+    <div class="floating-buttons">
+        <button class="floating-btn theme-toggle-btn" id="themeToggle" title="Toggle Dark/Light Mode">
+            🌙
+        </button>
+        <button class="floating-btn scroll-top-btn" id="scrollTop" title="Scroll to Top">
+            ↑
+        </button>
+    </div>
 </body>
 </html>
