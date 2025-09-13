@@ -914,7 +914,7 @@
         <!-- Header -->
         <div class="header">
             <div class="logo">
-                <img src="logo.png" alt="Dabiri's Desserts - Cakes and Cookies" class="logo-svg">
+                <img src="logo.png" alt="Dabiri's Desserts - Cakes" class="logo-svg">
             </div>
             <h1>Order Form</h1>
             <p>Create your perfect custom dessert order</p>
@@ -1005,7 +1005,6 @@
                                 <option value="all">Categories: All</option>
                                 <option value="cakes">Cakes</option>
                                 <option value="cupcakes">Cupcakes</option>
-                                <option value="cookies">Cookies</option>
                                 <option value="deals">Deals & Packages</option>
                             </select>
                         </div>
@@ -1697,79 +1696,6 @@
                             </div>
                         </div>
 
-                        <!-- Cookies Section -->
-                        <div class="product-category" data-category="cookies">
-                            <h4 style="color: #7D5577; margin: 20px 0 15px 0; font-size: 1.3em; display: flex; align-items: center;">
-                                Cookies
-                            </h4>
-                            <div class="category-content">
-                                <!-- 1/2 Dozen Cookies -->
-                                <div class="product-card" data-product="half-dozen-cookies">
-                                    <div class="product-header">
-                                        <input type="checkbox" class="product-checkbox" id="half-dozen-cookies" name="products" value="half-dozen-cookies">
-                                        <label for="half-dozen-cookies" class="product-title">1/2 Dozen Cookies</label>
-                                        <span class="product-price">$7.00</span>
-                                    </div>
-                                    <p>$7 for 1/2 Dozen Cookies. Please specify the quantity of each flavor.</p>
-                                    <div class="product-options" style="margin-top: 20px;">
-                                        <div class="flavor-options">
-                                            <div class="flavor-row">
-                                                <span class="flavor-label">Chocolate Chip</span>
-                                                <input type="number" class="quantity-input" min="0" value="0" data-price="7">
-                                            </div>
-                                            <div class="flavor-row">
-                                                <span class="flavor-label">Double Chocolate</span>
-                                                <input type="number" class="quantity-input" min="0" value="0" data-price="7">
-                                            </div>
-                                            <div class="flavor-row">
-                                                <span class="flavor-label">Lemon</span>
-                                                <input type="number" class="quantity-input" min="0" value="0" data-price="7">
-                                            </div>
-                                            <div class="flavor-row">
-                                                <span class="flavor-label">Custom +$5</span>
-                                                <input type="number" class="quantity-input" min="0" value="0" data-price="12">
-                                            </div>
-                                        </div>
-                                        <div class="item-subtotal" style="text-align: right; margin-top: 20px; font-size: 1.1em; color: #666;">
-                                            Item subtotal: <strong class="subtotal-amount">$7.00</strong>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- 1 Dozen Cookies -->
-                                <div class="product-card" data-product="dozen-cookies">
-                                    <div class="product-header">
-                                        <input type="checkbox" class="product-checkbox" id="dozen-cookies" name="products" value="dozen-cookies">
-                                        <label for="dozen-cookies" class="product-title">1 Dozen Cookies</label>
-                                        <span class="product-price">$14.00</span>
-                                    </div>
-                                    <p>$14 for 1 Dozen Cookies. Please specify the quantity of each flavor.</p>
-                                    <div class="product-options" style="margin-top: 20px;">
-                                        <div class="flavor-options">
-                                            <div class="flavor-row">
-                                                <span class="flavor-label">Chocolate Chip</span>
-                                                <input type="number" class="quantity-input" min="0" value="0" data-price="14">
-                                            </div>
-                                            <div class="flavor-row">
-                                                <span class="flavor-label">Double Chocolate</span>
-                                                <input type="number" class="quantity-input" min="0" value="0" data-price="14">
-                                            </div>
-                                            <div class="flavor-row">
-                                                <span class="flavor-label">Lemon</span>
-                                                <input type="number" class="quantity-input" min="0" value="0" data-price="14">
-                                            </div>
-                                            <div class="flavor-row">
-                                                <span class="flavor-label">Custom +$5</span>
-                                                <input type="number" class="quantity-input" min="0" value="0" data-price="19">
-                                            </div>
-                                        </div>
-                                        <div class="item-subtotal" style="text-align: right; margin-top: 20px; font-size: 1.1em; color: #666;">
-                                            Item subtotal: <strong class="subtotal-amount">$14.00</strong>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
                         <!-- Deals & Packages Section -->
                         <div class="product-category" data-category="deals">
@@ -2009,6 +1935,25 @@
                     </div>
                 </div>
 
+                <!-- Custom Items Section -->
+                <div class="form-section">
+                    <h2>Custom Items</h2>
+                    <div class="section-content">
+                        <div class="form-group">
+                            <p style="margin-bottom: 15px; color: #666; font-size: 0.95em;">
+                                Don't see what you're looking for? Let me know about any custom items like cookies, bread puddings, or other desserts you'd like to order.
+                            </p>
+                            <textarea
+                                id="customItems"
+                                name="customItems"
+                                placeholder="Please describe any custom items you'd like to order (e.g., cookies, bread pudding, etc.) and any specific requirements..."
+                                rows="4"
+                                style="width: 100%; padding: 12px; border: 2px solid #e1e5e9; border-radius: 8px; font-family: inherit; font-size: 14px; resize: vertical; min-height: 100px;"
+                            ></textarea>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Design/Aesthetic Requests -->
                 <div class="form-section">
                     <h2>Design/Aesthetic Requests <span class="required">*</span></h2>
@@ -2154,8 +2099,6 @@
             'half-dozen-cupcakes': 14.00,
             'dozen-cupcakes': 24.00,
             'birthday-2dozen-cupcakes': 45.00,
-            'half-dozen-cookies': 7.00,
-            'dozen-cookies': 14.00,
             'vintage-heart-cake': 65.00,
             'birthday-half-dozen-cupcakes': 30.00,
             'birthday-full-dozen-cupcakes': 35.00
@@ -2362,9 +2305,9 @@
                         hasQuantity = true;
                         const unitPrice = parseFloat(input.dataset.price) || 0;
 
-                        // For cupcakes and cookies, calculate per unit, for cakes calculate per cake
-                        if (productValue.includes('cupcakes') || productValue.includes('cookies')) {
-                            // For cupcakes/cookies: price is per batch, but we calculate based on quantity ordered
+                        // For cupcakes, calculate per unit, for cakes calculate per cake
+                        if (productValue.includes('cupcakes')) {
+                            // For cupcakes: price is per batch, but we calculate based on quantity ordered
                             itemTotal += unitPrice;
                         } else {
                             // For cakes: price per individual cake
