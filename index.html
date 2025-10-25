@@ -1783,7 +1783,7 @@
         </div>
 
         <div class="form-container">
-            <form id="dessertOrderForm" class="order-form" novalidate>
+            <form id="dessertOrderForm" class="order-form" novalidate onsubmit="return false;">
                 <!-- Hidden honeypot field for spam protection -->
                 <div style="display: none;">
                     <label>Don't fill this out if you're human: <input name="bot-field" /></label>
@@ -2946,6 +2946,12 @@
                     Thank you for your order! I will contact you within 3 business days with a sketch of your order and price confirmation.
                 </div>
 
+                <!-- Error Message -->
+                <div class="error-message" id="errorMessage" style="display: none;">
+                    <strong>Error submitting order.</strong><br>
+                    Please try again or contact us directly.
+                </div>
+
                 <!-- Submit Button -->
                 <button type="submit" class="submit-btn" id="submitBtn">Submit</button>
 
@@ -3357,7 +3363,7 @@
 
             // Collect product data
             document.querySelectorAll('.product-card').forEach(card => {
-                const productName = card.querySelector('.product-name').textContent;
+                const productName = card.querySelector('.product-title').textContent;
                 const quantity = parseInt(card.querySelector('.quantity-input').value) || 0;
                 const price = parseFloat(card.querySelector('.product-price').textContent.replace('$', '')) || 0;
 
