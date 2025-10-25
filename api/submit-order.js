@@ -1,5 +1,5 @@
 const nodemailer = require('nodemailer');
-const AirtableIntegration = require('../airtable-integration');
+const https = require('https');
 
 // Email configuration using environment variables
 const transporter = nodemailer.createTransport({
@@ -12,8 +12,10 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-// Airtable integration
-const airtable = new AirtableIntegration();
+// Airtable configuration
+const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
+const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID;
+const AIRTABLE_TABLE_ID = process.env.AIRTABLE_TABLE_ID;
 
 // Generate order ID
 function generateOrderId() {
@@ -45,6 +47,69 @@ function calculateTotal(formData) {
     }
 
     return total;
+}
+
+// Add order to Airtable
+function addOrderToAirtable(formData) {
+    return new Promise((resolve, reject) => {
+        const orderId = generateOrderId();
+        const total = calculateTotal(formData);
+
+        const orderData = {
+            fields: {
+                "Order ID": orderId,
+                "Customer Name": `${formData.firstName} ${formData.lastName}`,
+                "Email": formData.email,
+                "Phone Number": formData.phone,
+                "Pickup Date": formData.pickupDate,
+                "Order Details": JSON.stringify(formData.products || []),
+                "Special Instructions": formData.specialInstructions || formData.customItems || '',
+                "Total Price": total,
+                "Order Status": "Submitted",
+                "Order Date": new Date().toISOString().split('T')[0]
+            }
+        };
+
+        const postData = JSON.stringify(orderData);
+
+        const options = {
+            hostname: 'api.airtable.com',
+            port: 443,
+            path: `/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_ID}`,
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${AIRTABLE_API_KEY}`,
+                'Content-Type': 'application/json',
+                'Content-Length': Buffer.byteLength(postData)
+            }
+        };
+
+        const req = https.request(options, (res) => {
+            let data = '';
+
+            res.on('data', (chunk) => {
+                data += chunk;
+            });
+
+            res.on('end', () => {
+                if (res.statusCode >= 200 && res.statusCode < 300) {
+                    console.log('Order added to Airtable successfully');
+                    resolve({ success: true, orderId, total });
+                } else {
+                    console.error('Error adding order to Airtable:', data);
+                    reject(new Error(`Airtable API error: ${res.statusCode} - ${data}`));
+                }
+            });
+        });
+
+        req.on('error', (error) => {
+            console.error('Request error:', error);
+            reject(error);
+        });
+
+        req.write(postData);
+        req.end();
+    });
 }
 
 // Create customer email template
@@ -135,46 +200,43 @@ function createBusinessEmailTemplate(formData, orderId, total) {
                     <strong>Action Required:</strong><br>
                     • Create sketch of the order<br>
                     • Send confirmation email to customer<br>
-                    • Update Google Sheets with order details
+                    • Update Airtable with order details
                 </p>
             </div>
         </div>
     `;
 }
 
-// Add order to Airtable
-async function addOrderToAirtable(formData) {
-    try {
-        const result = await airtable.addOrderToAirtable(formData);
-        console.log('Order added to Airtable successfully');
-        return result;
-    } catch (error) {
-        console.error('Error adding order to Airtable:', error);
-        // Don't throw error - continue with email sending even if Airtable fails
-        return { success: false, orderId: 'ERROR', total: 0 };
-    }
-}
-
 // Main handler function
-module.exports = async function handler(req, res) {
+exports.handler = async (event, context) => {
     // Set CORS headers
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    const headers = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Content-Type': 'application/json'
+    };
 
     // Handle preflight requests
-    if (req.method === 'OPTIONS') {
-        res.status(200).end();
-        return;
+    if (event.httpMethod === 'OPTIONS') {
+        return {
+            statusCode: 200,
+            headers,
+            body: JSON.stringify({ message: 'CORS preflight' })
+        };
     }
 
     // Only allow POST requests
-    if (req.method !== 'POST') {
-        return res.status(405).json({ success: false, message: 'Method not allowed' });
+    if (event.httpMethod !== 'POST') {
+        return {
+            statusCode: 405,
+            headers,
+            body: JSON.stringify({ success: false, message: 'Method not allowed' })
+        };
     }
 
     try {
-        const formData = req.body;
+        const formData = JSON.parse(event.body);
 
         // Add to Airtable first to get order ID and total
         const airtableResult = await addOrderToAirtable(formData);
@@ -202,17 +264,25 @@ module.exports = async function handler(req, res) {
             transporter.sendMail(businessEmail)
         ]);
 
-        res.status(200).json({
-            success: true,
-            orderId: orderId,
-            message: 'Order submitted successfully! Check your email for confirmation.'
-        });
+        return {
+            statusCode: 200,
+            headers,
+            body: JSON.stringify({
+                success: true,
+                orderId: orderId,
+                message: 'Order submitted successfully! Check your email for confirmation.'
+            })
+        };
 
     } catch (error) {
         console.error('Error processing order:', error);
-        res.status(500).json({
-            success: false,
-            message: 'Error processing order. Please try again or contact us directly.'
-        });
+        return {
+            statusCode: 500,
+            headers,
+            body: JSON.stringify({
+                success: false,
+                message: 'Error processing order. Please try again or contact us directly.'
+            })
+        };
     }
-}
+};
