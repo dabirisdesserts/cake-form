@@ -3270,6 +3270,7 @@
 
         async function handleFormSubmit(e) {
             e.preventDefault();
+            console.log('Form submission started');
 
             // Show loading state
             const submitBtn = document.getElementById('submitBtn');
@@ -3320,12 +3321,14 @@
 
             } catch (error) {
                 console.error('Error submitting order:', error);
-
+                alert('Error: ' + error.message);
+                
                 // Show error message
                 const errorMessage = document.getElementById('errorMessage');
                 errorMessage.innerHTML = `
                     <strong>Error submitting order.</strong><br>
-                    Please try again or contact us directly.
+                    Please try again or contact us directly.<br>
+                    Error: ${error.message}
                 `;
                 errorMessage.style.display = 'block';
 
