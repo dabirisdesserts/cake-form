@@ -1,0 +1,29 @@
+{
+  "name": "dabiri-desserts-form",
+  "version": "1.0.0",
+  "description": "Order form for Dabiri's Desserts - Serverless",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'Static site - no build needed'",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "nodemailer": "^6.9.7"
+  },
+  "devDependencies": {
+    "vercel": "^32.0.0"
+  },
+  "keywords": [
+    "cake",
+    "dessert",
+    "order",
+    "form",
+    "serverless"
+  ],
+  "author": "Dabiri's Desserts",
+  "license": "MIT"
+}

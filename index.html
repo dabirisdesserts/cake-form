@@ -3263,25 +3263,93 @@
             pickupDate.min = minDate.toISOString().split('T')[0];
         }
 
-        function handleFormSubmit(e) {
+        async function handleFormSubmit(e) {
             e.preventDefault();
 
-                // Show success message
-                document.getElementById('successMessage').style.display = 'block';
+            // Show loading state
+            const submitBtn = document.getElementById('submitBtn');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Submitting...';
+            submitBtn.disabled = true;
 
-                // Scroll to success message
-            document.getElementById('successMessage').scrollIntoView({
-                behavior: 'smooth',
-                block: 'center'
+            try {
+                // Collect form data
+                const formData = collectFormData();
+
+                // Submit to backend
+                const response = await fetch('/api/submit-order', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    // Show success message with order ID
+                    const successMessage = document.getElementById('successMessage');
+                    successMessage.innerHTML = `
+                        <strong>Order Submitted Successfully!</strong><br>
+                        <strong>Order ID: ${result.orderId}</strong><br>
+                        Please check your email for confirmation. I will contact you within 3 business days with a sketch and final pricing.
+                    `;
+                    successMessage.style.display = 'block';
+
+                    // Scroll to success message
+                    successMessage.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
+
+                    // Reset form after delay
+                    setTimeout(() => {
+                        if (confirm('Would you like to submit another order?')) {
+                            location.reload();
+                        }
+                    }, 3000);
+                } else {
+                    throw new Error(result.message || 'Failed to submit order');
+                }
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                alert('Error submitting order. Please try again or contact us directly.');
+            } finally {
+                // Reset button state
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
+        }
+
+        function collectFormData() {
+            const formData = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                pickupDate: document.getElementById('pickupDate').value,
+                specialInstructions: document.getElementById('specialInstructions').value,
+                products: []
+            };
+
+            // Collect product data
+            document.querySelectorAll('.product-card').forEach(card => {
+                const productName = card.querySelector('.product-name').textContent;
+                const quantity = parseInt(card.querySelector('.quantity-input').value) || 0;
+                const price = parseFloat(card.querySelector('.product-price').textContent.replace('$', '')) || 0;
+
+                if (quantity > 0) {
+                    formData.products.push({
+                        name: productName,
+                        quantity: quantity,
+                        price: price
+                    });
+                }
             });
 
-            // Optionally reset form after delay
-                setTimeout(() => {
-                if (confirm('Would you like to submit another order?')) {
-                    location.reload();
-                }
-                }, 3000);
-            }
+            return formData;
+        }
 
         // Initialize subtotals on page load
         document.addEventListener('DOMContentLoaded', function() {
