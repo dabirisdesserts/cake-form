@@ -3322,7 +3322,7 @@
             } catch (error) {
                 console.error('Error submitting order:', error);
                 alert('Error: ' + error.message);
-                
+
                 // Show error message
                 const errorMessage = document.getElementById('errorMessage');
                 errorMessage.innerHTML = `
@@ -3351,7 +3351,7 @@
                 email: document.getElementById('email').value,
                 phone: document.getElementById('phone').value,
                 pickupDate: document.getElementById('pickupDate').value,
-                specialInstructions: document.getElementById('specialInstructions').value,
+                customItems: document.getElementById('customItems').value,
                 products: []
             };
 

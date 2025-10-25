@@ -63,7 +63,7 @@ function addOrderToAirtable(formData) {
                 "Phone Number": formData.phone,
                 "Pickup Date": formData.pickupDate,
                 "Order Details": JSON.stringify(formData.products || []),
-                "Special Instructions": formData.specialInstructions || formData.customItems || '',
+                "Special Instructions": formData.customItems || '',
                 "Total Price": total,
                 "Order Status": "Submitted",
                 "Order Date": new Date().toISOString().split('T')[0]
@@ -140,7 +140,7 @@ function createCustomerEmailTemplate(formData, orderId, total) {
                     product.quantity > 0 ? `<p><strong>${product.name}:</strong> ${product.quantity} x $${product.price} = $${(product.quantity * product.price).toFixed(2)}</p>` : ''
                 ).join('') : ''}
 
-                ${formData.specialInstructions ? `<p><strong>Special Instructions:</strong> ${formData.specialInstructions}</p>` : ''}
+                ${formData.customItems ? `<p><strong>Special Instructions:</strong> ${formData.customItems}</p>` : ''}
 
                 <div style="background: #8B4A9C; color: white; padding: 15px; border-radius: 5px; margin: 20px 0;">
                     <h3 style="margin: 0; color: white;">Total: $${total.toFixed(2)}</h3>
@@ -190,7 +190,7 @@ function createBusinessEmailTemplate(formData, orderId, total) {
                     product.quantity > 0 ? `<p><strong>${product.name}:</strong> ${product.quantity} x $${product.price} = $${(product.quantity * product.price).toFixed(2)}</p>` : ''
                 ).join('') : ''}
 
-                ${formData.specialInstructions ? `<p><strong>Special Instructions:</strong> ${formData.specialInstructions}</p>` : ''}
+                ${formData.customItems ? `<p><strong>Special Instructions:</strong> ${formData.customItems}</p>` : ''}
 
                 <div style="background: #8B4A9C; color: white; padding: 15px; border-radius: 5px; margin: 20px 0;">
                     <h3 style="margin: 0; color: white;">Estimated Total: $${total.toFixed(2)}</h3>
