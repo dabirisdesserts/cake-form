@@ -3,7 +3,7 @@
  * Replaces Google Sheets with free Airtable database
  */
 
-import https from 'https';
+const https = require('https');
 
 class AirtableIntegration {
     constructor() {
@@ -189,4 +189,4 @@ class AirtableIntegration {
     }
 }
 
-export default AirtableIntegration;
+module.exports = AirtableIntegration;

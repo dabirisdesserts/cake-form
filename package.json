@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Order form for Dabiri's Desserts - Serverless",
   "main": "index.html",
-  "type": "module",
   "scripts": {
     "dev": "vercel dev",
     "build": "echo 'Static site - no build needed'",

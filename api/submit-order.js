@@ -1,5 +1,5 @@
-import nodemailer from 'nodemailer';
-import AirtableIntegration from '../airtable-integration.js';
+const nodemailer = require('nodemailer');
+const AirtableIntegration = require('../airtable-integration');
 
 // Email configuration using environment variables
 const transporter = nodemailer.createTransport({

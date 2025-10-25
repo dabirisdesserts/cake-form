@@ -1,15 +1,17 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "api/submit-order.js",
-      "use": "@vercel/node"
+  "functions": {
+    "api/submit-order.js": {
+      "runtime": "@vercel/node@3"
+    },
+    "api/test.js": {
+      "runtime": "@vercel/node@3"
     }
-  ],
+  },
   "routes": [
     {
-      "src": "/api/submit-order",
-      "dest": "/api/submit-order.js"
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
     },
     {
       "src": "/(.*)",
