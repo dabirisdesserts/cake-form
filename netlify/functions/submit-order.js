@@ -1,5 +1,5 @@
 const nodemailer = require('nodemailer');
-const AirtableIntegration = require('../../airtable-integration');
+const https = require('https');
 
 // Email configuration using environment variables
 const transporter = nodemailer.createTransport({
@@ -12,8 +12,10 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-// Airtable integration
-const airtable = new AirtableIntegration();
+// Airtable configuration
+const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
+const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID;
+const AIRTABLE_TABLE_ID = process.env.AIRTABLE_TABLE_ID;
 
 // Generate order ID
 function generateOrderId() {
@@ -45,6 +47,69 @@ function calculateTotal(formData) {
     }
 
     return total;
+}
+
+// Add order to Airtable
+function addOrderToAirtable(formData) {
+    return new Promise((resolve, reject) => {
+        const orderId = generateOrderId();
+        const total = calculateTotal(formData);
+
+        const orderData = {
+            fields: {
+                "Order ID": orderId,
+                "Customer Name": `${formData.firstName} ${formData.lastName}`,
+                "Email": formData.email,
+                "Phone Number": formData.phone,
+                "Pickup Date": formData.pickupDate,
+                "Order Details": JSON.stringify(formData.products || []),
+                "Special Instructions": formData.specialInstructions || formData.customItems || '',
+                "Total Price": total,
+                "Order Status": "Submitted",
+                "Order Date": new Date().toISOString().split('T')[0]
+            }
+        };
+
+        const postData = JSON.stringify(orderData);
+
+        const options = {
+            hostname: 'api.airtable.com',
+            port: 443,
+            path: `/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_ID}`,
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${AIRTABLE_API_KEY}`,
+                'Content-Type': 'application/json',
+                'Content-Length': Buffer.byteLength(postData)
+            }
+        };
+
+        const req = https.request(options, (res) => {
+            let data = '';
+
+            res.on('data', (chunk) => {
+                data += chunk;
+            });
+
+            res.on('end', () => {
+                if (res.statusCode >= 200 && res.statusCode < 300) {
+                    console.log('Order added to Airtable successfully');
+                    resolve({ success: true, orderId, total });
+                } else {
+                    console.error('Error adding order to Airtable:', data);
+                    reject(new Error(`Airtable API error: ${res.statusCode} - ${data}`));
+                }
+            });
+        });
+
+        req.on('error', (error) => {
+            console.error('Request error:', error);
+            reject(error);
+        });
+
+        req.write(postData);
+        req.end();
+    });
 }
 
 // Create customer email template
@@ -140,19 +205,6 @@ function createBusinessEmailTemplate(formData, orderId, total) {
             </div>
         </div>
     `;
-}
-
-// Add order to Airtable
-async function addOrderToAirtable(formData) {
-    try {
-        const result = await airtable.addOrderToAirtable(formData);
-        console.log('Order added to Airtable successfully');
-        return result;
-    } catch (error) {
-        console.error('Error adding order to Airtable:', error);
-        // Don't throw error - continue with email sending even if Airtable fails
-        return { success: false, orderId: 'ERROR', total: 0 };
-    }
 }
 
 // Main handler function
