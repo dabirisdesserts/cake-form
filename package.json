@@ -26,5 +26,8 @@
     "serverless"
   ],
   "author": "Dabiri's Desserts",
-  "license": "MIT"
+  "license": "MIT",
+  "engines": {
+    "node": "18.x"
+  }
 }

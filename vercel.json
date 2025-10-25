@@ -1,9 +1,7 @@
 {
-  "public": true,
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
+  "functions": {
+    "api/submit-order.js": {
+      "runtime": "@vercel/node"
     }
-  ]
+  }
 }
