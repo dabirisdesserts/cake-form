@@ -1783,7 +1783,12 @@
         </div>
 
         <div class="form-container">
-            <form id="dessertOrderForm">
+            <form id="dessertOrderForm" name="dessert-order" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+                <!-- Hidden honeypot field for spam protection -->
+                <div style="display: none;">
+                    <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+                </div>
+                
                 <!-- Brand Description -->
                 <div class="brand-info">
                     <div class="brand-description">
@@ -3263,63 +3268,28 @@
             pickupDate.min = minDate.toISOString().split('T')[0];
         }
 
-        async function handleFormSubmit(e) {
-            e.preventDefault();
+        function handleFormSubmit(e) {
+            // For Netlify native form handling, we'll let the form submit naturally
+            // and show a success message
+            const successMessage = document.getElementById('successMessage');
+            successMessage.innerHTML = `
+                <strong>Order Submitted Successfully!</strong><br>
+                Thank you for your order! I will contact you within 3 business days with a sketch and final pricing.
+            `;
+            successMessage.style.display = 'block';
 
-            // Show loading state
-            const submitBtn = document.getElementById('submitBtn');
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Submitting...';
-            submitBtn.disabled = true;
+            // Scroll to success message
+            successMessage.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+            });
 
-            try {
-                // Collect form data
-                const formData = collectFormData();
-
-                // Submit to backend
-                const response = await fetch('/.netlify/functions/submit-order', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(formData)
-                });
-
-                const result = await response.json();
-
-                if (result.success) {
-                    // Show success message with order ID
-                    const successMessage = document.getElementById('successMessage');
-                    successMessage.innerHTML = `
-                        <strong>Order Submitted Successfully!</strong><br>
-                        <strong>Order ID: ${result.orderId}</strong><br>
-                        Please check your email for confirmation. I will contact you within 3 business days with a sketch and final pricing.
-                    `;
-                    successMessage.style.display = 'block';
-
-                    // Scroll to success message
-                    successMessage.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'center'
-                    });
-
-                    // Reset form after delay
-                    setTimeout(() => {
-                        if (confirm('Would you like to submit another order?')) {
-                            location.reload();
-                        }
-                    }, 3000);
-                } else {
-                    throw new Error(result.message || 'Failed to submit order');
+            // Reset form after delay
+            setTimeout(() => {
+                if (confirm('Would you like to submit another order?')) {
+                    location.reload();
                 }
-            } catch (error) {
-                console.error('Error submitting form:', error);
-                alert('Error submitting order. Please try again or contact us directly.');
-            } finally {
-                // Reset button state
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-            }
+            }, 3000);
         }
 
         function collectFormData() {
