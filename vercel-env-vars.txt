@@ -1,0 +1,20 @@
+# Vercel Environment Variables for Dabiri's Desserts
+# Copy these into your Vercel project settings
+
+# Email Configuration (Gmail)
+EMAIL_USER=dabirisdesserts@gmail.com
+EMAIL_PASS=reir layv yekb qqcy
+BUSINESS_EMAIL=dabirisdesserts@gmail.com
+
+# Airtable Configuration
+AIRTABLE_API_KEY=pat2r9bHQPMYkDtZV.9409e2c751957e1f03ab9378fe0678e477b6d30fe91d96db9d5d64cfccfead
+AIRTABLE_BASE_ID=appKSEY3UryATp55S
+AIRTABLE_TABLE_ID=tblL9zViAuj7ydodU
+
+# Instructions:
+# 1. Go to your Vercel dashboard
+# 2. Click on your "cake-form" project
+# 3. Go to Settings > Environment Variables
+# 4. Add each variable with the exact name and value above
+# 5. Make sure to set them for "Production" environment
+# 6. After adding all variables, redeploy your project
