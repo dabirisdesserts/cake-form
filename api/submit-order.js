@@ -75,7 +75,7 @@ function addOrderToAirtable(formData) {
         const options = {
             hostname: 'api.airtable.com',
             port: 443,
-            path: `/v0/${AIRTABLE_BASE_ID}/Orders`,
+            path: `/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_ID}`,
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${AIRTABLE_API_KEY}`,
