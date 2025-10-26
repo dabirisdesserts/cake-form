@@ -49,6 +49,43 @@ function calculateTotal(formData) {
     return total;
 }
 
+// Test Airtable connection first
+function testAirtableConnection() {
+    return new Promise((resolve, reject) => {
+        const options = {
+            hostname: 'api.airtable.com',
+            port: 443,
+            path: `/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_ID}?maxRecords=1`,
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${AIRTABLE_API_KEY}`,
+                'Content-Type': 'application/json'
+            }
+        };
+
+        const req = https.request(options, (res) => {
+            let data = '';
+            res.on('data', (chunk) => {
+                data += chunk;
+            });
+            res.on('end', () => {
+                console.log('Airtable test response:', res.statusCode, data);
+                if (res.statusCode >= 200 && res.statusCode < 300) {
+                    resolve({ success: true, data: JSON.parse(data) });
+                } else {
+                    reject(new Error(`Airtable test failed: ${res.statusCode} - ${data}`));
+                }
+            });
+        });
+
+        req.on('error', (error) => {
+            reject(error);
+        });
+
+        req.end();
+    });
+}
+
 // Add order to Airtable
 function addOrderToAirtable(formData) {
     return new Promise((resolve, reject) => {
@@ -370,6 +407,15 @@ export default async function handler(req, res) {
         console.log('AIRTABLE_API_KEY:', process.env.AIRTABLE_API_KEY ? 'SET' : 'NOT SET');
         console.log('AIRTABLE_BASE_ID:', process.env.AIRTABLE_BASE_ID ? 'SET' : 'NOT SET');
         console.log('AIRTABLE_TABLE_ID:', process.env.AIRTABLE_TABLE_ID ? 'SET' : 'NOT SET');
+
+        // Test Airtable connection first
+        try {
+            const testResult = await testAirtableConnection();
+            console.log('Airtable connection test successful:', testResult);
+        } catch (testError) {
+            console.error('Airtable connection test failed:', testError);
+            throw new Error(`Airtable connection failed: ${testError.message}`);
+        }
 
         // Add to Airtable first to get order ID and total
         const airtableResult = await addOrderToAirtable(formData);
