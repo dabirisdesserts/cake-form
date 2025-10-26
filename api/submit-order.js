@@ -55,7 +55,7 @@ function testAirtableConnection() {
         const options = {
             hostname: 'api.airtable.com',
             port: 443,
-            path: `/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_ID}?maxRecords=1`,
+            path: `/v0/${AIRTABLE_BASE_ID}/Orders?maxRecords=1`,
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${AIRTABLE_API_KEY}`,
@@ -112,7 +112,7 @@ function addOrderToAirtable(formData) {
         const options = {
             hostname: 'api.airtable.com',
             port: 443,
-            path: `/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_ID}`,
+            path: `/v0/${AIRTABLE_BASE_ID}/Orders`,
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${AIRTABLE_API_KEY}`,
