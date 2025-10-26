@@ -38,6 +38,20 @@
             overflow: visible;
         }
 
+        /* Improved responsive container */
+        @media (max-width: 1200px) {
+            .container {
+                max-width: 95%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                max-width: 98%;
+                margin: 0 1%;
+            }
+        }
+
         .header {
             background: url('logo_background.png') center/cover;
             color: white;
@@ -95,6 +109,20 @@
 
         .form-container {
             padding: 4%;
+            overflow-x: hidden;
+        }
+
+        /* Better responsive container handling */
+        @media (max-width: 1200px) {
+            .form-container {
+                padding: 3%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 2%;
+            }
         }
 
         .form-section {
@@ -104,6 +132,24 @@
             padding: 3%;
             border: 2px solid #E8C7FF;
             position: relative;
+            width: 100%;
+            box-sizing: border-box;
+            overflow-x: hidden;
+        }
+
+        /* Better responsive form sections */
+        @media (max-width: 1200px) {
+            .form-section {
+                padding: 2.5%;
+                margin-bottom: 3%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .form-section {
+                padding: 2%;
+                margin-bottom: 2%;
+            }
         }
 
         .form-section h2 {
@@ -126,9 +172,23 @@
 
         .form-row {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(25%, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2%;
             margin-bottom: 2%;
+        }
+
+        /* Responsive form row adjustments */
+        @media (max-width: 1024px) {
+            .form-row {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 1.5%;
+            }
         }
 
         .form-group {
@@ -172,6 +232,23 @@
             position: relative;
             min-height: auto;
             overflow: visible;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* Better responsive product cards */
+        @media (max-width: 1200px) {
+            .product-card {
+                padding: 1.5%;
+                margin-bottom: 2%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .product-card {
+                padding: 1%;
+                margin-bottom: 1.5%;
+            }
         }
 
         .product-card:hover {
@@ -734,6 +811,14 @@
         .item-subtotal {
             border-top: 2px solid #e1e5e9;
             padding-top: 15px;
+            text-align: right;
+            margin-top: 20px;
+            font-size: 1.1em;
+        }
+
+        .item-subtotal span {
+            color: #333 !important;
+            font-weight: 500;
         }
 
         .subtotal-amount {
@@ -748,6 +833,29 @@
             overflow-x: auto;
             overflow-y: visible;
             -webkit-overflow-scrolling: touch;
+            width: 100%;
+            max-width: 100%;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Better horizontal scrolling for tables */
+        .cake-options-table::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .cake-options-table::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        .cake-options-table::-webkit-scrollbar-thumb {
+            background: #A0739C;
+            border-radius: 4px;
+        }
+
+        .cake-options-table::-webkit-scrollbar-thumb:hover {
+            background: #7D5577;
         }
 
         .table-header {
@@ -766,6 +874,49 @@
             align-items: center;
             min-height: 50px;
             min-width: 840px;
+        }
+
+        /* Improved responsive design for different screen sizes */
+        @media (max-width: 1400px) and (min-width: 1025px) {
+            .table-header,
+            .table-row {
+                grid-template-columns: 70px 50px 110px 130px 130px 160px 130px 70px;
+                min-width: 750px;
+                font-size: 14px;
+            }
+
+            .table-header > div,
+            .table-row > div {
+                padding: 10px 6px;
+            }
+        }
+
+        @media (max-width: 1200px) and (min-width: 901px) {
+            .table-header,
+            .table-row {
+                grid-template-columns: 60px 45px 100px 120px 120px 140px 120px 60px;
+                min-width: 665px;
+                font-size: 13px;
+            }
+
+            .table-header > div,
+            .table-row > div {
+                padding: 8px 4px;
+            }
+        }
+
+        @media (max-width: 900px) and (min-width: 769px) {
+            .table-header,
+            .table-row {
+                grid-template-columns: 50px 40px 90px 110px 110px 120px 110px 50px;
+                min-width: 580px;
+                font-size: 12px;
+            }
+
+            .table-header > div,
+            .table-row > div {
+                padding: 6px 3px;
+            }
         }
 
         .table-header > div,
@@ -809,9 +960,9 @@
         @media (max-width: 1024px) and (min-width: 769px) {
             .table-header,
             .table-row {
-                grid-template-columns: 60px 50px 100px 120px 120px 140px 120px 70px;
+                grid-template-columns: 50px 40px 90px 110px 110px 130px 110px 60px;
                 font-size: 12px;
-                min-width: 780px;
+                min-width: 600px;
             }
 
             .table-header > div,
@@ -1467,6 +1618,30 @@
             visibility: visible;
         }
 
+        .translate-btn {
+            left: 100px;
+            bottom: 30px;
+            background: linear-gradient(135deg, #A0739C 0%, #7D5577 100%);
+            color: white;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-bottom-btn {
+            right: 100px;
+            bottom: 30px;
+            background: linear-gradient(135deg, #7D5577 0%, #A0739C 100%);
+            color: white;
+            opacity: 1;
+            visibility: visible;
+            transition: all 0.3s ease;
+        }
+
+        .scroll-bottom-btn.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
         .scroll-top-btn {
             right: 30px;
             bottom: 30px;
@@ -1632,13 +1807,6 @@
             color: var(--accent-purple);
         }
 
-        [data-theme="dark"] .item-subtotal {
-            color: var(--text-secondary);
-        }
-
-        [data-theme="dark"] .item-subtotal .subtotal-amount {
-            color: var(--accent-purple);
-        }
 
         [data-theme="dark"] .vintage-cake-header {
             color: var(--accent-yellow);
@@ -1697,6 +1865,83 @@
             color: var(--accent-yellow) !important;
         }
 
+        /* Fix dark mode text visibility in all input types */
+        [data-theme="dark"] input[type="text"],
+        [data-theme="dark"] input[type="email"],
+        [data-theme="dark"] input[type="tel"],
+        [data-theme="dark"] input[type="number"],
+        [data-theme="dark"] input[type="date"],
+        [data-theme="dark"] input[type="time"],
+        [data-theme="dark"] textarea,
+        [data-theme="dark"] select {
+            background: var(--bg-secondary) !important;
+            color: var(--text-primary) !important;
+            border: 2px solid var(--border-color) !important;
+        }
+
+        [data-theme="dark"] input[type="text"]:focus,
+        [data-theme="dark"] input[type="email"]:focus,
+        [data-theme="dark"] input[type="tel"]:focus,
+        [data-theme="dark"] input[type="number"]:focus,
+        [data-theme="dark"] input[type="date"]:focus,
+        [data-theme="dark"] input[type="time"]:focus,
+        [data-theme="dark"] textarea:focus,
+        [data-theme="dark"] select:focus {
+            border-color: var(--accent-purple) !important;
+            box-shadow: 0 0 0 2px rgba(131, 94, 132, 0.3) !important;
+        }
+
+        /* Fix table cell text visibility in dark mode */
+        [data-theme="dark"] .cake-options-table td,
+        [data-theme="dark"] .cake-options-table th {
+            color: var(--text-primary) !important;
+        }
+
+        [data-theme="dark"] .cake-options-table .table-row select,
+        [data-theme="dark"] .cake-options-table .table-row input[type="number"],
+        [data-theme="dark"] .cake-options-table .table-row input[type="text"] {
+            background: var(--bg-secondary) !important;
+            color: var(--text-primary) !important;
+            border: 2px solid var(--border-color) !important;
+        }
+
+        /* Fix item subtotal visibility - use dark text on light subtotal container */
+        [data-theme="dark"] .item-subtotal span[data-translate="item-subtotal"] {
+            color: #333 !important;
+        }
+
+        [data-theme="dark"] .item-subtotal strong {
+            color: var(--accent-purple) !important;
+        }
+
+        /* Fix radio button styling in dark mode */
+        [data-theme="dark"] input[type="radio"] {
+            accent-color: var(--accent-purple);
+        }
+
+        /* Agreement section styling */
+        .agreement-label {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            cursor: pointer;
+            line-height: 1.5;
+        }
+
+        .agreement-label input[type="radio"] {
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        .agreement-text {
+            flex: 1;
+            color: var(--text-primary);
+        }
+
+        [data-theme="dark"] .agreement-text {
+            color: var(--text-primary);
+        }
+
         /* Responsive adjustments for floating buttons */
         @media (max-width: 768px) {
             .floating-btn {
@@ -1708,6 +1953,16 @@
 
             .theme-toggle-btn {
                 left: 20px;
+                bottom: 20px;
+            }
+
+            .translate-btn {
+                left: 85px;
+                bottom: 20px;
+            }
+
+            .scroll-bottom-btn {
+                right: 85px;
                 bottom: 20px;
             }
 
@@ -1759,8 +2014,24 @@
                 font-size: 18px;
             }
 
+            .floating-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+
             .theme-toggle-btn {
                 left: 15px;
+                bottom: 15px;
+            }
+
+            .translate-btn {
+                left: 75px;
+                bottom: 15px;
+            }
+
+            .scroll-bottom-btn {
+                right: 75px;
                 bottom: 15px;
             }
 
@@ -1778,8 +2049,8 @@
             <div class="logo">
                 <img src="logo.png" alt="Dabiri's Desserts - Cakes" class="logo-svg">
             </div>
-            <h1>Order Form</h1>
-            <p>Create your perfect custom dessert order</p>
+            <h1 data-translate="header-title">Order Form</h1>
+            <p data-translate="header-subtitle">Create your perfect custom dessert order</p>
         </div>
 
         <div class="form-container">
@@ -1791,7 +2062,7 @@
 
                 <!-- Brand Description -->
                 <div class="brand-info">
-                    <div class="brand-description">
+                    <div class="brand-description" data-translate="welcome-text">
                         <strong>Thanks for choosing Dabiri's Desserts!</strong><br><br>
                         As a passionate at-home baker, I pour my heart into every creation that comes out of my kitchen, and I'm thrilled to bring a touch of sweetness to your day. All of my treats are made from scratch, decorated with my vanilla buttercream frosting. Before placing your order, please take a moment to review my policies below.
                     </div>
@@ -1799,28 +2070,28 @@
 
                 <!-- Customer Information -->
                 <div class="form-section">
-                    <h2>Customer Information</h2>
+                    <h2 data-translate="customer-info">Customer Information</h2>
                     <div class="section-content">
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="firstName">First Name <span class="required">*</span></label>
+                            <label for="firstName" data-translate="first-name">First Name <span class="required" data-translate="required">*</span></label>
                             <input type="text" id="firstName" name="firstName" required>
                             <div class="error-message" id="firstNameError"></div>
                         </div>
                         <div class="form-group">
-                            <label for="lastName">Last Name <span class="required">*</span></label>
+                            <label for="lastName" data-translate="last-name">Last Name <span class="required" data-translate="required">*</span></label>
                             <input type="text" id="lastName" name="lastName" required>
                             <div class="error-message" id="lastNameError"></div>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                                <label for="email">E-mail <span class="required">*</span></label>
+                                <label for="email" data-translate="email">E-mail <span class="required" data-translate="required">*</span></label>
                                 <input type="email" id="email" name="email" placeholder="example@example.com" required>
                             <div class="error-message" id="emailError"></div>
                         </div>
                         <div class="form-group">
-                            <label for="phone">Phone Number <span class="required">*</span></label>
+                            <label for="phone" data-translate="phone">Phone Number <span class="required" data-translate="required">*</span></label>
                                 <input type="tel" id="phone" name="phone" placeholder="(000) 000-0000" required>
                                 <small>please enter a valid phone number</small>
                             <div class="error-message" id="phoneError"></div>
@@ -1831,11 +2102,11 @@
 
                 <!-- Pickup Information -->
                 <div class="form-section">
-                    <h2>Pickup Information</h2>
+                    <h2 data-translate="pickup-info">Pickup Information</h2>
                     <div class="section-content">
                         <div class="policy-section">
-                            <div class="policy-title">PICKUP TIMES</div>
-                            <div class="policy-text">
+                            <div class="policy-title" data-translate="pickup-times">PICKUP TIMES</div>
+                            <div class="policy-text" data-translate="pickup-times-text">
                                 Wednesday - All day<br>
                                 Weekends - All day<br><br>
                                 When will you be arriving for pick up?<br><br>
@@ -1845,18 +2116,18 @@
 
                     <div class="form-row">
                         <div class="form-group">
-                                <label for="pickupDate">Pickup Date <span class="required">*</span></label>
+                                <label for="pickupDate" data-translate="pickup-date">Pickup Date <span class="required" data-translate="required">*</span></label>
                                 <input type="date" id="pickupDate" name="pickupDate" required>
                         </div>
                         <div class="form-group">
-                                <label for="pickupTime">Pickup Time</label>
+                                <label for="pickupTime" data-translate="pickup-time">Pickup Time</label>
                                 <input type="time" id="pickupTime" name="pickupTime" placeholder="HH : MM">
-                                <small>Hour Minutes</small>
+                                <small data-translate="hour-minutes">Hour Minutes</small>
                             </div>
                         </div>
 
                         <div class="policy-section">
-                            <div class="policy-text">
+                            <div class="policy-text" data-translate="fridge-freezer-note">
                                 <strong>IF THE DATE YOU WANT ISN'T AVAILABLE, PLEASE KEEP IN MIND CAKES LAST UP TO 4 DAYS IN THE FRIDGE AND UP TO 2 WEEKS IN THE FREEZER.</strong>
                             </div>
                         </div>
@@ -1865,19 +2136,19 @@
 
                 <!-- Products Section -->
                 <div class="form-section">
-                    <h2>Choose Your Products</h2>
+                    <h2 data-translate="choose-your-products">Choose Your Products</h2>
                     <div class="section-content">
                         <div class="category-filter">
-                            <select class="category-select" id="categoryFilter">
-                                <option value="all">Categories: All</option>
-                                <option value="cakes">Cakes</option>
-                                <option value="cupcakes">Cupcakes</option>
-                                <option value="deals">Deals & Packages</option>
+                            <select class="category-select" id="categoryFilter" data-translate="category-select">
+                                <option value="all" data-translate="categories-all">Categories: All</option>
+                                <option value="cakes" data-translate="cakes">Cakes</option>
+                                <option value="cupcakes" data-translate="cupcakes">Cupcakes</option>
+                                <option value="deals" data-translate="deals-packages">Deals & Packages</option>
                             </select>
                         </div>
 
                         <div class="policy-section">
-                            <div class="policy-text">
+                            <div class="policy-text" data-translate="base-prices-note">
                                 The prices below are <strong>base</strong> prices.<br>
                                 *All cakes will be <strong>three layers</strong>*<br>
                                 Additional add-ons can be selected.
@@ -1888,12 +2159,12 @@
                         <div style="text-align: center; margin: 20px 0;">
                             <img src="cake_1.png" alt="Beautiful purple cake with flowers" class="cake-decoration-img">
                         </div>
-                        <h3 style="color: #7D5577; margin: 30px 0 20px 0; font-size: 1.5em;">My Products <span class="required">*</span></h3>
-                        <span class="red-required">⚠ This field is required.</span>
+                        <h3 style="color: #7D5577; margin: 30px 0 20px 0; font-size: 1.5em;" data-translate="my-products">My Products <span class="required" data-translate="required">*</span></h3>
+                        <span class="red-required" data-translate="this-field-required">⚠ This field is required.</span>
 
                         <!-- Cakes Section -->
                         <div class="product-category" data-category="cakes">
-                            <h4 style="color: #7D5577; margin: 20px 0 15px 0; font-size: 1.3em; display: flex; align-items: center;">
+                            <h4 style="color: #7D5577; margin: 20px 0 15px 0; font-size: 1.3em; display: flex; align-items: center;" data-translate="cakes">
                                 Cakes
                             </h4>
                             <div class="category-content">
@@ -1901,20 +2172,20 @@
                                 <div class="product-card" data-product="circle-cake">
                                     <div class="product-header">
                                         <input type="checkbox" class="product-checkbox" id="circle-cake" name="products" value="circle-cake">
-                                        <label for="circle-cake" class="product-title">Circle Cake</label>
+                                        <label for="circle-cake" class="product-title" data-translate="circle-cake">Circle Cake</label>
                                         <span class="product-price">$45.00</span>
                                     </div>
                                     <div class="product-options" style="margin-top: 20px;">
                                         <div class="cake-options-table">
                                             <div class="table-header">
-                                                <div class="col-size">Size</div>
-                                                <div class="col-qty">Qty</div>
-                                                <div class="col-flavor">Flavor</div>
-                                                <div class="col-filling">Filling</div>
-                                                <div class="col-border">Border</div>
-                                                <div class="col-addons">Add-Ons</div>
-                                                <div class="col-text">Text</div>
-                                                <div class="col-price">Price</div>
+                                                <div class="col-size" data-translate="size">Size</div>
+                                                <div class="col-qty" data-translate="qty">Qty</div>
+                                                <div class="col-flavor" data-translate="flavor">Flavor</div>
+                                                <div class="col-filling" data-translate="filling">Filling</div>
+                                                <div class="col-border" data-translate="border">Border</div>
+                                                <div class="col-addons" data-translate="add-ons">Add-Ons</div>
+                                                <div class="col-text" data-translate="text">Text</div>
+                                                <div class="col-price" data-translate="price">Price</div>
                                             </div>
                                             <div class="table-row">
                                                 <div class="col-size">6"</div>
@@ -1923,46 +2194,46 @@
                                                 </div>
                                                 <div class="col-flavor">
                                                     <select class="product-select" data-addon-type="flavor">
-                                <option value="vanilla">Vanilla</option>
-                                <option value="chocolate">Chocolate</option>
-                                <option value="red-velvet">Red Velvet</option>
-                                                        <option value="custom" data-price="5">Custom +$5</option>
+                                <option value="vanilla" data-translate="vanilla">Vanilla</option>
+                                <option value="chocolate" data-translate="chocolate">Chocolate</option>
+                                <option value="red-velvet" data-translate="red-velvet">Red Velvet</option>
+                                                        <option value="custom" data-price="5" data-translate="custom-plus-5">Custom +$5</option>
                             </select>
                         </div>
                                                 <div class="col-filling">
                                                     <select class="product-select" data-addon-type="filling">
-                                                        <option value="chocolate">Chocolate</option>
-                                                        <option value="cookies-cream">Cookies & Cream</option>
-                                                        <option value="vanilla">Vanilla</option>
-                                <option value="cream-cheese">Cream Cheese</option>
-                                                        <option value="custom" data-price="5">Custom +$5</option>
+                                                        <option value="chocolate" data-translate="chocolate">Chocolate</option>
+                                                        <option value="cookies-cream" data-translate="cookies-cream">Cookies & Cream</option>
+                                                        <option value="vanilla" data-translate="vanilla">Vanilla</option>
+                                <option value="cream-cheese" data-translate="cream-cheese">Cream Cheese</option>
+                                                        <option value="custom" data-price="5" data-translate="custom-plus-5">Custom +$5</option>
                             </select>
                         </div>
                                                 <div class="col-border">
                                                     <select class="product-select" data-addon-type="border">
-                                                        <option value="none">No Border</option>
-                                                        <option value="shell">Shell Border</option>
-                                                        <option value="tight-shell">Tight Shell Border</option>
-                                                        <option value="reverse-scroll">Reverse Scroll Border</option>
-                                                        <option value="bubble">Bubble Border</option>
+                                                        <option value="none" data-translate="no-border">No Border</option>
+                                                        <option value="shell" data-translate="shell-border">Shell Border</option>
+                                                        <option value="tight-shell" data-translate="tight-shell-border">Tight Shell Border</option>
+                                                        <option value="reverse-scroll" data-translate="reverse-scroll-border">Reverse Scroll Border</option>
+                                                        <option value="bubble" data-translate="bubble-border">Bubble Border</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-addons">
                                                     <select class="product-select" data-addon-type="addons">
-                                                        <option value="none">No Add-Ons</option>
-                                                        <option value="glitter-silver" data-price="3">Glitter Spray (Silver) +$3</option>
-                                                        <option value="glitter-gold" data-price="3">Glitter Spray (Gold) +$3</option>
-                                                        <option value="pearl-detailing" data-price="5">Pearl Detailing +$5</option>
-                                                        <option value="bows" data-price="5">Bows +$5</option>
-                                                        <option value="vintage-piping" data-price="5">Heavy/Vintage Buttercream Piping +$5</option>
-                                                        <option value="gold-leaf" data-price="5">Gold Leaf +$5</option>
+                                                        <option value="none" data-translate="no-add-ons">No Add-Ons</option>
+                                                        <option value="glitter-silver" data-price="3" data-translate="glitter-silver">Glitter Spray (Silver) +$3</option>
+                                                        <option value="glitter-gold" data-price="3" data-translate="glitter-gold">Glitter Spray (Gold) +$3</option>
+                                                        <option value="pearl-detailing" data-price="5" data-translate="pearl-detailing">Pearl Detailing +$5</option>
+                                                        <option value="bows" data-price="5" data-translate="bows">Bows +$5</option>
+                                                        <option value="vintage-piping" data-price="5" data-translate="vintage-piping">Heavy/Vintage Buttercream Piping +$5</option>
+                                                        <option value="gold-leaf" data-price="5" data-translate="gold-leaf">Gold Leaf +$5</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-text">
                                                     <select class="product-select" data-addon-type="text">
-                                                        <option value="none">No Text</option>
-                                                        <option value="freehand">Freehand Buttercream</option>
-                                                        <option value="bubble-letters">Chocolate Bubble Letters</option>
+                                                        <option value="none" data-translate="no-text">No Text</option>
+                                                        <option value="freehand" data-translate="freehand-buttercream">Freehand Buttercream</option>
+                                                        <option value="bubble-letters" data-translate="chocolate-bubble-letters">Chocolate Bubble Letters</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-price">
@@ -1979,7 +2250,7 @@
                                                         <option value="vanilla">Vanilla</option>
                                                         <option value="chocolate">Chocolate</option>
                                                         <option value="red-velvet">Red Velvet</option>
-                                                        <option value="custom" data-price="5">Custom +$5</option>
+                                                        <option value="custom" data-price="5" data-translate="custom-plus-5">Custom +$5</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-filling">
@@ -1988,34 +2259,34 @@
                                                         <option value="cookies-cream">Cookies & Cream</option>
                                                         <option value="vanilla">Vanilla</option>
                                                         <option value="cream-cheese">Cream Cheese</option>
-                                                        <option value="custom" data-price="5">Custom +$5</option>
+                                                        <option value="custom" data-price="5" data-translate="custom-plus-5">Custom +$5</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-border">
                                                     <select class="product-select" data-addon-type="border">
-                                                        <option value="none">No Border</option>
-                                                        <option value="shell">Shell Border</option>
-                                                        <option value="tight-shell">Tight Shell Border</option>
-                                                        <option value="reverse-scroll">Reverse Scroll Border</option>
-                                                        <option value="bubble">Bubble Border</option>
+                                                        <option value="none" data-translate="no-border">No Border</option>
+                                                        <option value="shell" data-translate="shell-border">Shell Border</option>
+                                                        <option value="tight-shell" data-translate="tight-shell-border">Tight Shell Border</option>
+                                                        <option value="reverse-scroll" data-translate="reverse-scroll-border">Reverse Scroll Border</option>
+                                                        <option value="bubble" data-translate="bubble-border">Bubble Border</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-addons">
                                                     <select class="product-select" data-addon-type="addons">
-                                                        <option value="none">No Add-Ons</option>
-                                                        <option value="glitter-silver" data-price="3">Glitter Spray (Silver) +$3</option>
-                                                        <option value="glitter-gold" data-price="3">Glitter Spray (Gold) +$3</option>
-                                                        <option value="pearl-detailing" data-price="5">Pearl Detailing +$5</option>
-                                                        <option value="bows" data-price="5">Bows +$5</option>
-                                                        <option value="vintage-piping" data-price="5">Heavy/Vintage Buttercream Piping +$5</option>
-                                                        <option value="gold-leaf" data-price="5">Gold Leaf +$5</option>
+                                                        <option value="none" data-translate="no-add-ons">No Add-Ons</option>
+                                                        <option value="glitter-silver" data-price="3" data-translate="glitter-silver">Glitter Spray (Silver) +$3</option>
+                                                        <option value="glitter-gold" data-price="3" data-translate="glitter-gold">Glitter Spray (Gold) +$3</option>
+                                                        <option value="pearl-detailing" data-price="5" data-translate="pearl-detailing">Pearl Detailing +$5</option>
+                                                        <option value="bows" data-price="5" data-translate="bows">Bows +$5</option>
+                                                        <option value="vintage-piping" data-price="5" data-translate="vintage-piping">Heavy/Vintage Buttercream Piping +$5</option>
+                                                        <option value="gold-leaf" data-price="5" data-translate="gold-leaf">Gold Leaf +$5</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-text">
                                                     <select class="product-select" data-addon-type="text">
-                                                        <option value="none">No Text</option>
-                                                        <option value="freehand">Freehand Buttercream</option>
-                                                        <option value="bubble-letters">Chocolate Bubble Letters</option>
+                                                        <option value="none" data-translate="no-text">No Text</option>
+                                                        <option value="freehand" data-translate="freehand-buttercream">Freehand Buttercream</option>
+                                                        <option value="bubble-letters" data-translate="chocolate-bubble-letters">Chocolate Bubble Letters</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-price">
@@ -2032,7 +2303,7 @@
                                                         <option value="vanilla">Vanilla</option>
                                                         <option value="chocolate">Chocolate</option>
                                                         <option value="red-velvet">Red Velvet</option>
-                                                        <option value="custom" data-price="5">Custom +$5</option>
+                                                        <option value="custom" data-price="5" data-translate="custom-plus-5">Custom +$5</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-filling">
@@ -2041,34 +2312,34 @@
                                                         <option value="cookies-cream">Cookies & Cream</option>
                                                         <option value="vanilla">Vanilla</option>
                                                         <option value="cream-cheese">Cream Cheese</option>
-                                                        <option value="custom" data-price="5">Custom +$5</option>
+                                                        <option value="custom" data-price="5" data-translate="custom-plus-5">Custom +$5</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-border">
                                                     <select class="product-select" data-addon-type="border">
-                                                        <option value="none">No Border</option>
-                                                        <option value="shell">Shell Border</option>
-                                                        <option value="tight-shell">Tight Shell Border</option>
-                                                        <option value="reverse-scroll">Reverse Scroll Border</option>
-                                                        <option value="bubble">Bubble Border</option>
+                                                        <option value="none" data-translate="no-border">No Border</option>
+                                                        <option value="shell" data-translate="shell-border">Shell Border</option>
+                                                        <option value="tight-shell" data-translate="tight-shell-border">Tight Shell Border</option>
+                                                        <option value="reverse-scroll" data-translate="reverse-scroll-border">Reverse Scroll Border</option>
+                                                        <option value="bubble" data-translate="bubble-border">Bubble Border</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-addons">
                                                     <select class="product-select" data-addon-type="addons">
-                                                        <option value="none">No Add-Ons</option>
-                                                        <option value="glitter-silver" data-price="3">Glitter Spray (Silver) +$3</option>
-                                                        <option value="glitter-gold" data-price="3">Glitter Spray (Gold) +$3</option>
-                                                        <option value="pearl-detailing" data-price="5">Pearl Detailing +$5</option>
-                                                        <option value="bows" data-price="5">Bows +$5</option>
-                                                        <option value="vintage-piping" data-price="5">Heavy/Vintage Buttercream Piping +$5</option>
-                                                        <option value="gold-leaf" data-price="5">Gold Leaf +$5</option>
+                                                        <option value="none" data-translate="no-add-ons">No Add-Ons</option>
+                                                        <option value="glitter-silver" data-price="3" data-translate="glitter-silver">Glitter Spray (Silver) +$3</option>
+                                                        <option value="glitter-gold" data-price="3" data-translate="glitter-gold">Glitter Spray (Gold) +$3</option>
+                                                        <option value="pearl-detailing" data-price="5" data-translate="pearl-detailing">Pearl Detailing +$5</option>
+                                                        <option value="bows" data-price="5" data-translate="bows">Bows +$5</option>
+                                                        <option value="vintage-piping" data-price="5" data-translate="vintage-piping">Heavy/Vintage Buttercream Piping +$5</option>
+                                                        <option value="gold-leaf" data-price="5" data-translate="gold-leaf">Gold Leaf +$5</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-text">
                                                     <select class="product-select" data-addon-type="text">
-                                                        <option value="none">No Text</option>
-                                                        <option value="freehand">Freehand Buttercream</option>
-                                                        <option value="bubble-letters">Chocolate Bubble Letters</option>
+                                                        <option value="none" data-translate="no-text">No Text</option>
+                                                        <option value="freehand" data-translate="freehand-buttercream">Freehand Buttercream</option>
+                                                        <option value="bubble-letters" data-translate="chocolate-bubble-letters">Chocolate Bubble Letters</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-price">
@@ -2076,8 +2347,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="item-subtotal" style="text-align: right; margin-top: 20px; font-size: 1.1em; color: #666;">
-                                            Item subtotal: <strong class="subtotal-amount">$0.00</strong>
+                                        <div class="item-subtotal">
+                                            <span data-translate="item-subtotal">Item subtotal:</span> <strong class="subtotal-amount">$0.00</strong>
                                         </div>
                     </div>
                 </div>
@@ -2086,20 +2357,20 @@
                                 <div class="product-card" data-product="heart-cake">
                                     <div class="product-header">
                                         <input type="checkbox" class="product-checkbox" id="heart-cake" name="products" value="heart-cake">
-                                        <label for="heart-cake" class="product-title">Heart Cake</label>
+                                        <label for="heart-cake" class="product-title" data-translate="heart-cake">Heart Cake</label>
                                         <span class="product-price">$45.00</span>
                         </div>
                                     <div class="product-options" style="margin-top: 20px;">
                                         <div class="cake-options-table">
                                             <div class="table-header">
-                                                <div class="col-size">Size</div>
-                                                <div class="col-qty">Qty</div>
-                                                <div class="col-flavor">Flavor</div>
-                                                <div class="col-filling">Filling</div>
-                                                <div class="col-border">Border</div>
-                                                <div class="col-addons">Add-Ons</div>
-                                                <div class="col-text">Text</div>
-                                                <div class="col-price">Price</div>
+                                                <div class="col-size" data-translate="size">Size</div>
+                                                <div class="col-qty" data-translate="qty">Qty</div>
+                                                <div class="col-flavor" data-translate="flavor">Flavor</div>
+                                                <div class="col-filling" data-translate="filling">Filling</div>
+                                                <div class="col-border" data-translate="border">Border</div>
+                                                <div class="col-addons" data-translate="add-ons">Add-Ons</div>
+                                                <div class="col-text" data-translate="text">Text</div>
+                                                <div class="col-price" data-translate="price">Price</div>
                         </div>
                                             <div class="table-row">
                                                 <div class="col-size">6"</div>
@@ -2111,7 +2382,7 @@
                                                         <option value="vanilla">Vanilla</option>
                                                         <option value="chocolate">Chocolate</option>
                                                         <option value="red-velvet">Red Velvet</option>
-                                                        <option value="custom" data-price="5">Custom +$5</option>
+                                                        <option value="custom" data-price="5" data-translate="custom-plus-5">Custom +$5</option>
                                                     </select>
                         </div>
                                                 <div class="col-filling">
@@ -2120,34 +2391,34 @@
                                                         <option value="cookies-cream">Cookies & Cream</option>
                                                         <option value="vanilla">Vanilla</option>
                                                         <option value="cream-cheese">Cream Cheese</option>
-                                                        <option value="custom" data-price="5">Custom +$5</option>
+                                                        <option value="custom" data-price="5" data-translate="custom-plus-5">Custom +$5</option>
                                                     </select>
                         </div>
                                                 <div class="col-border">
                                                     <select class="product-select" data-addon-type="border">
-                                                        <option value="none">No Border</option>
-                                                        <option value="shell">Shell Border</option>
-                                                        <option value="tight-shell">Tight Shell Border</option>
-                                                        <option value="reverse-scroll">Reverse Scroll Border</option>
-                                                        <option value="bubble">Bubble Border</option>
+                                                        <option value="none" data-translate="no-border">No Border</option>
+                                                        <option value="shell" data-translate="shell-border">Shell Border</option>
+                                                        <option value="tight-shell" data-translate="tight-shell-border">Tight Shell Border</option>
+                                                        <option value="reverse-scroll" data-translate="reverse-scroll-border">Reverse Scroll Border</option>
+                                                        <option value="bubble" data-translate="bubble-border">Bubble Border</option>
                                                     </select>
                         </div>
                                                 <div class="col-addons">
                                                     <select class="product-select" data-addon-type="addons">
-                                                        <option value="none">No Add-Ons</option>
-                                                        <option value="glitter-silver" data-price="3">Glitter Spray (Silver) +$3</option>
-                                                        <option value="glitter-gold" data-price="3">Glitter Spray (Gold) +$3</option>
-                                                        <option value="pearl-detailing" data-price="5">Pearl Detailing +$5</option>
-                                                        <option value="bows" data-price="5">Bows +$5</option>
-                                                        <option value="vintage-piping" data-price="5">Heavy/Vintage Buttercream Piping +$5</option>
-                                                        <option value="gold-leaf" data-price="5">Gold Leaf +$5</option>
+                                                        <option value="none" data-translate="no-add-ons">No Add-Ons</option>
+                                                        <option value="glitter-silver" data-price="3" data-translate="glitter-silver">Glitter Spray (Silver) +$3</option>
+                                                        <option value="glitter-gold" data-price="3" data-translate="glitter-gold">Glitter Spray (Gold) +$3</option>
+                                                        <option value="pearl-detailing" data-price="5" data-translate="pearl-detailing">Pearl Detailing +$5</option>
+                                                        <option value="bows" data-price="5" data-translate="bows">Bows +$5</option>
+                                                        <option value="vintage-piping" data-price="5" data-translate="vintage-piping">Heavy/Vintage Buttercream Piping +$5</option>
+                                                        <option value="gold-leaf" data-price="5" data-translate="gold-leaf">Gold Leaf +$5</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-text">
                                                     <select class="product-select" data-addon-type="text">
-                                                        <option value="none">No Text</option>
-                                                        <option value="freehand">Freehand Buttercream</option>
-                                                        <option value="bubble-letters">Chocolate Bubble Letters</option>
+                                                        <option value="none" data-translate="no-text">No Text</option>
+                                                        <option value="freehand" data-translate="freehand-buttercream">Freehand Buttercream</option>
+                                                        <option value="bubble-letters" data-translate="chocolate-bubble-letters">Chocolate Bubble Letters</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-price">
@@ -2164,7 +2435,7 @@
                                                         <option value="vanilla">Vanilla</option>
                                                         <option value="chocolate">Chocolate</option>
                                                         <option value="red-velvet">Red Velvet</option>
-                                                        <option value="custom" data-price="5">Custom +$5</option>
+                                                        <option value="custom" data-price="5" data-translate="custom-plus-5">Custom +$5</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-filling">
@@ -2173,34 +2444,34 @@
                                                         <option value="cookies-cream">Cookies & Cream</option>
                                                         <option value="vanilla">Vanilla</option>
                                                         <option value="cream-cheese">Cream Cheese</option>
-                                                        <option value="custom" data-price="5">Custom +$5</option>
+                                                        <option value="custom" data-price="5" data-translate="custom-plus-5">Custom +$5</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-border">
                                                     <select class="product-select" data-addon-type="border">
-                                                        <option value="none">No Border</option>
-                                                        <option value="shell">Shell Border</option>
-                                                        <option value="tight-shell">Tight Shell Border</option>
-                                                        <option value="reverse-scroll">Reverse Scroll Border</option>
-                                                        <option value="bubble">Bubble Border</option>
+                                                        <option value="none" data-translate="no-border">No Border</option>
+                                                        <option value="shell" data-translate="shell-border">Shell Border</option>
+                                                        <option value="tight-shell" data-translate="tight-shell-border">Tight Shell Border</option>
+                                                        <option value="reverse-scroll" data-translate="reverse-scroll-border">Reverse Scroll Border</option>
+                                                        <option value="bubble" data-translate="bubble-border">Bubble Border</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-addons">
                                                     <select class="product-select" data-addon-type="addons">
-                                                        <option value="none">No Add-Ons</option>
-                                                        <option value="glitter-silver" data-price="3">Glitter Spray (Silver) +$3</option>
-                                                        <option value="glitter-gold" data-price="3">Glitter Spray (Gold) +$3</option>
-                                                        <option value="pearl-detailing" data-price="5">Pearl Detailing +$5</option>
-                                                        <option value="bows" data-price="5">Bows +$5</option>
-                                                        <option value="vintage-piping" data-price="5">Heavy/Vintage Buttercream Piping +$5</option>
-                                                        <option value="gold-leaf" data-price="5">Gold Leaf +$5</option>
+                                                        <option value="none" data-translate="no-add-ons">No Add-Ons</option>
+                                                        <option value="glitter-silver" data-price="3" data-translate="glitter-silver">Glitter Spray (Silver) +$3</option>
+                                                        <option value="glitter-gold" data-price="3" data-translate="glitter-gold">Glitter Spray (Gold) +$3</option>
+                                                        <option value="pearl-detailing" data-price="5" data-translate="pearl-detailing">Pearl Detailing +$5</option>
+                                                        <option value="bows" data-price="5" data-translate="bows">Bows +$5</option>
+                                                        <option value="vintage-piping" data-price="5" data-translate="vintage-piping">Heavy/Vintage Buttercream Piping +$5</option>
+                                                        <option value="gold-leaf" data-price="5" data-translate="gold-leaf">Gold Leaf +$5</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-text">
                                                     <select class="product-select" data-addon-type="text">
-                                                        <option value="none">No Text</option>
-                                                        <option value="freehand">Freehand Buttercream</option>
-                                                        <option value="bubble-letters">Chocolate Bubble Letters</option>
+                                                        <option value="none" data-translate="no-text">No Text</option>
+                                                        <option value="freehand" data-translate="freehand-buttercream">Freehand Buttercream</option>
+                                                        <option value="bubble-letters" data-translate="chocolate-bubble-letters">Chocolate Bubble Letters</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-price">
@@ -2217,7 +2488,7 @@
                                                         <option value="vanilla">Vanilla</option>
                                                         <option value="chocolate">Chocolate</option>
                                                         <option value="red-velvet">Red Velvet</option>
-                                                        <option value="custom" data-price="5">Custom +$5</option>
+                                                        <option value="custom" data-price="5" data-translate="custom-plus-5">Custom +$5</option>
                                                     </select>
                         </div>
                                                 <div class="col-filling">
@@ -2226,34 +2497,34 @@
                                                         <option value="cookies-cream">Cookies & Cream</option>
                                                         <option value="vanilla">Vanilla</option>
                                                         <option value="cream-cheese">Cream Cheese</option>
-                                                        <option value="custom" data-price="5">Custom +$5</option>
+                                                        <option value="custom" data-price="5" data-translate="custom-plus-5">Custom +$5</option>
                                                     </select>
                         </div>
                                                 <div class="col-border">
                                                     <select class="product-select" data-addon-type="border">
-                                                        <option value="none">No Border</option>
-                                                        <option value="shell">Shell Border</option>
-                                                        <option value="tight-shell">Tight Shell Border</option>
-                                                        <option value="reverse-scroll">Reverse Scroll Border</option>
-                                                        <option value="bubble">Bubble Border</option>
+                                                        <option value="none" data-translate="no-border">No Border</option>
+                                                        <option value="shell" data-translate="shell-border">Shell Border</option>
+                                                        <option value="tight-shell" data-translate="tight-shell-border">Tight Shell Border</option>
+                                                        <option value="reverse-scroll" data-translate="reverse-scroll-border">Reverse Scroll Border</option>
+                                                        <option value="bubble" data-translate="bubble-border">Bubble Border</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-addons">
                                                     <select class="product-select" data-addon-type="addons">
-                                                        <option value="none">No Add-Ons</option>
-                                                        <option value="glitter-silver" data-price="3">Glitter Spray (Silver) +$3</option>
-                                                        <option value="glitter-gold" data-price="3">Glitter Spray (Gold) +$3</option>
-                                                        <option value="pearl-detailing" data-price="5">Pearl Detailing +$5</option>
-                                                        <option value="bows" data-price="5">Bows +$5</option>
-                                                        <option value="vintage-piping" data-price="5">Heavy/Vintage Buttercream Piping +$5</option>
-                                                        <option value="gold-leaf" data-price="5">Gold Leaf +$5</option>
+                                                        <option value="none" data-translate="no-add-ons">No Add-Ons</option>
+                                                        <option value="glitter-silver" data-price="3" data-translate="glitter-silver">Glitter Spray (Silver) +$3</option>
+                                                        <option value="glitter-gold" data-price="3" data-translate="glitter-gold">Glitter Spray (Gold) +$3</option>
+                                                        <option value="pearl-detailing" data-price="5" data-translate="pearl-detailing">Pearl Detailing +$5</option>
+                                                        <option value="bows" data-price="5" data-translate="bows">Bows +$5</option>
+                                                        <option value="vintage-piping" data-price="5" data-translate="vintage-piping">Heavy/Vintage Buttercream Piping +$5</option>
+                                                        <option value="gold-leaf" data-price="5" data-translate="gold-leaf">Gold Leaf +$5</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-text">
                                                     <select class="product-select" data-addon-type="text">
-                                                        <option value="none">No Text</option>
-                                                        <option value="freehand">Freehand Buttercream</option>
-                                                        <option value="bubble-letters">Chocolate Bubble Letters</option>
+                                                        <option value="none" data-translate="no-text">No Text</option>
+                                                        <option value="freehand" data-translate="freehand-buttercream">Freehand Buttercream</option>
+                                                        <option value="bubble-letters" data-translate="chocolate-bubble-letters">Chocolate Bubble Letters</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-price">
@@ -2261,8 +2532,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="item-subtotal" style="text-align: right; margin-top: 20px; font-size: 1.1em; color: #666;">
-                                            Item subtotal: <strong class="subtotal-amount">$0.00</strong>
+                                        <div class="item-subtotal">
+                                            <span data-translate="item-subtotal">Item subtotal:</span> <strong class="subtotal-amount">$0.00</strong>
                                         </div>
                     </div>
                 </div>
@@ -2271,20 +2542,20 @@
                                 <div class="product-card" data-product="star-cake">
                                     <div class="product-header">
                                         <input type="checkbox" class="product-checkbox" id="star-cake" name="products" value="star-cake">
-                                        <label for="star-cake" class="product-title">Star Cake</label>
+                                        <label for="star-cake" class="product-title" data-translate="star-cake">Star Cake</label>
                                         <span class="product-price">$45.00</span>
                                     </div>
                                     <div class="product-options" style="margin-top: 20px;">
                                         <div class="cake-options-table">
                                             <div class="table-header">
-                                                <div class="col-size">Size</div>
-                                                <div class="col-qty">Qty</div>
-                                                <div class="col-flavor">Flavor</div>
-                                                <div class="col-filling">Filling</div>
-                                                <div class="col-border">Border</div>
-                                                <div class="col-addons">Add-Ons</div>
-                                                <div class="col-text">Text</div>
-                                                <div class="col-price">Price</div>
+                                                <div class="col-size" data-translate="size">Size</div>
+                                                <div class="col-qty" data-translate="qty">Qty</div>
+                                                <div class="col-flavor" data-translate="flavor">Flavor</div>
+                                                <div class="col-filling" data-translate="filling">Filling</div>
+                                                <div class="col-border" data-translate="border">Border</div>
+                                                <div class="col-addons" data-translate="add-ons">Add-Ons</div>
+                                                <div class="col-text" data-translate="text">Text</div>
+                                                <div class="col-price" data-translate="price">Price</div>
                                             </div>
                                             <div class="table-row">
                                                 <div class="col-size">6"</div>
@@ -2296,7 +2567,7 @@
                                                         <option value="vanilla">Vanilla</option>
                                                         <option value="chocolate">Chocolate</option>
                                                         <option value="red-velvet">Red Velvet</option>
-                                                        <option value="custom" data-price="5">Custom +$5</option>
+                                                        <option value="custom" data-price="5" data-translate="custom-plus-5">Custom +$5</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-filling">
@@ -2305,34 +2576,34 @@
                                                         <option value="cookies-cream">Cookies & Cream</option>
                                                         <option value="vanilla">Vanilla</option>
                                                         <option value="cream-cheese">Cream Cheese</option>
-                                                        <option value="custom" data-price="5">Custom +$5</option>
+                                                        <option value="custom" data-price="5" data-translate="custom-plus-5">Custom +$5</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-border">
                                                     <select class="product-select" data-addon-type="border">
-                                                        <option value="none">No Border</option>
-                                                        <option value="shell">Shell Border</option>
-                                                        <option value="tight-shell">Tight Shell Border</option>
-                                                        <option value="reverse-scroll">Reverse Scroll Border</option>
-                                                        <option value="bubble">Bubble Border</option>
+                                                        <option value="none" data-translate="no-border">No Border</option>
+                                                        <option value="shell" data-translate="shell-border">Shell Border</option>
+                                                        <option value="tight-shell" data-translate="tight-shell-border">Tight Shell Border</option>
+                                                        <option value="reverse-scroll" data-translate="reverse-scroll-border">Reverse Scroll Border</option>
+                                                        <option value="bubble" data-translate="bubble-border">Bubble Border</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-addons">
                                                     <select class="product-select" data-addon-type="addons">
-                                                        <option value="none">No Add-Ons</option>
-                                                        <option value="glitter-silver" data-price="3">Glitter Spray (Silver) +$3</option>
-                                                        <option value="glitter-gold" data-price="3">Glitter Spray (Gold) +$3</option>
-                                                        <option value="pearl-detailing" data-price="5">Pearl Detailing +$5</option>
-                                                        <option value="bows" data-price="5">Bows +$5</option>
-                                                        <option value="vintage-piping" data-price="5">Heavy/Vintage Buttercream Piping +$5</option>
-                                                        <option value="gold-leaf" data-price="5">Gold Leaf +$5</option>
+                                                        <option value="none" data-translate="no-add-ons">No Add-Ons</option>
+                                                        <option value="glitter-silver" data-price="3" data-translate="glitter-silver">Glitter Spray (Silver) +$3</option>
+                                                        <option value="glitter-gold" data-price="3" data-translate="glitter-gold">Glitter Spray (Gold) +$3</option>
+                                                        <option value="pearl-detailing" data-price="5" data-translate="pearl-detailing">Pearl Detailing +$5</option>
+                                                        <option value="bows" data-price="5" data-translate="bows">Bows +$5</option>
+                                                        <option value="vintage-piping" data-price="5" data-translate="vintage-piping">Heavy/Vintage Buttercream Piping +$5</option>
+                                                        <option value="gold-leaf" data-price="5" data-translate="gold-leaf">Gold Leaf +$5</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-text">
                                                     <select class="product-select" data-addon-type="text">
-                                                        <option value="none">No Text</option>
-                                                        <option value="freehand">Freehand Buttercream</option>
-                                                        <option value="bubble-letters">Chocolate Bubble Letters</option>
+                                                        <option value="none" data-translate="no-text">No Text</option>
+                                                        <option value="freehand" data-translate="freehand-buttercream">Freehand Buttercream</option>
+                                                        <option value="bubble-letters" data-translate="chocolate-bubble-letters">Chocolate Bubble Letters</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-price">
@@ -2349,7 +2620,7 @@
                                                         <option value="vanilla">Vanilla</option>
                                                         <option value="chocolate">Chocolate</option>
                                                         <option value="red-velvet">Red Velvet</option>
-                                                        <option value="custom" data-price="5">Custom +$5</option>
+                                                        <option value="custom" data-price="5" data-translate="custom-plus-5">Custom +$5</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-filling">
@@ -2358,34 +2629,34 @@
                                                         <option value="cookies-cream">Cookies & Cream</option>
                                                         <option value="vanilla">Vanilla</option>
                                                         <option value="cream-cheese">Cream Cheese</option>
-                                                        <option value="custom" data-price="5">Custom +$5</option>
+                                                        <option value="custom" data-price="5" data-translate="custom-plus-5">Custom +$5</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-border">
                                                     <select class="product-select" data-addon-type="border">
-                                                        <option value="none">No Border</option>
-                                                        <option value="shell">Shell Border</option>
-                                                        <option value="tight-shell">Tight Shell Border</option>
-                                                        <option value="reverse-scroll">Reverse Scroll Border</option>
-                                                        <option value="bubble">Bubble Border</option>
+                                                        <option value="none" data-translate="no-border">No Border</option>
+                                                        <option value="shell" data-translate="shell-border">Shell Border</option>
+                                                        <option value="tight-shell" data-translate="tight-shell-border">Tight Shell Border</option>
+                                                        <option value="reverse-scroll" data-translate="reverse-scroll-border">Reverse Scroll Border</option>
+                                                        <option value="bubble" data-translate="bubble-border">Bubble Border</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-addons">
                                                     <select class="product-select" data-addon-type="addons">
-                                                        <option value="none">No Add-Ons</option>
-                                                        <option value="glitter-silver" data-price="3">Glitter Spray (Silver) +$3</option>
-                                                        <option value="glitter-gold" data-price="3">Glitter Spray (Gold) +$3</option>
-                                                        <option value="pearl-detailing" data-price="5">Pearl Detailing +$5</option>
-                                                        <option value="bows" data-price="5">Bows +$5</option>
-                                                        <option value="vintage-piping" data-price="5">Heavy/Vintage Buttercream Piping +$5</option>
-                                                        <option value="gold-leaf" data-price="5">Gold Leaf +$5</option>
+                                                        <option value="none" data-translate="no-add-ons">No Add-Ons</option>
+                                                        <option value="glitter-silver" data-price="3" data-translate="glitter-silver">Glitter Spray (Silver) +$3</option>
+                                                        <option value="glitter-gold" data-price="3" data-translate="glitter-gold">Glitter Spray (Gold) +$3</option>
+                                                        <option value="pearl-detailing" data-price="5" data-translate="pearl-detailing">Pearl Detailing +$5</option>
+                                                        <option value="bows" data-price="5" data-translate="bows">Bows +$5</option>
+                                                        <option value="vintage-piping" data-price="5" data-translate="vintage-piping">Heavy/Vintage Buttercream Piping +$5</option>
+                                                        <option value="gold-leaf" data-price="5" data-translate="gold-leaf">Gold Leaf +$5</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-text">
                                                     <select class="product-select" data-addon-type="text">
-                                                        <option value="none">No Text</option>
-                                                        <option value="freehand">Freehand Buttercream</option>
-                                                        <option value="bubble-letters">Chocolate Bubble Letters</option>
+                                                        <option value="none" data-translate="no-text">No Text</option>
+                                                        <option value="freehand" data-translate="freehand-buttercream">Freehand Buttercream</option>
+                                                        <option value="bubble-letters" data-translate="chocolate-bubble-letters">Chocolate Bubble Letters</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-price">
@@ -2402,7 +2673,7 @@
                                                         <option value="vanilla">Vanilla</option>
                                                         <option value="chocolate">Chocolate</option>
                                                         <option value="red-velvet">Red Velvet</option>
-                                                        <option value="custom" data-price="5">Custom +$5</option>
+                                                        <option value="custom" data-price="5" data-translate="custom-plus-5">Custom +$5</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-filling">
@@ -2411,34 +2682,34 @@
                                                         <option value="cookies-cream">Cookies & Cream</option>
                                                         <option value="vanilla">Vanilla</option>
                                                         <option value="cream-cheese">Cream Cheese</option>
-                                                        <option value="custom" data-price="5">Custom +$5</option>
+                                                        <option value="custom" data-price="5" data-translate="custom-plus-5">Custom +$5</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-border">
                                                     <select class="product-select" data-addon-type="border">
-                                                        <option value="none">No Border</option>
-                                                        <option value="shell">Shell Border</option>
-                                                        <option value="tight-shell">Tight Shell Border</option>
-                                                        <option value="reverse-scroll">Reverse Scroll Border</option>
-                                                        <option value="bubble">Bubble Border</option>
+                                                        <option value="none" data-translate="no-border">No Border</option>
+                                                        <option value="shell" data-translate="shell-border">Shell Border</option>
+                                                        <option value="tight-shell" data-translate="tight-shell-border">Tight Shell Border</option>
+                                                        <option value="reverse-scroll" data-translate="reverse-scroll-border">Reverse Scroll Border</option>
+                                                        <option value="bubble" data-translate="bubble-border">Bubble Border</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-addons">
                                                     <select class="product-select" data-addon-type="addons">
-                                                        <option value="none">No Add-Ons</option>
-                                                        <option value="glitter-silver" data-price="3">Glitter Spray (Silver) +$3</option>
-                                                        <option value="glitter-gold" data-price="3">Glitter Spray (Gold) +$3</option>
-                                                        <option value="pearl-detailing" data-price="5">Pearl Detailing +$5</option>
-                                                        <option value="bows" data-price="5">Bows +$5</option>
-                                                        <option value="vintage-piping" data-price="5">Heavy/Vintage Buttercream Piping +$5</option>
-                                                        <option value="gold-leaf" data-price="5">Gold Leaf +$5</option>
+                                                        <option value="none" data-translate="no-add-ons">No Add-Ons</option>
+                                                        <option value="glitter-silver" data-price="3" data-translate="glitter-silver">Glitter Spray (Silver) +$3</option>
+                                                        <option value="glitter-gold" data-price="3" data-translate="glitter-gold">Glitter Spray (Gold) +$3</option>
+                                                        <option value="pearl-detailing" data-price="5" data-translate="pearl-detailing">Pearl Detailing +$5</option>
+                                                        <option value="bows" data-price="5" data-translate="bows">Bows +$5</option>
+                                                        <option value="vintage-piping" data-price="5" data-translate="vintage-piping">Heavy/Vintage Buttercream Piping +$5</option>
+                                                        <option value="gold-leaf" data-price="5" data-translate="gold-leaf">Gold Leaf +$5</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-text">
                                                     <select class="product-select" data-addon-type="text">
-                                                        <option value="none">No Text</option>
-                                                        <option value="freehand">Freehand Buttercream</option>
-                                                        <option value="bubble-letters">Chocolate Bubble Letters</option>
+                                                        <option value="none" data-translate="no-text">No Text</option>
+                                                        <option value="freehand" data-translate="freehand-buttercream">Freehand Buttercream</option>
+                                                        <option value="bubble-letters" data-translate="chocolate-bubble-letters">Chocolate Bubble Letters</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-price">
@@ -2446,8 +2717,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="item-subtotal" style="text-align: right; margin-top: 20px; font-size: 1.1em; color: #666;">
-                                            Item subtotal: <strong class="subtotal-amount">$0.00</strong>
+                                        <div class="item-subtotal">
+                                            <span data-translate="item-subtotal">Item subtotal:</span> <strong class="subtotal-amount">$0.00</strong>
                                         </div>
                                     </div>
                                 </div>
@@ -2464,48 +2735,48 @@
                                 <div class="product-card" data-product="half-dozen-cupcakes">
                                     <div class="product-header">
                                         <input type="checkbox" class="product-checkbox" id="half-dozen-cupcakes" name="products" value="half-dozen-cupcakes">
-                                        <label for="half-dozen-cupcakes" class="product-title">1/2 Dozen Cupcakes</label>
+                                        <label for="half-dozen-cupcakes" class="product-title" data-translate="half-dozen-cupcakes">1/2 Dozen Cupcakes</label>
                                         <span class="product-price">$14.00</span>
                                     </div>
-                                    <p>$14 for 1/2 Dozen Cupcakes. Please specify the quantity of each flavor.</p>
+                                    <p data-translate="half-dozen-description">$14 for 1/2 Dozen Cupcakes. Please specify the quantity of each flavor.</p>
                                     <div class="product-options" style="margin-top: 20px;">
                                         <div class="cupcake-options-layout">
                                             <div class="flavors-section">
-                                                <h4 style="margin: 0 0 15px 0; color: #A0739C; font-size: 1.1em;">Flavors ($14 for 1/2 dozen each)</h4>
+                                                <h4 style="margin: 0 0 15px 0; color: #A0739C; font-size: 1.1em;" data-translate="flavors-section">Flavors ($14 for 1/2 dozen each)</h4>
                                                 <div class="flavor-list">
                                                     <div class="flavor-item">
-                                                        <label>Vanilla</label>
+                                                        <label data-translate="vanilla">Vanilla</label>
                                                         <input type="number" class="quantity-input" min="0" value="0" data-price="14" placeholder="0">
                                                     </div>
                                                     <div class="flavor-item">
-                                                        <label>Chocolate</label>
+                                                        <label data-translate="chocolate">Chocolate</label>
                                                         <input type="number" class="quantity-input" min="0" value="0" data-price="14" placeholder="0">
                                                     </div>
                                                     <div class="flavor-item">
-                                                        <label>Red Velvet</label>
+                                                        <label data-translate="red-velvet">Red Velvet</label>
                                                         <input type="number" class="quantity-input" min="0" value="0" data-price="14" placeholder="0">
                                                     </div>
                                                     <div class="flavor-item">
-                                                        <label>Custom (+$5)</label>
+                                                        <label data-translate="custom-plus-5">Custom (+$5)</label>
                                                         <input type="number" class="quantity-input" min="0" value="0" data-price="19" placeholder="0">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="addons-section">
-                                                <h4 style="margin: 0 0 15px 0; color: #A0739C; font-size: 1.1em;">Add-Ons</h4>
+                                                <h4 style="margin: 0 0 15px 0; color: #A0739C; font-size: 1.1em;" data-translate="add-ons">Add-Ons</h4>
                                                 <select class="product-select addon-select" data-addon-type="addons">
-                                                    <option value="none">No Add-Ons</option>
-                                                    <option value="glitter-silver" data-price="3">Glitter Spray (Silver) +$3</option>
-                                                    <option value="glitter-gold" data-price="3">Glitter Spray (Gold) +$3</option>
-                                                    <option value="pearl-detailing" data-price="5">Pearl Detailing +$5</option>
-                                                    <option value="bows" data-price="5">Bows +$5</option>
-                                                    <option value="vintage-piping" data-price="5">Heavy/Vintage Buttercream Piping +$5</option>
-                                                    <option value="gold-leaf" data-price="5">Gold Leaf +$5</option>
+                                                    <option value="none" data-translate="no-add-ons">No Add-Ons</option>
+                                                    <option value="glitter-silver" data-price="3" data-translate="glitter-silver">Glitter Spray (Silver) +$3</option>
+                                                    <option value="glitter-gold" data-price="3" data-translate="glitter-gold">Glitter Spray (Gold) +$3</option>
+                                                    <option value="pearl-detailing" data-price="5" data-translate="pearl-detailing">Pearl Detailing +$5</option>
+                                                    <option value="bows" data-price="5" data-translate="bows">Bows +$5</option>
+                                                    <option value="vintage-piping" data-price="5" data-translate="vintage-piping">Heavy/Vintage Buttercream Piping +$5</option>
+                                                    <option value="gold-leaf" data-price="5" data-translate="gold-leaf">Gold Leaf +$5</option>
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="item-subtotal" style="text-align: right; margin-top: 20px; font-size: 1.1em; color: #666;">
-                                            Item subtotal: <strong class="subtotal-amount">$0.00</strong>
+                                        <div class="item-subtotal">
+                                            <span data-translate="item-subtotal">Item subtotal:</span> <strong class="subtotal-amount">$0.00</strong>
                                         </div>
                                     </div>
                                 </div>
@@ -2514,48 +2785,48 @@
                                 <div class="product-card" data-product="dozen-cupcakes">
                                     <div class="product-header">
                                         <input type="checkbox" class="product-checkbox" id="dozen-cupcakes" name="products" value="dozen-cupcakes">
-                                        <label for="dozen-cupcakes" class="product-title">1 Dozen Cupcakes</label>
+                                        <label for="dozen-cupcakes" class="product-title" data-translate="dozen-cupcakes">1 Dozen Cupcakes</label>
                                         <span class="product-price">$24.00</span>
                                     </div>
-                                    <p>$24 for 1 Dozen Cupcakes. Please specify the quantity of each flavor.</p>
+                                    <p data-translate="dozen-description">$24 for 1 Dozen Cupcakes. Please specify the quantity of each flavor.</p>
                                     <div class="product-options" style="margin-top: 20px;">
                                         <div class="cupcake-options-layout">
                                             <div class="flavors-section">
-                                                <h4 style="margin: 0 0 15px 0; color: #A0739C; font-size: 1.1em;">Flavors ($24 for 1 dozen each)</h4>
+                                                <h4 style="margin: 0 0 15px 0; color: #A0739C; font-size: 1.1em;" data-translate="flavors-section-dozen">Flavors ($24 for 1 dozen each)</h4>
                                                 <div class="flavor-list">
                                                     <div class="flavor-item">
-                                                        <label>Vanilla</label>
+                                                        <label data-translate="vanilla">Vanilla</label>
                                                         <input type="number" class="quantity-input" min="0" value="0" data-price="24" placeholder="0">
                                                     </div>
                                                     <div class="flavor-item">
-                                                        <label>Chocolate</label>
+                                                        <label data-translate="chocolate">Chocolate</label>
                                                         <input type="number" class="quantity-input" min="0" value="0" data-price="24" placeholder="0">
                                                     </div>
                                                     <div class="flavor-item">
-                                                        <label>Red Velvet</label>
+                                                        <label data-translate="red-velvet">Red Velvet</label>
                                                         <input type="number" class="quantity-input" min="0" value="0" data-price="24" placeholder="0">
                                                     </div>
                                                     <div class="flavor-item">
-                                                        <label>Custom (+$5)</label>
+                                                        <label data-translate="custom-plus-5">Custom (+$5)</label>
                                                         <input type="number" class="quantity-input" min="0" value="0" data-price="29" placeholder="0">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="addons-section">
-                                                <h4 style="margin: 0 0 15px 0; color: #A0739C; font-size: 1.1em;">Add-Ons</h4>
+                                                <h4 style="margin: 0 0 15px 0; color: #A0739C; font-size: 1.1em;" data-translate="add-ons">Add-Ons</h4>
                                                 <select class="product-select addon-select" data-addon-type="addons">
-                                                    <option value="none">No Add-Ons</option>
-                                                    <option value="glitter-silver" data-price="3">Glitter Spray (Silver) +$3</option>
-                                                    <option value="glitter-gold" data-price="3">Glitter Spray (Gold) +$3</option>
-                                                    <option value="pearl-detailing" data-price="5">Pearl Detailing +$5</option>
-                                                    <option value="bows" data-price="5">Bows +$5</option>
-                                                    <option value="vintage-piping" data-price="5">Heavy/Vintage Buttercream Piping +$5</option>
-                                                    <option value="gold-leaf" data-price="5">Gold Leaf +$5</option>
+                                                    <option value="none" data-translate="no-add-ons">No Add-Ons</option>
+                                                    <option value="glitter-silver" data-price="3" data-translate="glitter-silver">Glitter Spray (Silver) +$3</option>
+                                                    <option value="glitter-gold" data-price="3" data-translate="glitter-gold">Glitter Spray (Gold) +$3</option>
+                                                    <option value="pearl-detailing" data-price="5" data-translate="pearl-detailing">Pearl Detailing +$5</option>
+                                                    <option value="bows" data-price="5" data-translate="bows">Bows +$5</option>
+                                                    <option value="vintage-piping" data-price="5" data-translate="vintage-piping">Heavy/Vintage Buttercream Piping +$5</option>
+                                                    <option value="gold-leaf" data-price="5" data-translate="gold-leaf">Gold Leaf +$5</option>
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="item-subtotal" style="text-align: right; margin-top: 20px; font-size: 1.1em; color: #666;">
-                                            Item subtotal: <strong class="subtotal-amount">$0.00</strong>
+                                        <div class="item-subtotal">
+                                            <span data-translate="item-subtotal">Item subtotal:</span> <strong class="subtotal-amount">$0.00</strong>
                                         </div>
                                     </div>
                                 </div>
@@ -2574,10 +2845,10 @@
                                 <div class="product-card" data-product="vintage-heart-cake">
                                     <div class="product-header">
                                         <input type="checkbox" class="product-checkbox" id="vintage-heart-cake" name="products" value="vintage-heart-cake">
-                                        <label for="vintage-heart-cake" class="product-title">Vintage Heart Cake</label>
+                                        <label for="vintage-heart-cake" class="product-title" data-translate="vintage-heart-cake">Vintage Heart Cake</label>
                                         <span class="product-price">$65.00</span>
                                     </div>
-                                    <p>Heavy Buttercream Piping</p>
+                                    <p data-translate="heavy-buttercream-piping">Heavy Buttercream Piping</p>
                                     <div class="product-options" style="margin-top: 20px;">
                                         <div class="vintage-cake-header" style="display: grid; grid-template-columns: 100px 70px 120px 120px 150px; gap: 8px; margin-bottom: 15px; font-weight: bold; color: #A0739C; border-bottom: 2px solid #e1e5e9; padding-bottom: 10px;">
                                             <div>Flavor</div>
@@ -2692,8 +2963,8 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="item-subtotal" style="text-align: right; margin-top: 20px; font-size: 1.1em; color: #666;">
-                                            Item subtotal: <strong class="subtotal-amount">$0.00</strong>
+                                        <div class="item-subtotal">
+                                            <span data-translate="item-subtotal">Item subtotal:</span> <strong class="subtotal-amount">$0.00</strong>
                                         </div>
                                     </div>
                                 </div>
@@ -2702,48 +2973,48 @@
                                 <div class="product-card" data-product="birthday-half-dozen-cupcakes">
                                     <div class="product-header">
                                         <input type="checkbox" class="product-checkbox" id="birthday-half-dozen-cupcakes" name="products" value="birthday-half-dozen-cupcakes">
-                                        <label for="birthday-half-dozen-cupcakes" class="product-title">Birthday 1/2 Dozen Cupcakes</label>
+                                        <label for="birthday-half-dozen-cupcakes" class="product-title" data-translate="birthday-half-dozen-cupcakes">Birthday 1/2 Dozen Cupcakes</label>
                                         <span class="product-price">$30.00</span>
                                     </div>
-                                    <p>w/ Custom Board and Candle</p>
+                                    <p data-translate="custom-board-candle">w/ Custom Board and Candle</p>
                                     <div class="product-options" style="margin-top: 20px;">
                                         <div class="cupcake-options-layout">
                                             <div class="flavors-section">
                                                 <h4 style="margin: 0 0 15px 0; color: #A0739C; font-size: 1.1em;">Flavors ($30 for 1/2 dozen w/ Board & Candle)</h4>
                                                 <div class="flavor-list">
                                                     <div class="flavor-item">
-                                                        <label>Vanilla</label>
+                                                        <label data-translate="vanilla">Vanilla</label>
                                                         <input type="number" class="quantity-input" min="0" value="0" data-price="30" placeholder="0">
                                                     </div>
                                                     <div class="flavor-item">
-                                                        <label>Chocolate</label>
+                                                        <label data-translate="chocolate">Chocolate</label>
                                                         <input type="number" class="quantity-input" min="0" value="0" data-price="30" placeholder="0">
                                                     </div>
                                                     <div class="flavor-item">
-                                                        <label>Red Velvet</label>
+                                                        <label data-translate="red-velvet">Red Velvet</label>
                                                         <input type="number" class="quantity-input" min="0" value="0" data-price="30" placeholder="0">
                                                     </div>
                                                     <div class="flavor-item">
-                                                        <label>Custom (+$5)</label>
+                                                        <label data-translate="custom-plus-5">Custom (+$5)</label>
                                                         <input type="number" class="quantity-input" min="0" value="0" data-price="35" placeholder="0">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="addons-section">
-                                                <h4 style="margin: 0 0 15px 0; color: #A0739C; font-size: 1.1em;">Add-Ons</h4>
+                                                <h4 style="margin: 0 0 15px 0; color: #A0739C; font-size: 1.1em;" data-translate="add-ons">Add-Ons</h4>
                                                 <select class="product-select addon-select" data-addon-type="addons">
-                                                    <option value="none">No Add-Ons</option>
-                                                    <option value="glitter-silver" data-price="3">Glitter Spray (Silver) +$3</option>
-                                                    <option value="glitter-gold" data-price="3">Glitter Spray (Gold) +$3</option>
-                                                    <option value="pearl-detailing" data-price="5">Pearl Detailing +$5</option>
-                                                    <option value="bows" data-price="5">Bows +$5</option>
-                                                    <option value="vintage-piping" data-price="5">Heavy/Vintage Buttercream Piping +$5</option>
-                                                    <option value="gold-leaf" data-price="5">Gold Leaf +$5</option>
+                                                    <option value="none" data-translate="no-add-ons">No Add-Ons</option>
+                                                    <option value="glitter-silver" data-price="3" data-translate="glitter-silver">Glitter Spray (Silver) +$3</option>
+                                                    <option value="glitter-gold" data-price="3" data-translate="glitter-gold">Glitter Spray (Gold) +$3</option>
+                                                    <option value="pearl-detailing" data-price="5" data-translate="pearl-detailing">Pearl Detailing +$5</option>
+                                                    <option value="bows" data-price="5" data-translate="bows">Bows +$5</option>
+                                                    <option value="vintage-piping" data-price="5" data-translate="vintage-piping">Heavy/Vintage Buttercream Piping +$5</option>
+                                                    <option value="gold-leaf" data-price="5" data-translate="gold-leaf">Gold Leaf +$5</option>
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="item-subtotal" style="text-align: right; margin-top: 20px; font-size: 1.1em; color: #666;">
-                                            Item subtotal: <strong class="subtotal-amount">$0.00</strong>
+                                        <div class="item-subtotal">
+                                            <span data-translate="item-subtotal">Item subtotal:</span> <strong class="subtotal-amount">$0.00</strong>
                                         </div>
                                     </div>
                                 </div>
@@ -2752,48 +3023,48 @@
                                 <div class="product-card" data-product="birthday-full-dozen-cupcakes">
                                     <div class="product-header">
                                         <input type="checkbox" class="product-checkbox" id="birthday-full-dozen-cupcakes" name="products" value="birthday-full-dozen-cupcakes">
-                                        <label for="birthday-full-dozen-cupcakes" class="product-title">Birthday Full Dozen Cupcakes</label>
+                                        <label for="birthday-full-dozen-cupcakes" class="product-title" data-translate="birthday-full-dozen-cupcakes">Birthday Full Dozen Cupcakes</label>
                                         <span class="product-price">$35.00</span>
                                     </div>
-                                    <p>w/ Custom Board and Candle</p>
+                                    <p data-translate="custom-board-candle">w/ Custom Board and Candle</p>
                                     <div class="product-options" style="margin-top: 20px;">
                                         <div class="cupcake-options-layout">
                                             <div class="flavors-section">
-                                                <h4 style="margin: 0 0 15px 0; color: #A0739C; font-size: 1.1em;">Flavors ($35 for 1 dozen w/ Board & Candle)</h4>
+                                                <h4 style="margin: 0 0 15px 0; color: #A0739C; font-size: 1.1em;" data-translate="flavors-section-birthday">Flavors ($35 for 1 dozen w/ Board & Candle)</h4>
                                                 <div class="flavor-list">
                                                     <div class="flavor-item">
-                                                        <label>Vanilla</label>
+                                                        <label data-translate="vanilla">Vanilla</label>
                                                         <input type="number" class="quantity-input" min="0" value="0" data-price="35" placeholder="0">
                                                     </div>
                                                     <div class="flavor-item">
-                                                        <label>Chocolate</label>
+                                                        <label data-translate="chocolate">Chocolate</label>
                                                         <input type="number" class="quantity-input" min="0" value="0" data-price="35" placeholder="0">
                                                     </div>
                                                     <div class="flavor-item">
-                                                        <label>Red Velvet</label>
+                                                        <label data-translate="red-velvet">Red Velvet</label>
                                                         <input type="number" class="quantity-input" min="0" value="0" data-price="35" placeholder="0">
                                                     </div>
                                                     <div class="flavor-item">
-                                                        <label>Custom (+$5)</label>
+                                                        <label data-translate="custom-plus-5">Custom (+$5)</label>
                                                         <input type="number" class="quantity-input" min="0" value="0" data-price="40" placeholder="0">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="addons-section">
-                                                <h4 style="margin: 0 0 15px 0; color: #A0739C; font-size: 1.1em;">Add-Ons</h4>
+                                                <h4 style="margin: 0 0 15px 0; color: #A0739C; font-size: 1.1em;" data-translate="add-ons">Add-Ons</h4>
                                                 <select class="product-select addon-select" data-addon-type="addons">
-                                                    <option value="none">No Add-Ons</option>
-                                                    <option value="glitter-silver" data-price="3">Glitter Spray (Silver) +$3</option>
-                                                    <option value="glitter-gold" data-price="3">Glitter Spray (Gold) +$3</option>
-                                                    <option value="pearl-detailing" data-price="5">Pearl Detailing +$5</option>
-                                                    <option value="bows" data-price="5">Bows +$5</option>
-                                                    <option value="vintage-piping" data-price="5">Heavy/Vintage Buttercream Piping +$5</option>
-                                                    <option value="gold-leaf" data-price="5">Gold Leaf +$5</option>
+                                                    <option value="none" data-translate="no-add-ons">No Add-Ons</option>
+                                                    <option value="glitter-silver" data-price="3" data-translate="glitter-silver">Glitter Spray (Silver) +$3</option>
+                                                    <option value="glitter-gold" data-price="3" data-translate="glitter-gold">Glitter Spray (Gold) +$3</option>
+                                                    <option value="pearl-detailing" data-price="5" data-translate="pearl-detailing">Pearl Detailing +$5</option>
+                                                    <option value="bows" data-price="5" data-translate="bows">Bows +$5</option>
+                                                    <option value="vintage-piping" data-price="5" data-translate="vintage-piping">Heavy/Vintage Buttercream Piping +$5</option>
+                                                    <option value="gold-leaf" data-price="5" data-translate="gold-leaf">Gold Leaf +$5</option>
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="item-subtotal" style="text-align: right; margin-top: 20px; font-size: 1.1em; color: #666;">
-                                            Item subtotal: <strong class="subtotal-amount">$0.00</strong>
+                                        <div class="item-subtotal">
+                                            <span data-translate="item-subtotal">Item subtotal:</span> <strong class="subtotal-amount">$0.00</strong>
                                         </div>
                                     </div>
                                 </div>
@@ -2804,16 +3075,16 @@
 
                 <!-- Custom Items Section -->
                 <div class="form-section">
-                    <h2>Custom Items</h2>
+                    <h2 data-translate="custom-items">Custom Items</h2>
                     <div class="section-content">
                         <div class="form-group">
-                            <p style="margin-bottom: 15px; color: #666; font-size: 0.95em;">
+                            <p style="margin-bottom: 15px; color: #666; font-size: 0.95em;" data-translate="custom-items-text">
                                 Don't see what you're looking for? Let me know about any custom items like cookies, bread puddings, or other desserts you'd like to order.
                             </p>
                             <textarea
                                 id="customItems"
                                 name="customItems"
-                                placeholder="Please describe any custom items you'd like to order (e.g., cookies, bread pudding, etc.) and any specific requirements..."
+                                placeholder="Please describe any custom items you'd like to order (e.g., cookies, bread pudding, etc.) and any specific requirements..." data-translate="custom-items-placeholder"
                                 rows="4"
                                 style="width: 100%; padding: 12px; border: 2px solid #e1e5e9; border-radius: 8px; font-family: inherit; font-size: 14px; resize: vertical; min-height: 100px;"
                             ></textarea>
@@ -2823,18 +3094,18 @@
 
                 <!-- Design/Aesthetic Requests -->
                 <div class="form-section">
-                    <h2>Design/Aesthetic Requests <span class="required">*</span></h2>
+                    <h2 data-translate="special-requests">Design/Aesthetic Requests <span class="required" data-translate="required">*</span></h2>
                     <div class="section-content">
                         <div class="form-group">
-                            <textarea id="designRequests" style="min-height: 100px;" placeholder="Please write N/A if you'd like us to use our creative freedom. If purchasing multiple products, please number them in the text box." required></textarea>
+                            <textarea id="designRequests" style="min-height: 100px;" placeholder="Please write N/A if you'd like us to use our creative freedom. If purchasing multiple products, please number them in the text box." required data-translate="special-requests-text"></textarea>
                         </div>
 
-                        <h3 style="margin: 20px 0;">Attach a mood board or inspiration pictures below. Please note I do not replicate the work of other cake artists. I will use my personal decorating style and best judgment to make you a cake that you love!</h3>
+                        <h3 style="margin: 20px 0;" data-translate="mood-board-text">Attach a mood board or inspiration pictures below. Please note I do not replicate the work of other cake artists. I will use my personal decorating style and best judgment to make you a cake that you love!</h3>
 
                         <div class="file-upload-area" id="fileUploadArea">
                             <div class="upload-icon">☁️</div>
-                            <div class="upload-text">Browse Files</div>
-                            <div class="upload-hint">Drag and drop files here</div>
+                            <div class="upload-text" data-translate="browse-files">Browse Files</div>
+                            <div class="upload-hint" data-translate="drag-drop">Drag and drop files here</div>
                             <input type="file" id="fileInput" multiple accept="image/*" style="display: none;">
                         </div>
                         <div class="uploaded-files" id="uploadedFiles"></div>
@@ -2843,37 +3114,37 @@
 
                 <!-- Cake Text -->
                 <div class="form-section">
-                    <h2>Cake Text <span class="required">*</span></h2>
+                    <h2 data-translate="cake-text">Cake Text <span class="required" data-translate="required">*</span></h2>
                     <div class="section-content">
                         <div class="form-group">
-                            <textarea id="cakeText" placeholder="Please specify text and text color. If purchasing multiple cakes, please number them in the text box." required></textarea>
+                            <textarea id="cakeText" placeholder="Please specify text and text color. If purchasing multiple cakes, please number them in the text box." required data-translate="cake-text-placeholder"></textarea>
                         </div>
                     </div>
                 </div>
 
                 <!-- Color Requests -->
                 <div class="form-section">
-                    <h2>Color Requests <span class="required">*</span></h2>
+                    <h2 data-translate="color-requests">Color Requests <span class="required" data-translate="required">*</span></h2>
                     <div class="section-content">
                         <div class="form-group">
-                            <textarea id="colorRequests" placeholder="PLEASE NOTE: Extra pigmented colors are $5 extra (navy blue, royal blue, black, red, etc). Please write N/A if you'd like us to use our creative freedom. If purchasing multiple products, please number them in the text box." required></textarea>
+                            <textarea id="colorRequests" placeholder="PLEASE NOTE: Extra pigmented colors are $5 extra (navy blue, royal blue, black, red, etc). Please write N/A if you'd like us to use our creative freedom. If purchasing multiple products, please number them in the text box." required data-translate="color-requests-placeholder"></textarea>
                         </div>
                     </div>
                 </div>
 
                 <!-- Custom Flavor/Filling -->
                 <div class="form-section">
-                    <h2>OPTIONAL: Custom Flavor/Filling</h2>
+                    <h2 data-translate="custom-flavor-filling">OPTIONAL: Custom Flavor/Filling</h2>
                     <div class="section-content">
                     <div class="form-group">
-                            <textarea id="customFlavor" placeholder="Please specify the custom flavor and/or filling if applicable."></textarea>
+                            <textarea id="customFlavor" placeholder="Please specify the custom flavor and/or filling if applicable." data-translate="custom-flavor-placeholder"></textarea>
                         </div>
                     </div>
                 </div>
 
                 <!-- Additional Specifications -->
                 <div class="form-section">
-                    <h2>ATTENTION: List any other specifications or add-ons that aren't listed as options. <span class="required">*</span></h2>
+                    <h2 data-translate="additional-specifications">ATTENTION: List any other specifications or add-ons that aren't listed as options. <span class="required" data-translate="required">*</span></h2>
                     <div class="section-content">
                         <div class="form-group">
                             <textarea id="additionalSpecs" required></textarea>
@@ -2883,13 +3154,13 @@
 
                 <!-- Allergies/Dietary Restrictions -->
                 <div class="form-section">
-                    <h2>Do you have any allergies/dietary restrictions? Please note, I do NOT make gluten free cakes. <span class="required">*</span></h2>
+                    <h2 data-translate="allergies">Do you have any allergies/dietary restrictions? Please note, I do NOT make gluten free cakes. <span class="required" data-translate="required">*</span></h2>
                     <div class="section-content">
                         <div class="form-group">
                             <textarea id="allergies" required></textarea>
                         </div>
                         <div class="policy-section">
-                            <div class="policy-text">
+                            <div class="policy-text" data-translate="allergies-text">
                                 Although I will do my very best to accommodate your dietary restrictions, all of my products are produced in a home kitchen that is not subject to public health inspection and may process common food allergens. Please be advised that baked goods may contain or come into contact with peanuts, tree nuts, or other allergens.
                     </div>
                         </div>
@@ -2898,7 +3169,7 @@
 
                 <!-- How did you hear about us -->
                 <div class="form-section">
-                    <h2>How did you hear about Dabiri's Desserts? <span class="required">*</span></h2>
+                    <h2 data-translate="how-did-you-hear">How did you hear about Dabiri's Desserts? <span class="required" data-translate="required">*</span></h2>
                     <div class="section-content">
                     <div class="form-group">
                             <textarea id="howDidYouHear" required></textarea>
@@ -2908,7 +3179,7 @@
 
                 <!-- Policies Section -->
                 <div class="policy-section">
-                    <div class="policy-text">
+                    <div class="policy-text" data-translate="policies-text">
                         • All orders must be picked up in <strong>Chelsea, MA</strong> (near Bellingham Square bus stop). I <strong>do not</strong> offer delivery services.<br><br>
                         • Please submit your order at least <strong>10 days</strong> in advance. Last-minute orders may be subject to a <strong>$20 rush fee</strong>.<br><br>
                         • Once you submit an order, I will email you within <strong>3 business days</strong> with a sketch of your order and a price confirmation.<br><br>
@@ -2916,19 +3187,19 @@
                         • I accept the following payment methods: <strong>Apple Cash, Zelle, Venmo, or cash</strong>.<br><br>
                         • <strong>ALLERGY ALERT:</strong> My frosting recipe contains nut products. Please do not place an order if you have nut allergies.<br><br>
                         • Please note that I am not responsible or liable for what happens to the dessert after it has been handed off to you.<br><br>
-                        • Payment details and final confirmation process will be provided in the follow-up email.<br><br>
-                        For any questions or special requests, please contact me at <a href="mailto:dabirisdesserts@gmail.com">dabirisdesserts@gmail.com</a>
+                        <span data-translate="contact-info">• Payment details and final confirmation process will be provided in the follow-up email.<br><br>
+                        For any questions or special requests, please contact me at</span> <a href="mailto:dabirisdesserts@gmail.com">dabirisdesserts@gmail.com</a>
                     </div>
                 </div>
 
                 <!-- Agreement -->
                 <div class="form-section">
-                    <h2>Agreement <span class="required">*</span></h2>
+                    <h2 data-translate="agreement-title">Agreement <span class="required" data-translate="required">*</span></h2>
                     <div class="section-content">
                         <div class="form-group">
-                            <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
-                                <input type="radio" id="agreement" name="agreement" value="agree" required style="margin-top: 5px;">
-                                <span>By checking this box, I agree to Dabiri's Dessert's brand policies and acknowledge that full cake payment is due within 72 hours of receiving my invoice.</span>
+                            <label class="agreement-label">
+                                <input type="radio" id="agreement" name="agreement" value="agree" required>
+                                <span class="agreement-text" data-translate="agreement-text">By checking this box, I agree to Dabiri's Dessert's brand policies and acknowledge that full cake payment is due within 72 hours of receiving my invoice.</span>
                             </label>
                         </div>
                     </div>
@@ -2936,24 +3207,24 @@
 
                 <!-- Total Section -->
                 <div class="total-section">
-                    <div class="total-title">Total (Subject to Change)</div>
+                    <div class="total-title" data-translate="total-title">Total (Subject to Change)</div>
                     <div class="total-amount" id="totalAmount">$0.00</div>
                 </div>
 
                 <!-- Success Message -->
-                <div class="success-message" id="successMessage">
+                <div class="success-message" id="successMessage" data-translate="success-message">
                     <strong>Order Submitted Successfully!</strong><br>
                     Thank you for your order! I will contact you within 3 business days with a sketch of your order and price confirmation.
                 </div>
 
                 <!-- Error Message -->
-                <div class="error-message" id="errorMessage" style="display: none;">
+                <div class="error-message" id="errorMessage" style="display: none;" data-translate="error-message">
                     <strong>Error submitting order.</strong><br>
                     Please try again or contact us directly.
                 </div>
 
                 <!-- Submit Button -->
-                <button type="submit" class="submit-btn" id="submitBtn">Submit</button>
+                <button type="submit" class="submit-btn" id="submitBtn" data-translate="submit-btn">Submit</button>
 
                 <!-- Decorative cake image after form -->
                 <div style="text-align: center; margin: 40px 0 20px 0;">
@@ -3392,8 +3663,9 @@
                 calculateItemSubtotal(card);
             });
 
-            // Initialize theme and floating buttons
+            // Initialize theme, translation, and floating buttons
             initializeTheme();
+            initializeTranslation();
             initializeFloatingButtons();
         });
 
@@ -3424,9 +3696,356 @@
             themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
         }
 
+        // Translation Management
+        function initializeTranslation() {
+            const translateBtn = document.getElementById('translateBtn');
+            const currentLanguage = localStorage.getItem('language') || 'en';
+
+            // Set initial language
+            document.documentElement.setAttribute('data-lang', currentLanguage);
+            updateTranslationIcon(currentLanguage);
+
+            // Apply initial translation immediately
+            translatePage(currentLanguage);
+
+            // Apply translation again after a short delay to ensure all elements are loaded
+            setTimeout(() => {
+                translatePage(currentLanguage);
+            }, 100);
+
+            // Add click event listener
+            translateBtn.addEventListener('click', toggleLanguage);
+        }
+
+        function toggleLanguage() {
+            const currentLang = document.documentElement.getAttribute('data-lang') || 'en';
+            const newLang = currentLang === 'en' ? 'es' : 'en';
+
+            document.documentElement.setAttribute('data-lang', newLang);
+            localStorage.setItem('language', newLang);
+            updateTranslationIcon(newLang);
+            translatePage(newLang);
+        }
+
+        function updateTranslationIcon(lang) {
+            const translateBtn = document.getElementById('translateBtn');
+            translateBtn.textContent = lang === 'en' ? '🌐' : '🇺🇸';
+        }
+
+        function translatePage(lang) {
+            // Translation object
+            const translations = {
+                en: {
+                    'page-title': 'Dabiri\'s Desserts - Custom Order Form',
+                    'header-title': 'Dabiri\'s Desserts',
+                    'header-subtitle': 'Custom Dessert Order Form',
+                    'contact-info': '• Payment details and final confirmation process will be provided in the follow-up email.<br><br>For any questions or special requests, please contact me at',
+                    'agreement-title': 'Agreement',
+                    'agreement-text': 'By checking this box, I agree to Dabiri\'s Dessert\'s brand policies and acknowledge that full cake payment is due within 72 hours of receiving my invoice.',
+                    'total-title': 'Total (Subject to Change)',
+                    'submit-btn': 'Submit Order',
+                    'required': '*',
+                    'theme-toggle': 'Toggle Dark/Light Mode',
+                    'translate-btn': 'Translate Page',
+                    'scroll-top': 'Scroll to Top',
+                    'scroll-bottom': 'Scroll to Bottom',
+                    'welcome-text': 'Thanks for choosing Dabiri\'s Desserts! As a passionate at-home baker, I pour my heart into every creation that comes out of my kitchen, and I\'m thrilled to bring a touch of sweetness to your day. All of my treats are made from scratch, decorated with my vanilla buttercream frosting. Before placing your order, please take a moment to review my policies below.',
+                    'customer-info': 'Customer Information',
+                    'first-name': 'First Name',
+                    'last-name': 'Last Name',
+                    'email': 'Email',
+                    'phone': 'Phone Number',
+                    'pickup-info': 'Pickup Information',
+                    'pickup-times': 'PICKUP TIMES',
+                    'pickup-times-text': 'Wednesday - All day<br>Weekends - All day<br><br>When will you be arriving for pick up?<br><br>• Please submit your order at least <strong>10 days</strong> in advance. Last-minute orders may be subject to a <strong>$20 rush fee</strong>.',
+                    'pickup-date': 'Pickup Date',
+                    'pickup-time': 'Pickup Time',
+                    'hour-minutes': 'Hour Minutes',
+                    'fridge-freezer-note': '<strong>IF THE DATE YOU WANT ISN\'T AVAILABLE, PLEASE KEEP IN MIND CAKES LAST UP TO 4 DAYS IN THE FRIDGE AND UP TO 2 WEEKS IN THE FREEZER.</strong>',
+                    'my-products': 'My Products',
+                    'category-select': 'Select Category',
+                    'base-prices-note': 'The prices below are <strong>base</strong> prices.<br>*All cakes will be <strong>three layers</strong>*<br>Additional add-ons can be selected.',
+                    'special-requests': 'Special Requests',
+                    'special-requests-text': 'Please write N/A if you\'d like us to use our creative freedom. If purchasing multiple products, please number them in the text box.',
+                    'mood-board': 'Mood Board',
+                    'mood-board-text': 'Attach a mood board or inspiration pictures below. Please note I do not replicate the work of other cake artists. I will use my personal decorating style and best judgment to make you a cake that you love!',
+                    'browse-files': 'Browse Files',
+                    'drag-drop': 'Drag and drop files here',
+                    'cake-text': 'Cake Text',
+                    'allergies': 'Allergies',
+                    'allergies-text': 'Although I will do my very best to accommodate your dietary restrictions, all of my products are produced in a home kitchen that is not subject to public health inspection and may process common food allergens. Please be advised that baked goods may contain or come into contact with peanuts, tree nuts, or other allergens.',
+                    'how-did-you-hear': 'How did you hear about us?',
+                    'policies-title': 'Policies',
+                    'policies-text': '• All orders must be picked up in <strong>Chelsea, MA</strong> (near Bellingham Square bus stop). I <strong>do not</strong> offer delivery services.<br><br>• Please submit your order at least <strong>10 days</strong> in advance. Last-minute orders may be subject to a <strong>$20 rush fee</strong>.<br><br>• Once you submit an order, I will email you within <strong>3 business days</strong> with a sketch of your order and a price confirmation.<br><br>• A <strong>50% deposit</strong> is required to secure your order. The remaining balance is due at pickup.<br><br>• I accept the following payment methods: <strong>Apple Cash, Zelle, Venmo, or cash</strong>.<br><br>• <strong>ALLERGY ALERT:</strong> My frosting recipe contains nut products. Please do not place an order if you have nut allergies.<br><br>• Please note that I am not responsible or liable for what happens to the dessert after it has been handed off to you.<br><br>',
+                    'success-message': '<strong>Order Submitted Successfully!</strong><br>Thank you for your order! I will contact you within 3 business days with a sketch of your order and price confirmation.',
+                    'error-message': '<strong>Error submitting order.</strong><br>Please try again or contact us directly.',
+                    'this-field-required': '⚠ This field is required.',
+                    'cakes': 'Cakes',
+                    'cupcakes': 'Cupcakes',
+                    'deals-packages': 'Deals & Packages',
+                    'categories-all': 'Categories: All',
+                    'circle-cake': 'Circle Cake',
+                    'heart-cake': 'Heart Cake',
+                    'star-cake': 'Star Cake',
+                    'vintage-heart-cake': 'Vintage Heart Cake',
+                    'half-dozen-cupcakes': '1/2 Dozen Cupcakes',
+                    'dozen-cupcakes': '1 Dozen Cupcakes',
+                    'birthday-half-dozen-cupcakes': 'Birthday 1/2 Dozen Cupcakes',
+                    'birthday-full-dozen-cupcakes': 'Birthday Full Dozen Cupcakes',
+                    'size': 'Size',
+                    'qty': 'Qty',
+                    'flavor': 'Flavor',
+                    'filling': 'Filling',
+                    'border': 'Border',
+                    'add-ons': 'Add-Ons',
+                    'text': 'Text',
+                    'price': 'Price',
+                    'vanilla': 'Vanilla',
+                    'chocolate': 'Chocolate',
+                    'strawberry': 'Strawberry',
+                    'red-velvet': 'Red Velvet',
+                    'no-border': 'No Border',
+                    'shell-border': 'Shell Border',
+                    'tight-shell-border': 'Tight Shell Border',
+                    'reverse-scroll-border': 'Reverse Scroll Border',
+                    'bubble-border': 'Bubble Border',
+                    'no-add-ons': 'No Add-Ons',
+                    'no-text': 'No Text',
+                    'freehand-buttercream': 'Freehand Buttercream',
+                    'chocolate-bubble-letters': 'Chocolate Bubble Letters',
+                    'custom-items': 'Custom Items',
+                    'custom-items-text': 'Don\'t see what you\'re looking for? Let me know about any custom items like cookies, bread puddings, or other desserts you\'d like to order.',
+                    'custom-items-placeholder': 'Please describe any custom items you\'d like to order (e.g., cookies, bread pudding, etc.) and any specific requirements...',
+                    'choose-your-products': 'Choose Your Products',
+                    'color-requests': 'Color Requests',
+                    'custom-flavor-filling': 'OPTIONAL: Custom Flavor/Filling',
+                    'additional-specifications': 'ATTENTION: List any other specifications or add-ons that aren\'t listed as options.',
+                    'half-dozen-description': '$14 for 1/2 Dozen Cupcakes. Please specify the quantity of each flavor.',
+                    'dozen-description': '$24 for 1 Dozen Cupcakes. Please specify the quantity of each flavor.',
+                    'heavy-buttercream-piping': 'Heavy Buttercream Piping',
+                    'custom-board-candle': 'w/ Custom Board and Candle',
+                    'cake-text-placeholder': 'Please specify text and text color. If purchasing multiple cakes, please number them in the text box.',
+                    'color-requests-placeholder': 'PLEASE NOTE: Extra pigmented colors are $5 extra (navy blue, royal blue, black, red, etc). Please write N/A if you\'d like us to use our creative freedom. If purchasing multiple products, please number them in the text box.',
+                    'custom-flavor-placeholder': 'Please specify the custom flavor and/or filling if applicable.',
+                    'cookies-cream': 'Cookies & Cream',
+                    'cream-cheese': 'Cream Cheese',
+                    'shell-border': 'Shell Border',
+                    'tight-shell-border': 'Tight Shell Border',
+                    'reverse-scroll-border': 'Reverse Scroll Border',
+                    'bubble-border': 'Bubble Border',
+                    'glitter-silver': 'Glitter Spray (Silver) +$3',
+                    'glitter-gold': 'Glitter Spray (Gold) +$3',
+                    'sprinkles': 'Sprinkles +$2',
+                    'edible-flowers': 'Edible Flowers +$5',
+                    'freehand-buttercream': 'Freehand Buttercream',
+                    'chocolate-bubble-letters': 'Chocolate Bubble Letters',
+                    'strawberry': 'Strawberry',
+                    'red-velvet': 'Red Velvet',
+                    'pearl-detailing': 'Pearl Detailing +$5',
+                    'bows': 'Bows +$5',
+                    'vintage-piping': 'Heavy/Vintage Buttercream Piping +$5',
+                    'gold-leaf': 'Gold Leaf +$5',
+                    'subtotal': 'Subtotal',
+                    'item-subtotal': 'Item subtotal',
+                    'flavors-section': 'Flavors ($14 for 1/2 dozen each)',
+                    'flavors-section-dozen': 'Flavors ($24 for 1 dozen each)',
+                    'flavors-section-birthday': 'Flavors ($35 for 1 dozen w/ Board & Candle)',
+                    'custom-plus-5': 'Custom (+$5)'
+                },
+                es: {
+                    'page-title': 'Postres de Dabiri - Formulario de Pedido Personalizado',
+                    'header-title': 'Postres de Dabiri',
+                    'header-subtitle': 'Formulario de Pedido de Postres Personalizados',
+                    'contact-info': '• Los detalles de pago y el proceso de confirmación final se proporcionarán en el correo de seguimiento.<br><br>Para cualquier pregunta o solicitud especial, por favor contáctame en',
+                    'agreement-title': 'Acuerdo',
+                    'agreement-text': 'Al marcar esta casilla, acepto las políticas de marca de Postres de Dabiri y reconozco que el pago completo del pastel vence dentro de las 72 horas de recibir mi factura.',
+                    'total-title': 'Total (Sujeto a Cambios)',
+                    'submit-btn': 'Enviar Pedido',
+                    'required': '*',
+                    'theme-toggle': 'Alternar Modo Oscuro/Claro',
+                    'translate-btn': 'Traducir Página',
+                    'scroll-top': 'Ir Arriba',
+                    'scroll-bottom': 'Ir Abajo',
+                    'welcome-text': '¡Gracias por elegir Postres de Dabiri! Como pastelera apasionada en casa, pongo mi corazón en cada creación que sale de mi cocina, y estoy emocionada de traer un toque de dulzura a tu día. Todos mis dulces están hechos desde cero, decorados con mi glaseado de mantequilla de vainilla. Antes de hacer tu pedido, por favor tómate un momento para revisar mis políticas a continuación.',
+                    'customer-info': 'Información del Cliente',
+                    'first-name': 'Nombre',
+                    'last-name': 'Apellido',
+                    'email': 'Correo Electrónico',
+                    'phone': 'Número de Teléfono',
+                    'pickup-info': 'Información de Recogida',
+                    'pickup-times': 'HORARIOS DE RECOGIDA',
+                    'pickup-times-text': 'Miércoles - Todo el día<br>Fines de semana - Todo el día<br><br>¿Cuándo llegarás para recoger?<br><br>• Por favor envía tu pedido al menos <strong>10 días</strong> de antelación. Los pedidos de último momento pueden estar sujetos a una <strong>tarifa de urgencia de $20</strong>.',
+                    'pickup-date': 'Fecha de Recogida',
+                    'pickup-time': 'Hora de Recogida',
+                    'hour-minutes': 'Hora Minutos',
+                    'fridge-freezer-note': '<strong>SI LA FECHA QUE QUIERES NO ESTÁ DISPONIBLE, TEN EN CUENTA QUE LOS PASTELES DURAN HASTA 4 DÍAS EN EL REFRIGERADOR Y HASTA 2 SEMANAS EN EL CONGELADOR.</strong>',
+                    'my-products': 'Mis Productos',
+                    'category-select': 'Seleccionar Categoría',
+                    'base-prices-note': 'Los precios a continuación son precios <strong>base</strong>.<br>*Todos los pasteles tendrán <strong>tres capas</strong>*<br>Se pueden seleccionar complementos adicionales.',
+                    'special-requests': 'Solicitudes Especiales',
+                    'special-requests-text': 'Por favor escribe N/A si quieres que usemos nuestra libertad creativa. Si compras múltiples productos, por favor numéralos en el cuadro de texto.',
+                    'mood-board': 'Tablero de Inspiración',
+                    'mood-board-text': 'Adjunta un tablero de inspiración o fotos de inspiración a continuación. Ten en cuenta que no replico el trabajo de otros artistas de pasteles. Usaré mi estilo de decoración personal y mejor juicio para hacerte un pastel que ames.',
+                    'browse-files': 'Examinar Archivos',
+                    'drag-drop': 'Arrastra y suelta archivos aquí',
+                    'cake-text': 'Texto del Pastel',
+                    'allergies': 'Alergias',
+                    'allergies-text': 'Aunque haré mi mejor esfuerzo para acomodar tus restricciones dietéticas, todos mis productos se producen en una cocina casera que no está sujeta a inspección de salud pública y puede procesar alérgenos alimentarios comunes. Ten en cuenta que los productos horneados pueden contener o entrar en contacto con maní, nueces de árbol u otros alérgenos.',
+                    'how-did-you-hear': '¿Cómo te enteraste de nosotros?',
+                    'policies-title': 'Políticas',
+                    'policies-text': '• Todos los pedidos deben recogerse en <strong>Chelsea, MA</strong> (cerca de la parada de autobús Bellingham Square). <strong>No</strong> ofrezco servicios de entrega.<br><br>• Por favor envía tu pedido al menos <strong>10 días</strong> de antelación. Los pedidos de último momento pueden estar sujetos a una <strong>tarifa de urgencia de $20</strong>.<br><br>• Una vez que envíes un pedido, te enviaré un correo electrónico dentro de <strong>3 días hábiles</strong> con un boceto de tu pedido y confirmación de precio.<br><br>• Se requiere un <strong>depósito del 50%</strong> para asegurar tu pedido. El saldo restante se debe al recoger.<br><br>• Acepto los siguientes métodos de pago: <strong>Apple Cash, Zelle, Venmo o efectivo</strong>.<br><br>• <strong>ALERTA DE ALERGIA:</strong> Mi receta de glaseado contiene productos de nueces. Por favor no hagas un pedido si tienes alergias a las nueces.<br><br>• Ten en cuenta que no soy responsable de lo que le pase al postre después de que te lo haya entregado.<br><br>',
+                    'success-message': '<strong>¡Pedido Enviado Exitosamente!</strong><br>¡Gracias por tu pedido! Te contactaré dentro de 3 días hábiles con un boceto de tu pedido y confirmación de precio.',
+                    'error-message': '<strong>Error al enviar el pedido.</strong><br>Por favor intenta de nuevo o contáctanos directamente.',
+                    'this-field-required': '⚠ Este campo es requerido.',
+                    'cakes': 'Pasteles',
+                    'cupcakes': 'Cupcakes',
+                    'deals-packages': 'Ofertas y Paquetes',
+                    'categories-all': 'Categorías: Todas',
+                    'circle-cake': 'Pastel Circular',
+                    'heart-cake': 'Pastel de Corazón',
+                    'star-cake': 'Pastel de Estrella',
+                    'vintage-heart-cake': 'Pastel de Corazón Vintage',
+                    'half-dozen-cupcakes': '1/2 Docena de Cupcakes',
+                    'dozen-cupcakes': '1 Docena de Cupcakes',
+                    'birthday-half-dozen-cupcakes': '1/2 Docena de Cupcakes de Cumpleaños',
+                    'birthday-full-dozen-cupcakes': 'Docena Completa de Cupcakes de Cumpleaños',
+                    'size': 'Tamaño',
+                    'qty': 'Cant.',
+                    'flavor': 'Sabor',
+                    'filling': 'Relleno',
+                    'border': 'Borde',
+                    'add-ons': 'Extras',
+                    'text': 'Texto',
+                    'price': 'Precio',
+                    'vanilla': 'Vainilla',
+                    'chocolate': 'Chocolate',
+                    'strawberry': 'Fresa',
+                    'red-velvet': 'Terciopelo Rojo',
+                    'no-border': 'Sin Borde',
+                    'shell-border': 'Borde de Concha',
+                    'tight-shell-border': 'Borde de Concha Apretada',
+                    'reverse-scroll-border': 'Borde de Scroll Inverso',
+                    'bubble-border': 'Borde de Burbujas',
+                    'no-add-ons': 'Sin Extras',
+                    'no-text': 'Sin Texto',
+                    'freehand-buttercream': 'Crema de Mantequilla a Mano',
+                    'chocolate-bubble-letters': 'Letras de Burbujas de Chocolate',
+                    'custom-items': 'Artículos Personalizados',
+                    'custom-items-text': '¿No ves lo que buscas? Déjame saber sobre cualquier artículo personalizado como galletas, budines de pan u otros postres que te gustaría pedir.',
+                    'custom-items-placeholder': 'Por favor describe cualquier artículo personalizado que te gustaría pedir (ej., galletas, budín de pan, etc.) y cualquier requisito específico...',
+                    'choose-your-products': 'Elige Tus Productos',
+                    'color-requests': 'Solicitudes de Color',
+                    'custom-flavor-filling': 'OPCIONAL: Sabor/Relleno Personalizado',
+                    'additional-specifications': 'ATENCIÓN: Lista cualquier otra especificación o complemento que no esté listado como opción.',
+                    'half-dozen-description': '$14 por 1/2 Docena de Cupcakes. Por favor especifica la cantidad de cada sabor.',
+                    'dozen-description': '$24 por 1 Docena de Cupcakes. Por favor especifica la cantidad de cada sabor.',
+                    'heavy-buttercream-piping': 'Decoración Pesada de Crema de Mantequilla',
+                    'custom-board-candle': 'con Tablero Personalizado y Vela',
+                    'cake-text-placeholder': 'Por favor especifica el texto y color del texto. Si compras múltiples pasteles, por favor numéralos en el cuadro de texto.',
+                    'color-requests-placeholder': 'NOTA IMPORTANTE: Los colores extra pigmentados cuestan $5 adicionales (azul marino, azul real, negro, rojo, etc). Por favor escribe N/A si quieres que usemos nuestra libertad creativa. Si compras múltiples productos, por favor numéralos en el cuadro de texto.',
+                    'custom-flavor-placeholder': 'Por favor especifica el sabor personalizado y/o relleno si aplica.',
+                    'cookies-cream': 'Galletas y Crema',
+                    'cream-cheese': 'Queso Crema',
+                    'shell-border': 'Borde de Concha',
+                    'tight-shell-border': 'Borde de Concha Apretada',
+                    'reverse-scroll-border': 'Borde de Scroll Inverso',
+                    'bubble-border': 'Borde de Burbujas',
+                    'glitter-silver': 'Spray de Brillo (Plateado) +$3',
+                    'glitter-gold': 'Spray de Brillo (Dorado) +$3',
+                    'sprinkles': 'Granitas +$2',
+                    'edible-flowers': 'Flores Comestibles +$5',
+                    'freehand-buttercream': 'Crema de Mantequilla a Mano',
+                    'chocolate-bubble-letters': 'Letras de Burbujas de Chocolate',
+                    'strawberry': 'Fresa',
+                    'red-velvet': 'Terciopelo Rojo',
+                    'pearl-detailing': 'Detalles de Perlas +$5',
+                    'bows': 'Lazos +$5',
+                    'vintage-piping': 'Decoración Pesada/Vintage de Crema de Mantequilla +$5',
+                    'gold-leaf': 'Hoja de Oro +$5',
+                    'subtotal': 'Subtotal',
+                    'item-subtotal': 'Subtotal del artículo',
+                    'flavors-section': 'Sabores ($14 por 1/2 docena cada uno)',
+                    'flavors-section-dozen': 'Sabores ($24 por 1 docena cada uno)',
+                    'flavors-section-birthday': 'Sabores ($35 por 1 docena con Tablero y Vela)',
+                    'custom-plus-5': 'Personalizado (+$5)'
+                }
+            };
+
+            // Apply translations
+            Object.keys(translations[lang]).forEach(key => {
+                const elements = document.querySelectorAll(`[data-translate="${key}"]`);
+                elements.forEach(element => {
+                    if (key === 'contact-info' || key === 'pickup-times-text' || key === 'fridge-freezer-note' || key === 'base-prices-note' || key === 'special-requests-text' || key === 'mood-board-text' || key === 'allergies-text' || key === 'policies-text' || key === 'success-message' || key === 'error-message') {
+                        element.innerHTML = translations[lang][key];
+                    } else if (key.includes('placeholder') || key.includes('custom-items-placeholder')) {
+                        element.placeholder = translations[lang][key];
+                    } else {
+                        element.textContent = translations[lang][key];
+                    }
+                });
+            });
+
+            // Update CSS-generated labels for mobile view
+            // Remove any existing translation style first
+            const existingStyle = document.querySelector('style[data-translation="mobile-labels"]');
+            if (existingStyle) {
+                existingStyle.remove();
+            }
+
+            if (lang === 'es') {
+                const style = document.createElement('style');
+                style.setAttribute('data-translation', 'mobile-labels');
+                style.textContent = `
+                    .cake-options-table .col-size::before {
+                        content: "Tamaño" !important;
+                    }
+                    .cake-options-table .col-qty::before {
+                        content: "Cant." !important;
+                    }
+                    .cake-options-table .col-flavor::before {
+                        content: "Sabor" !important;
+                    }
+                    .cake-options-table .col-filling::before {
+                        content: "Relleno" !important;
+                    }
+                    .cake-options-table .col-border::before {
+                        content: "Borde" !important;
+                    }
+                    .cake-options-table .col-addons::before {
+                        content: "Extras" !important;
+                    }
+                    .cake-options-table .col-text::before {
+                        content: "Texto" !important;
+                    }
+                    .cake-options-table .col-price::before {
+                        content: "Precio" !important;
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+
+            // Update page title
+            document.title = translations[lang]['page-title'];
+
+            // Update ALL options in ALL dropdowns
+            document.querySelectorAll('select option[data-translate]').forEach(option => {
+                const translateKey = option.getAttribute('data-translate');
+                if (translations[lang][translateKey]) {
+                    option.textContent = translations[lang][translateKey];
+                }
+            });
+
+            // Update button tooltips
+            document.getElementById('themeToggle').title = translations[lang]['theme-toggle'];
+            document.getElementById('translateBtn').title = translations[lang]['translate-btn'];
+            document.getElementById('scrollTop').title = translations[lang]['scroll-top'];
+            document.getElementById('scrollBottom').title = translations[lang]['scroll-bottom'];
+        }
+
         // Floating Buttons Management
         function initializeFloatingButtons() {
             const scrollTopBtn = document.getElementById('scrollTop');
+            const scrollBottomBtn = document.getElementById('scrollBottom');
 
             // Scroll to top functionality
             scrollTopBtn.addEventListener('click', () => {
@@ -3436,18 +4055,48 @@
                 });
             });
 
-            // Show/hide scroll to top button based on scroll position
+            // Scroll to bottom functionality
+            scrollBottomBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: document.documentElement.scrollHeight,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Show/hide buttons based on scroll position
             window.addEventListener('scroll', () => {
-                if (window.pageYOffset > 100) {
+                const scrollTop = window.pageYOffset;
+                const scrollHeight = document.documentElement.scrollHeight;
+                const clientHeight = document.documentElement.clientHeight;
+                const scrollBottom = scrollHeight - scrollTop - clientHeight;
+
+                // Show scroll-to-top button when scrolled down
+                if (scrollTop > 100) {
                     scrollTopBtn.classList.add('visible');
                 } else {
                     scrollTopBtn.classList.remove('visible');
                 }
+
+                // Hide scroll-to-bottom button when near bottom
+                if (scrollBottom < 100) {
+                    scrollBottomBtn.classList.add('hidden');
+                } else {
+                    scrollBottomBtn.classList.remove('hidden');
+                }
             });
 
             // Initial check for scroll position
-            if (window.pageYOffset > 100) {
+            const scrollTop = window.pageYOffset;
+            const scrollHeight = document.documentElement.scrollHeight;
+            const clientHeight = document.documentElement.clientHeight;
+            const scrollBottom = scrollHeight - scrollTop - clientHeight;
+
+            if (scrollTop > 100) {
                 scrollTopBtn.classList.add('visible');
+            }
+
+            if (scrollBottom < 100) {
+                scrollBottomBtn.classList.add('hidden');
             }
         }
     </script>
@@ -3457,8 +4106,14 @@
         <button class="floating-btn theme-toggle-btn" id="themeToggle" title="Toggle Dark/Light Mode">
             🌙
         </button>
+        <button class="floating-btn translate-btn" id="translateBtn" title="Translate Page">
+            🌐
+        </button>
         <button class="floating-btn scroll-top-btn" id="scrollTop" title="Scroll to Top">
             ↑
+        </button>
+        <button class="floating-btn scroll-bottom-btn" id="scrollBottom" title="Scroll to Bottom">
+            ↓
         </button>
     </div>
 </body>
