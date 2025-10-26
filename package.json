@@ -4,9 +4,9 @@
   "description": "Order form for Dabiri's Desserts - Serverless",
   "main": "index.html",
   "scripts": {
-    "dev": "netlify dev",
+    "dev": "vercel dev",
     "build": "echo 'Static site - no build needed'",
-    "deploy": "netlify deploy --prod"
+    "deploy": "vercel --prod"
   },
   "dependencies": {
     "airtable": "^0.12.2",
@@ -16,7 +16,7 @@
     "nodemailer": "^6.9.7"
   },
   "devDependencies": {
-    "netlify-cli": "^17.0.0"
+    "vercel": "^32.0.0"
   },
   "keywords": [
     "cake",
