@@ -75,7 +75,7 @@ function addOrderToAirtable(formData) {
         const options = {
             hostname: 'api.airtable.com',
             port: 443,
-            path: `/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_ID}`,
+            path: `/v0/${AIRTABLE_BASE_ID}/Orders`,
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${AIRTABLE_API_KEY}`,
@@ -371,14 +371,10 @@ export default async function handler(req, res) {
         console.log('AIRTABLE_BASE_ID:', process.env.AIRTABLE_BASE_ID ? 'SET' : 'NOT SET');
         console.log('AIRTABLE_TABLE_ID:', process.env.AIRTABLE_TABLE_ID ? 'SET' : 'NOT SET');
 
-        // Generate order ID and calculate total (skip Airtable for now)
-        const orderId = generateOrderId();
-        const total = calculateTotal(formData);
-        
-        // TODO: Re-enable Airtable once configuration is fixed
-        // const airtableResult = await addOrderToAirtable(formData);
-        // const orderId = airtableResult.orderId;
-        // const total = airtableResult.total;
+        // Add to Airtable first to get order ID and total
+        const airtableResult = await addOrderToAirtable(formData);
+        const orderId = airtableResult.orderId;
+        const total = airtableResult.total;
 
         // Send emails
         const customerEmail = {
