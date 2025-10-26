@@ -362,7 +362,7 @@ export default async function handler(req, res) {
 
     try {
         const formData = req.body;
-        
+
         // Debug logging
         console.log('Received form data:', JSON.stringify(formData, null, 2));
         console.log('Environment variables check:');
@@ -371,10 +371,14 @@ export default async function handler(req, res) {
         console.log('AIRTABLE_BASE_ID:', process.env.AIRTABLE_BASE_ID ? 'SET' : 'NOT SET');
         console.log('AIRTABLE_TABLE_ID:', process.env.AIRTABLE_TABLE_ID ? 'SET' : 'NOT SET');
 
-        // Add to Airtable first to get order ID and total
-        const airtableResult = await addOrderToAirtable(formData);
-        const orderId = airtableResult.orderId;
-        const total = airtableResult.total;
+        // Generate order ID and calculate total (skip Airtable for now)
+        const orderId = generateOrderId();
+        const total = calculateTotal(formData);
+        
+        // TODO: Re-enable Airtable once configuration is fixed
+        // const airtableResult = await addOrderToAirtable(formData);
+        // const orderId = airtableResult.orderId;
+        // const total = airtableResult.total;
 
         // Send emails
         const customerEmail = {
