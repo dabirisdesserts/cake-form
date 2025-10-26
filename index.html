@@ -2826,7 +2826,7 @@
                     <h2>Design/Aesthetic Requests <span class="required">*</span></h2>
                     <div class="section-content">
                         <div class="form-group">
-                            <textarea style="min-height: 100px;" placeholder="Please write N/A if you'd like us to use our creative freedom. If purchasing multiple products, please number them in the text box." required></textarea>
+                            <textarea id="designRequests" style="min-height: 100px;" placeholder="Please write N/A if you'd like us to use our creative freedom. If purchasing multiple products, please number them in the text box." required></textarea>
                         </div>
 
                         <h3 style="margin: 20px 0;">Attach a mood board or inspiration pictures below. Please note I do not replicate the work of other cake artists. I will use my personal decorating style and best judgment to make you a cake that you love!</h3>
@@ -2846,7 +2846,7 @@
                     <h2>Cake Text <span class="required">*</span></h2>
                     <div class="section-content">
                         <div class="form-group">
-                            <textarea placeholder="Please specify text and text color. If purchasing multiple cakes, please number them in the text box." required></textarea>
+                            <textarea id="cakeText" placeholder="Please specify text and text color. If purchasing multiple cakes, please number them in the text box." required></textarea>
                         </div>
                     </div>
                 </div>
@@ -2856,7 +2856,7 @@
                     <h2>Color Requests <span class="required">*</span></h2>
                     <div class="section-content">
                         <div class="form-group">
-                            <textarea placeholder="PLEASE NOTE: Extra pigmented colors are $5 extra (navy blue, royal blue, black, red, etc). Please write N/A if you'd like us to use our creative freedom. If purchasing multiple products, please number them in the text box." required></textarea>
+                            <textarea id="colorRequests" placeholder="PLEASE NOTE: Extra pigmented colors are $5 extra (navy blue, royal blue, black, red, etc). Please write N/A if you'd like us to use our creative freedom. If purchasing multiple products, please number them in the text box." required></textarea>
                         </div>
                     </div>
                 </div>
@@ -2866,7 +2866,7 @@
                     <h2>OPTIONAL: Custom Flavor/Filling</h2>
                     <div class="section-content">
                     <div class="form-group">
-                            <textarea placeholder="Please specify the custom flavor and/or filling if applicable."></textarea>
+                            <textarea id="customFlavor" placeholder="Please specify the custom flavor and/or filling if applicable."></textarea>
                         </div>
                     </div>
                 </div>
@@ -2876,7 +2876,7 @@
                     <h2>ATTENTION: List any other specifications or add-ons that aren't listed as options. <span class="required">*</span></h2>
                     <div class="section-content">
                         <div class="form-group">
-                            <textarea required></textarea>
+                            <textarea id="additionalSpecs" required></textarea>
                         </div>
                     </div>
                 </div>
@@ -2886,7 +2886,7 @@
                     <h2>Do you have any allergies/dietary restrictions? Please note, I do NOT make gluten free cakes. <span class="required">*</span></h2>
                     <div class="section-content">
                         <div class="form-group">
-                            <textarea required></textarea>
+                            <textarea id="allergies" required></textarea>
                         </div>
                         <div class="policy-section">
                             <div class="policy-text">
@@ -2901,7 +2901,7 @@
                     <h2>How did you hear about Dabiri's Desserts? <span class="required">*</span></h2>
                     <div class="section-content">
                     <div class="form-group">
-                            <textarea required></textarea>
+                            <textarea id="howDidYouHear" required></textarea>
                         </div>
                     </div>
                 </div>
@@ -3358,6 +3358,13 @@
                 phone: document.getElementById('phone').value,
                 pickupDate: document.getElementById('pickupDate').value,
                 customItems: document.getElementById('customItems').value,
+                designRequests: document.getElementById('designRequests').value,
+                cakeText: document.getElementById('cakeText').value,
+                colorRequests: document.getElementById('colorRequests').value,
+                customFlavor: document.getElementById('customFlavor').value,
+                additionalSpecs: document.getElementById('additionalSpecs').value,
+                allergies: document.getElementById('allergies').value,
+                howDidYouHear: document.getElementById('howDidYouHear').value,
                 products: []
             };
 

@@ -179,7 +179,7 @@ function createBusinessEmailTemplate(formData, orderId, total) {
             </div>
 
             <div style="background: white; padding: 30px; border-radius: 0 0 10px 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-                
+
                 <!-- Order Summary -->
                 <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 25px; border-left: 4px solid #8B4A9C;">
                     <h2 style="color: #8B4A9C; margin: 0 0 15px 0; font-size: 20px;">📋 Order Summary</h2>
@@ -205,8 +205,8 @@ function createBusinessEmailTemplate(formData, orderId, total) {
                 <!-- Order Details -->
                 <div style="background: #fff; padding: 20px; border-radius: 8px; margin-bottom: 25px; border: 1px solid #e9ecef;">
                     <h3 style="color: #8B4A9C; margin: 0 0 15px 0; font-size: 18px;">🛒 Order Details</h3>
-                    ${formData.products && formData.products.length > 0 ? 
-                        formData.products.map(product => 
+                    ${formData.products && formData.products.length > 0 ?
+                        formData.products.map(product =>
                             product.quantity > 0 ? `
                                 <div style="background: #f8f9fa; padding: 15px; border-radius: 5px; margin-bottom: 10px; border-left: 3px solid #8B4A9C;">
                                     <div style="display: flex; justify-content: space-between; align-items: center;">
@@ -221,7 +221,7 @@ function createBusinessEmailTemplate(formData, orderId, total) {
                                     </div>
                                 </div>
                             ` : ''
-                        ).join('') : 
+                        ).join('') :
                         '<div style="background: #fff3cd; padding: 15px; border-radius: 5px; border-left: 3px solid #ffc107; color: #856404;"><strong>⚠️ No specific products selected</strong><br>Customer may have custom requirements in special instructions.</div>'
                     }
                 </div>
@@ -236,11 +236,81 @@ function createBusinessEmailTemplate(formData, orderId, total) {
                 </div>
                 ` : ''}
 
+                <!-- Design Requests -->
+                ${formData.designRequests ? `
+                <div style="background: #fff; padding: 20px; border-radius: 8px; margin-bottom: 25px; border: 1px solid #e9ecef;">
+                    <h3 style="color: #8B4A9C; margin: 0 0 15px 0; font-size: 18px;">🎨 Design/Aesthetic Requests</h3>
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 5px; border-left: 3px solid #8B4A9C; color: #495057;">
+                        ${formData.designRequests}
+                    </div>
+                </div>
+                ` : ''}
+
+                <!-- Cake Text -->
+                ${formData.cakeText ? `
+                <div style="background: #fff; padding: 20px; border-radius: 8px; margin-bottom: 25px; border: 1px solid #e9ecef;">
+                    <h3 style="color: #8B4A9C; margin: 0 0 15px 0; font-size: 18px;">📝 Cake Text</h3>
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 5px; border-left: 3px solid #8B4A9C; color: #495057;">
+                        ${formData.cakeText}
+                    </div>
+                </div>
+                ` : ''}
+
+                <!-- Color Requests -->
+                ${formData.colorRequests ? `
+                <div style="background: #fff; padding: 20px; border-radius: 8px; margin-bottom: 25px; border: 1px solid #e9ecef;">
+                    <h3 style="color: #8B4A9C; margin: 0 0 15px 0; font-size: 18px;">🎨 Color Requests</h3>
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 5px; border-left: 3px solid #8B4A9C; color: #495057;">
+                        ${formData.colorRequests}
+                    </div>
+                </div>
+                ` : ''}
+
+                <!-- Custom Flavor -->
+                ${formData.customFlavor ? `
+                <div style="background: #fff; padding: 20px; border-radius: 8px; margin-bottom: 25px; border: 1px solid #e9ecef;">
+                    <h3 style="color: #8B4A9C; margin: 0 0 15px 0; font-size: 18px;">🍰 Custom Flavor/Filling</h3>
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 5px; border-left: 3px solid #8B4A9C; color: #495057;">
+                        ${formData.customFlavor}
+                    </div>
+                </div>
+                ` : ''}
+
+                <!-- Additional Specifications -->
+                ${formData.additionalSpecs ? `
+                <div style="background: #fff; padding: 20px; border-radius: 8px; margin-bottom: 25px; border: 1px solid #e9ecef;">
+                    <h3 style="color: #8B4A9C; margin: 0 0 15px 0; font-size: 18px;">⚠️ Additional Specifications</h3>
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 5px; border-left: 3px solid #8B4A9C; color: #495057;">
+                        ${formData.additionalSpecs}
+                    </div>
+                </div>
+                ` : ''}
+
+                <!-- Allergies/Dietary Restrictions -->
+                ${formData.allergies ? `
+                <div style="background: #fff; padding: 20px; border-radius: 8px; margin-bottom: 25px; border: 1px solid #e9ecef;">
+                    <h3 style="color: #8B4A9C; margin: 0 0 15px 0; font-size: 18px;">🚨 Allergies/Dietary Restrictions</h3>
+                    <div style="background: #fff3cd; padding: 15px; border-radius: 5px; border-left: 3px solid #ffc107; color: #856404;">
+                        <strong>IMPORTANT:</strong> ${formData.allergies}
+                    </div>
+                </div>
+                ` : ''}
+
+                <!-- How Did You Hear -->
+                ${formData.howDidYouHear ? `
+                <div style="background: #fff; padding: 20px; border-radius: 8px; margin-bottom: 25px; border: 1px solid #e9ecef;">
+                    <h3 style="color: #8B4A9C; margin: 0 0 15px 0; font-size: 18px;">📢 How Did You Hear About Us</h3>
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 5px; border-left: 3px solid #8B4A9C; color: #495057;">
+                        ${formData.howDidYouHear}
+                    </div>
+                </div>
+                ` : ''}
+
                 <!-- Pricing Breakdown -->
                 <div style="background: #fff; padding: 20px; border-radius: 8px; margin-bottom: 25px; border: 1px solid #e9ecef;">
                     <h3 style="color: #8B4A9C; margin: 0 0 15px 0; font-size: 18px;">💰 Pricing Breakdown</h3>
                     <div style="display: grid; gap: 8px; font-size: 14px;">
-                        ${formData.products ? formData.products.map(product => 
+                        ${formData.products ? formData.products.map(product =>
                             product.quantity > 0 ? `<div style="display: flex; justify-content: space-between;"><span>${product.name} (${product.quantity} x $${product.price})</span><span>$${(product.quantity * product.price).toFixed(2)}</span></div>` : ''
                         ).join('') : '<div style="color: #666;">No products selected</div>'}
                         ${hasRushFee ? `<div style="display: flex; justify-content: space-between; color: #dc3545;"><span>🚨 Rush Fee (${daysDifference} days notice)</span><span>$${rushFee.toFixed(2)}</span></div>` : ''}
