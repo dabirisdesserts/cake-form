@@ -1350,20 +1350,28 @@
                 background-color: transparent !important;
             }
 
-            /* Force size text to be dark and visible */
+            /* Force size text to be dark and visible - use more specific selectors */
+            .cake-options-table .col-size,
+            .product-card .col-size,
+            .table-row .col-size,
             .col-size {
                 color: #2c3e50 !important;
                 font-weight: 700 !important;
                 font-size: 16px !important;
                 text-shadow: 0 1px 2px rgba(0,0,0,0.1) !important;
+                background-color: transparent !important;
             }
             
             /* Dark mode specific styling for size text */
+            [data-theme="dark"] .cake-options-table .col-size,
+            [data-theme="dark"] .product-card .col-size,
+            [data-theme="dark"] .table-row .col-size,
             [data-theme="dark"] .col-size {
                 color: #ffffff !important;
                 font-weight: 700 !important;
                 font-size: 16px !important;
                 text-shadow: 0 1px 2px rgba(0,0,0,0.5) !important;
+                background-color: transparent !important;
             }
 
             /* Ensure table headers are visible */
