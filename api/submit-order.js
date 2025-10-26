@@ -92,6 +92,23 @@ function addOrderToAirtable(formData) {
         const orderId = generateOrderId();
         const total = calculateTotal(formData);
 
+        // Calculate additional fields
+        const pickupDate = new Date(formData.pickupDate);
+        const today = new Date();
+        const daysDifference = Math.ceil((pickupDate - today) / (1000 * 60 * 60 * 24));
+        const isOverdue = daysDifference < 0;
+        const orderMonth = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+        
+        // Create order summary
+        const orderSummary = formData.products && formData.products.length > 0 
+            ? formData.products.filter(p => p.quantity > 0).map(p => `${p.name} (${p.quantity})`).join(', ')
+            : 'Custom Order';
+        
+        // Determine order category based on products
+        const orderCategory = formData.products && formData.products.some(p => p.quantity > 0)
+            ? 'Product Order'
+            : 'Custom Order';
+
         const orderData = {
             fields: {
                 "Order ID": orderId,
@@ -103,7 +120,19 @@ function addOrderToAirtable(formData) {
                 "Special Instructions": formData.customItems || '',
                 "Total Price": total,
                 "Order Status": "Submitted",
-                "Order Date": new Date().toISOString().split('T')[0]
+                "Order Date": new Date().toISOString().split('T')[0],
+                "Days Until Pickup": daysDifference,
+                "Is Overdue": isOverdue,
+                "Order Month": orderMonth,
+                "Order Summary": orderSummary,
+                "Order Category": orderCategory,
+                "Design Requests": formData.designRequests || '',
+                "Cake Text": formData.cakeText || '',
+                "Color Requests": formData.colorRequests || '',
+                "Custom Flavor": formData.customFlavor || '',
+                "Additional Specs": formData.additionalSpecs || '',
+                "Allergies": formData.allergies || '',
+                "How Did You Hear": formData.howDidYouHear || ''
             }
         };
 
