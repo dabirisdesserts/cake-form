@@ -174,7 +174,7 @@
             visibility: visible !important;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
-        
+
         /* Additional fallback for required asterisks */
         label .required,
         h2 .required,
@@ -579,6 +579,17 @@
             cursor: not-allowed;
             transform: none;
             box-shadow: none;
+        }
+
+        .submit-btn.validation-error {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
 
         .error-message {
@@ -3565,9 +3576,110 @@
             pickupDate.min = minDate.toISOString().split('T')[0];
         }
 
+        // Function to validate all required fields and guide user to missing sections
+        function validateRequiredFields() {
+            const requiredFields = [
+                { id: 'firstName', name: 'First Name', section: 'Customer Information' },
+                { id: 'lastName', name: 'Last Name', section: 'Customer Information' },
+                { id: 'email', name: 'E-mail', section: 'Customer Information' },
+                { id: 'phone', name: 'Phone Number', section: 'Customer Information' },
+                { id: 'pickupDate', name: 'Pickup Date', section: 'Pickup Information' },
+                { id: 'designRequests', name: 'Design/Aesthetic Requests', section: 'Design/Aesthetic Requests' },
+                { id: 'cakeText', name: 'Cake Text', section: 'Cake Text' },
+                { id: 'colorRequests', name: 'Color Requests', section: 'Color Requests' },
+                { id: 'additionalSpecs', name: 'Additional Specifications', section: 'Additional Specifications' },
+                { id: 'allergies', name: 'Allergies/Dietary Restrictions', section: 'Allergies/Dietary Restrictions' },
+                { id: 'howDidYouHear', name: 'How did you hear about us', section: 'How did you hear about us' },
+                { id: 'agreement', name: 'Agreement', section: 'Agreement' }
+            ];
+
+            const missingFields = [];
+            const firstMissingField = [];
+
+            // Check each required field
+            requiredFields.forEach(field => {
+                const element = document.getElementById(field.id);
+                if (!element || !element.value.trim()) {
+                    missingFields.push(field);
+                    if (firstMissingField.length === 0) {
+                        firstMissingField.push(field);
+                    }
+                }
+            });
+
+            // Check if any products are selected
+            const hasProducts = document.querySelectorAll('.product-item').some(item => {
+                const quantityInput = item.querySelector('input[type="number"]');
+                return quantityInput && parseInt(quantityInput.value) > 0;
+            });
+
+            if (!hasProducts) {
+                missingFields.push({ id: 'products', name: 'My Products', section: 'Choose Your Products' });
+                if (firstMissingField.length === 0) {
+                    firstMissingField.push({ id: 'products', name: 'My Products', section: 'Choose Your Products' });
+                }
+            }
+
+            if (missingFields.length > 0) {
+                // Add visual feedback to submit button
+                const submitBtn = document.getElementById('submitBtn');
+                submitBtn.classList.add('validation-error');
+                setTimeout(() => {
+                    submitBtn.classList.remove('validation-error');
+                }, 3000);
+
+                // Create detailed error message
+                let errorMessage = `Please complete the following required sections:\n\n`;
+                missingFields.forEach(field => {
+                    errorMessage += `• ${field.section}: ${field.name}\n`;
+                });
+
+                // Show alert with missing sections
+                alert(errorMessage);
+
+                // Scroll to first missing field
+                if (firstMissingField.length > 0) {
+                    const firstField = firstMissingField[0];
+                    let targetElement;
+
+                    if (firstField.id === 'products') {
+                        // Scroll to products section
+                        targetElement = document.querySelector('[data-translate="my-products"]');
+                    } else {
+                        // Scroll to the specific field
+                        targetElement = document.getElementById(firstField.id);
+                    }
+
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'center' 
+                        });
+                        
+                        // Highlight the field briefly
+                        targetElement.style.border = '2px solid #e74c3c';
+                        targetElement.style.boxShadow = '0 0 10px rgba(231, 76, 60, 0.5)';
+                        setTimeout(() => {
+                            targetElement.style.border = '';
+                            targetElement.style.boxShadow = '';
+                        }, 3000);
+                    }
+                }
+
+                return false;
+            }
+
+            return true;
+        }
+
         async function handleFormSubmit(e) {
             e.preventDefault();
             console.log('Form submission started');
+
+            // Validate required fields first
+            if (!validateRequiredFields()) {
+                return; // Stop submission if validation fails
+            }
 
             // Show loading state
             const submitBtn = document.getElementById('submitBtn');
