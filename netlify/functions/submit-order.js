@@ -164,44 +164,109 @@ function createCustomerEmailTemplate(formData, orderId, total) {
 
 // Create business email template
 function createBusinessEmailTemplate(formData, orderId, total) {
+    // Calculate rush fee
+    const pickupDate = new Date(formData.pickupDate);
+    const today = new Date();
+    const daysDifference = Math.ceil((pickupDate - today) / (1000 * 60 * 60 * 24));
+    const hasRushFee = daysDifference < 10;
+    const rushFee = hasRushFee ? 20 : 0;
+
     return `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-            <div style="background: #8B4A9C; color: white; padding: 20px; text-align: center; border-radius: 10px 10px 0 0;">
-                <h1 style="color: white; margin: 0;">New Order Received</h1>
-                <p style="color: white; margin: 10px 0 0 0;">Order ID: ${orderId}</p>
+        <div style="font-family: Arial, sans-serif; max-width: 700px; margin: 0 auto; padding: 20px;">
+            <div style="background: #8B4A9C; color: white; padding: 25px; text-align: center; border-radius: 10px 10px 0 0;">
+                <h1 style="color: white; margin: 0; font-size: 28px;">🍰 New Order Received</h1>
+                <p style="color: white; margin: 10px 0 0 0; font-size: 16px;">Order ID: ${orderId}</p>
             </div>
 
             <div style="background: white; padding: 30px; border-radius: 0 0 10px 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-                <h2 style="color: #8B4A9C; margin-bottom: 20px;">Order Details</h2>
-
-                <div style="background: #f8f9fa; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
-                    <strong>Order ID:</strong> ${orderId}<br>
-                    <strong>Order Date:</strong> ${new Date().toLocaleDateString()}<br>
-                    <strong>Pickup Date:</strong> ${new Date(formData.pickupDate).toLocaleDateString()}
+                
+                <!-- Order Summary -->
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 25px; border-left: 4px solid #8B4A9C;">
+                    <h2 style="color: #8B4A9C; margin: 0 0 15px 0; font-size: 20px;">📋 Order Summary</h2>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 14px;">
+                        <div><strong>Order ID:</strong> ${orderId}</div>
+                        <div><strong>Order Date:</strong> ${new Date().toLocaleDateString()}</div>
+                        <div><strong>Pickup Date:</strong> ${new Date(formData.pickupDate).toLocaleDateString()}</div>
+                        <div><strong>Days Until Pickup:</strong> ${daysDifference} days</div>
+                    </div>
                 </div>
 
-                <h3 style="color: #8B4A9C;">Customer Information</h3>
-                <p><strong>Name:</strong> ${formData.firstName} ${formData.lastName}</p>
-                <p><strong>Email:</strong> ${formData.email}</p>
-                <p><strong>Phone:</strong> ${formData.phone}</p>
-
-                <h3 style="color: #8B4A9C;">Order Details</h3>
-                ${formData.products ? formData.products.map(product =>
-                    product.quantity > 0 ? `<p><strong>${product.name}:</strong> ${product.quantity} x $${product.price} = $${(product.quantity * product.price).toFixed(2)}</p>` : ''
-                ).join('') : ''}
-
-                ${formData.customItems ? `<p><strong>Special Instructions:</strong> ${formData.customItems}</p>` : ''}
-
-                <div style="background: #8B4A9C; color: white; padding: 15px; border-radius: 5px; margin: 20px 0;">
-                    <h3 style="margin: 0; color: white;">Estimated Total: $${total.toFixed(2)}</h3>
+                <!-- Customer Information -->
+                <div style="background: #fff; padding: 20px; border-radius: 8px; margin-bottom: 25px; border: 1px solid #e9ecef;">
+                    <h3 style="color: #8B4A9C; margin: 0 0 15px 0; font-size: 18px;">👤 Customer Information</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; font-size: 14px;">
+                        <div><strong>Full Name:</strong> ${formData.firstName} ${formData.lastName}</div>
+                        <div><strong>Email:</strong> <a href="mailto:${formData.email}" style="color: #8B4A9C;">${formData.email}</a></div>
+                        <div><strong>Phone:</strong> <a href="tel:${formData.phone}" style="color: #8B4A9C;">${formData.phone}</a></div>
+                        <div><strong>Pickup Date:</strong> ${new Date(formData.pickupDate).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</div>
+                    </div>
                 </div>
 
-                <p style="color: #666; font-size: 14px;">
-                    <strong>Action Required:</strong><br>
-                    • Create sketch of the order<br>
-                    • Send confirmation email to customer<br>
-                    • Update Airtable with order details
-                </p>
+                <!-- Order Details -->
+                <div style="background: #fff; padding: 20px; border-radius: 8px; margin-bottom: 25px; border: 1px solid #e9ecef;">
+                    <h3 style="color: #8B4A9C; margin: 0 0 15px 0; font-size: 18px;">🛒 Order Details</h3>
+                    ${formData.products && formData.products.length > 0 ? 
+                        formData.products.map(product => 
+                            product.quantity > 0 ? `
+                                <div style="background: #f8f9fa; padding: 15px; border-radius: 5px; margin-bottom: 10px; border-left: 3px solid #8B4A9C;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                                        <div>
+                                            <strong style="color: #8B4A9C;">${product.name}</strong><br>
+                                            <span style="color: #666; font-size: 14px;">Quantity: ${product.quantity}</span>
+                                        </div>
+                                        <div style="text-align: right;">
+                                            <div style="font-size: 16px; font-weight: bold; color: #8B4A9C;">$${(product.quantity * product.price).toFixed(2)}</div>
+                                            <div style="color: #666; font-size: 12px;">$${product.price} each</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            ` : ''
+                        ).join('') : 
+                        '<div style="background: #fff3cd; padding: 15px; border-radius: 5px; border-left: 3px solid #ffc107; color: #856404;"><strong>⚠️ No specific products selected</strong><br>Customer may have custom requirements in special instructions.</div>'
+                    }
+                </div>
+
+                <!-- Special Instructions -->
+                ${formData.customItems ? `
+                <div style="background: #fff; padding: 20px; border-radius: 8px; margin-bottom: 25px; border: 1px solid #e9ecef;">
+                    <h3 style="color: #8B4A9C; margin: 0 0 15px 0; font-size: 18px;">📝 Special Instructions</h3>
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 5px; border-left: 3px solid #8B4A9C; font-style: italic; color: #495057;">
+                        "${formData.customItems}"
+                    </div>
+                </div>
+                ` : ''}
+
+                <!-- Pricing Breakdown -->
+                <div style="background: #fff; padding: 20px; border-radius: 8px; margin-bottom: 25px; border: 1px solid #e9ecef;">
+                    <h3 style="color: #8B4A9C; margin: 0 0 15px 0; font-size: 18px;">💰 Pricing Breakdown</h3>
+                    <div style="display: grid; gap: 8px; font-size: 14px;">
+                        ${formData.products ? formData.products.map(product => 
+                            product.quantity > 0 ? `<div style="display: flex; justify-content: space-between;"><span>${product.name} (${product.quantity} x $${product.price})</span><span>$${(product.quantity * product.price).toFixed(2)}</span></div>` : ''
+                        ).join('') : '<div style="color: #666;">No products selected</div>'}
+                        ${hasRushFee ? `<div style="display: flex; justify-content: space-between; color: #dc3545;"><span>🚨 Rush Fee (${daysDifference} days notice)</span><span>$${rushFee.toFixed(2)}</span></div>` : ''}
+                        <hr style="border: none; border-top: 1px solid #dee2e6; margin: 10px 0;">
+                        <div style="display: flex; justify-content: space-between; font-size: 18px; font-weight: bold; color: #8B4A9C;">
+                            <span>Total:</span><span>$${total.toFixed(2)}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Required -->
+                <div style="background: #e3f2fd; padding: 20px; border-radius: 8px; border-left: 4px solid #2196f3;">
+                    <h3 style="color: #1976d2; margin: 0 0 15px 0; font-size: 18px;">✅ Action Required</h3>
+                    <ul style="margin: 0; padding-left: 20px; color: #1976d2; font-size: 14px;">
+                        <li>Create sketch of the order and send to customer</li>
+                        <li>Send confirmation email to customer with final pricing</li>
+                        <li>Update Airtable with order details and status</li>
+                        <li>Contact customer if clarification is needed</li>
+                    </ul>
+                </div>
+
+                <!-- Footer -->
+                <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #dee2e6; color: #666; font-size: 12px;">
+                    <p>This order was automatically generated from your website form submission.</p>
+                    <p>Order processed at: ${new Date().toLocaleString()}</p>
+                </div>
             </div>
         </div>
     `;
