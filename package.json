@@ -27,6 +27,6 @@
   "author": "Dabiri's Desserts",
   "license": "MIT",
   "engines": {
-    "node": "18.x"
+    "node": "22.x"
   }
 }
