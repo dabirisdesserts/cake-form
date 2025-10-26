@@ -362,6 +362,14 @@ export default async function handler(req, res) {
 
     try {
         const formData = req.body;
+        
+        // Debug logging
+        console.log('Received form data:', JSON.stringify(formData, null, 2));
+        console.log('Environment variables check:');
+        console.log('EMAIL_USER:', process.env.EMAIL_USER ? 'SET' : 'NOT SET');
+        console.log('AIRTABLE_API_KEY:', process.env.AIRTABLE_API_KEY ? 'SET' : 'NOT SET');
+        console.log('AIRTABLE_BASE_ID:', process.env.AIRTABLE_BASE_ID ? 'SET' : 'NOT SET');
+        console.log('AIRTABLE_TABLE_ID:', process.env.AIRTABLE_TABLE_ID ? 'SET' : 'NOT SET');
 
         // Add to Airtable first to get order ID and total
         const airtableResult = await addOrderToAirtable(formData);
@@ -397,9 +405,12 @@ export default async function handler(req, res) {
 
     } catch (error) {
         console.error('Error processing order:', error);
+        console.error('Error stack:', error.stack);
         return res.status(500).json({
             success: false,
-            message: 'Error processing order. Please try again or contact us directly.'
+            message: 'Error processing order. Please try again or contact us directly.',
+            error: error.message,
+            details: process.env.NODE_ENV === 'development' ? error.stack : undefined
         });
     }
 }
