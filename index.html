@@ -3610,10 +3610,11 @@
             });
 
             // Check if any products are selected
-            const productItems = document.querySelectorAll('.product-item');
-            const hasProducts = Array.from(productItems).some(item => {
-                const quantityInput = item.querySelector('input[type="number"]');
-                return quantityInput && parseInt(quantityInput.value) > 0;
+            const productCards = document.querySelectorAll('.product-card');
+            const hasProducts = Array.from(productCards).some(card => {
+                const checkbox = card.querySelector('.product-checkbox');
+                const quantityInput = card.querySelector('input[type="number"]');
+                return checkbox && checkbox.checked && quantityInput && parseInt(quantityInput.value) > 0;
             });
 
             if (!hasProducts) {
