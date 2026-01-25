@@ -585,6 +585,8 @@
         .total-title {
             font-size: 1.5em;
             margin-bottom: 1.5%;
+            color: #7D5577; /* Make readable against light background */
+            font-weight: bold;
         }
 
         .total-amount {
@@ -2042,6 +2044,9 @@
             margin-top: 0;
             transform: scale(1.5); /* Make it slightly larger for better visibility */
             flex-shrink: 0;
+            width: auto !important; /* Override global 100% width on inputs */
+            appearance: auto; /* Ensure standard appearance on mobile */
+            -webkit-appearance: radio; /* specific for iOS */
         }
 
         .agreement-text {
