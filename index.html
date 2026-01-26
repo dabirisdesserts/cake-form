@@ -58,15 +58,17 @@
         }
 
         .header {
-            background: url('./logo_on_background.png') center/cover;
-            min-height: 35vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            padding: 4%;
+            background: transparent;
+            padding: 0;
             text-align: center;
             position: relative;
+        }
+
+        .header-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 20px 20px 0 0;
         }
 
         .header::before {
@@ -2167,7 +2169,7 @@
     <div class="container">
         <!-- Header -->
         <div class="header">
-            <!-- Logo is now part of the background image -->
+            <img src="./logo_on_background.png" alt="Dabiri's Desserts" class="header-img">
         </div>
 
         <div class="form-container">
@@ -3126,7 +3128,7 @@
         </div>
         <!-- Footer -->
         <div class="footer">
-            <p>Version 26.1.2</p>
+            <p>Version 26.1.3</p>
             <p>|</p>
             <p>Made by <a href="https://jordonhgriffin.github.io" target="_blank" rel="noopener noreferrer">JHG</a></p>
         </div>
