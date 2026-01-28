@@ -3480,21 +3480,48 @@
 
             // Check if any products are selected
             const productCards = document.querySelectorAll('.product-card');
-            const hasProducts = Array.from(productCards).some(card => {
-                const checkbox = card.querySelector('.product-checkbox');
-                if (!checkbox || !checkbox.checked) return false;
+            let hasValidProductSelection = false;
+            let uncheckedWithQuantity = [];
+            let firstUncheckedCard = null;
 
-                // detailed quantity check
+            productCards.forEach(card => {
+                const checkbox = card.querySelector('.product-checkbox');
+                const productName = card.querySelector('.product-title').textContent;
                 const quantityInputs = card.querySelectorAll('input[type="number"]');
                 const hasQuantity = Array.from(quantityInputs).some(input => parseInt(input.value) > 0);
 
-                return hasQuantity;
+                if (hasQuantity) {
+                    if (checkbox && checkbox.checked) {
+                        hasValidProductSelection = true;
+                    } else if (checkbox && !checkbox.checked) {
+                        uncheckedWithQuantity.push(productName);
+                        if (!firstUncheckedCard) {
+                            firstUncheckedCard = card;
+                        }
+                    }
+                }
             });
 
-            if (!hasProducts) {
-                missingFields.push({ id: 'products', name: 'My Products', section: 'Choose Your Products' });
+            if (!hasValidProductSelection) {
+                if (uncheckedWithQuantity.length > 0) {
+                     // User entered quantity but didn't check the box
+                    missingFields.push({
+                        id: 'products_checkbox_missing', // Virtual ID for logic below
+                        name: `Please check the box for: ${uncheckedWithQuantity.join(', ')}`,
+                        section: 'Product Selection'
+                    });
+                } else {
+                     // No products selected at all
+                    missingFields.push({ id: 'products', name: 'My Products', section: 'Choose Your Products' });
+                }
+
                 if (firstMissingField.length === 0) {
-                    firstMissingField.push({ id: 'products', name: 'My Products', section: 'Choose Your Products' });
+                    // Decide where to scroll
+                    if (uncheckedWithQuantity.length > 0) {
+                        firstMissingField.push({ id: 'products_specific', element: firstUncheckedCard, name: 'Product Checkbox', section: 'Product Selection' });
+                    } else {
+                        firstMissingField.push({ id: 'products', name: 'My Products', section: 'Choose Your Products' });
+                    }
                 }
             }
 
@@ -3521,10 +3548,13 @@
                     let targetElement;
 
                     if (firstField.id === 'products') {
-                        // Scroll to products section
+                        // Scroll to products section header
                         targetElement = document.querySelector('[data-translate="my-products"]');
+                    } else if (firstField.element) {
+                        // Scroll to specific element (card)
+                        targetElement = firstField.element;
                     } else {
-                        // Scroll to the specific field
+                        // Scroll to the specific field ID
                         targetElement = document.getElementById(firstField.id);
                     }
 
@@ -3651,16 +3681,96 @@
 
             // Collect product data
             document.querySelectorAll('.product-card').forEach(card => {
-                const productName = card.querySelector('.product-title').textContent;
-                const quantity = parseInt(card.querySelector('.quantity-input').value) || 0;
-                const price = parseFloat(card.querySelector('.product-price').textContent.replace('$', '')) || 0;
+                const checkbox = card.querySelector('.product-checkbox');
+                if (!checkbox || !checkbox.checked) return;
 
-                if (quantity > 0) {
-                    formData.products.push({
-                        name: productName,
-                        quantity: quantity,
-                        price: price
+                const baseProductName = card.querySelector('.product-title').textContent;
+
+                // Handle Cupcakes / Flavor-based cards
+                const flavorItems = card.querySelectorAll('.flavor-item');
+                if (flavorItems.length > 0) {
+                    flavorItems.forEach(item => {
+                        const qtyInput = item.querySelector('.quantity-input');
+                        const quantity = parseInt(qtyInput.value) || 0;
+                        if (quantity > 0) {
+                            const flavorName = item.querySelector('label').textContent;
+                            const pricePer = parseFloat(qtyInput.dataset.price) || 0;
+
+                            // Get addons for this card
+                            let addonTotal = 0;
+                            const addons = [];
+                            const addonSelect = card.querySelector('.addon-select');
+                            if (addonSelect) {
+                                const opt = addonSelect.options[addonSelect.selectedIndex];
+                                if (opt.value !== 'none') {
+                                    addonTotal += parseFloat(opt.dataset.price) || 0;
+                                    addons.push(opt.text);
+                                }
+                            }
+
+                            formData.products.push({
+                                name: `${baseProductName} - ${flavorName}${addons.length ? ' (' + addons.join(', ') + ')' : ''}`,
+                                quantity: quantity,
+                                price: pricePer + addonTotal
+                            });
+                        }
                     });
+                    return; // Done with this card
+                }
+
+                // Handle Cake Tables
+                const tableRows = card.querySelectorAll('.table-row');
+                if (tableRows.length > 0) {
+                    tableRows.forEach(row => {
+                        const qtyInput = row.querySelector('.quantity-input');
+                        const quantity = parseInt(qtyInput.value) || 0;
+                        if (quantity > 0) {
+                            const size = row.querySelector('.col-size').textContent;
+
+                            // Get selections for this row
+                            const flavor = row.querySelector('select[data-addon-type="flavor"] option:checked').text;
+                            const filling = row.querySelector('select[data-addon-type="filling"] option:checked').text;
+                            const border = row.querySelector('select[data-addon-type="border"] option:checked').text;
+                            const addons = row.querySelector('select[data-addon-type="addons"] option:checked').text;
+                            const textOpt = row.querySelector('select[data-addon-type="text"] option:checked').text;
+
+                            // Calculate price for this specific row configuration
+                            let unitPrice = parseFloat(qtyInput.dataset.price) || 0;
+
+                            // Add price of addons
+                            row.querySelectorAll('select').forEach(select => {
+                                const opt = select.options[select.selectedIndex];
+                                unitPrice += parseFloat(opt.dataset.price) || 0;
+                            });
+
+                             // Build descriptive name
+                            let desc = `${baseProductName} (${size})`;
+                            desc += ` - ${flavor} / ${filling}`;
+                            if (addons !== "No Add-Ons") desc += ` + ${addons}`;
+                            if (textOpt !== "No Text") desc += ` + ${textOpt}`;
+
+                            formData.products.push({
+                                name: desc,
+                                quantity: quantity,
+                                price: unitPrice
+                            });
+                        }
+                    });
+                    return; // Done with this card
+                }
+
+                // Fallback for simple single-input products
+                const simpleQty = card.querySelector('.quantity-input');
+                if (simpleQty) {
+                    const quantity = parseInt(simpleQty.value) || 0;
+                    if (quantity > 0) {
+                        const price = parseFloat(card.querySelector('.product-price').textContent.replace('$','')) || 0;
+                        formData.products.push({
+                            name: baseProductName,
+                            quantity: quantity,
+                            price: price
+                        });
+                    }
                 }
             });
 
@@ -4115,6 +4225,7 @@
                 scrollBottomBtn.classList.add('hidden');
             }
         }
+
     </script>
 
     <!-- Floating Action Buttons -->
