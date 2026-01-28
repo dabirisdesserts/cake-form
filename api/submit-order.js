@@ -98,12 +98,12 @@ function addOrderToAirtable(formData) {
         const daysDifference = Math.ceil((pickupDate - today) / (1000 * 60 * 60 * 24));
         const isOverdue = daysDifference < 0;
         const orderMonth = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
-        
+
         // Create order summary
-        const orderSummary = formData.products && formData.products.length > 0 
+        const orderSummary = formData.products && formData.products.length > 0
             ? formData.products.filter(p => p.quantity > 0).map(p => `${p.name} (${p.quantity})`).join(', ')
             : 'Custom Order';
-        
+
         // Determine order category based on products
         const orderCategory = formData.products && formData.products.some(p => p.quantity > 0)
             ? 'Product Order'
@@ -121,11 +121,11 @@ function addOrderToAirtable(formData) {
                 "Total Price": total,
                 "Order Status": "Submitted",
                 "Order Date": new Date().toISOString().split('T')[0],
-                "Days Until Pickup": daysDifference,
-                "Is Overdue": isOverdue,
-                "Order Month": orderMonth,
-                "Order Summary": orderSummary,
-                "Order Category": orderCategory,
+                // "Days Until Pickup": daysDifference, // Computed in Airtable
+                // "Is Overdue": isOverdue, // Computed in Airtable
+                // "Order Month": orderMonth, // Computed in Airtable
+                // "Order Summary": orderSummary, // Computed in Airtable
+                // "Order Category": orderCategory, // Computed in Airtable
                 "Design Requests": formData.designRequests || '',
                 "Cake Text": formData.cakeText || '',
                 "Color Requests": formData.colorRequests || '',
